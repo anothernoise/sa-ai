@@ -1,0 +1,22 @@
+{
+  "title": "SA AI — AI Solution Architect Bootcamp",
+  "description": "A hands-on book and bootcamp for architects designing secure, reliable, and economically defensible AI systems.",
+  "author": "anothernoise",
+  "language": "en",
+  "structure": {
+    "readme": "README.md",
+    "summary": "SUMMARY.md"
+  },
+  "plugins": [],
+  "styles": {
+    "website": "styles/website.css"
+  },
+  "pluginsConfig": {
+    "theme-default": {
+      "showLevel": true
+    },
+    "fontsettings": {
+      "theme": "night"
+    }
+  }
+}
