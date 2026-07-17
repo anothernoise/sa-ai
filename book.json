@@ -7,11 +7,19 @@
     "readme": "README.md",
     "summary": "SUMMARY.md"
   },
-  "plugins": [],
+  "plugins": [
+    "sa-code-tools",
+    "mermaid-hybrid"
+  ],
   "styles": {
     "website": "styles/website.css"
   },
   "pluginsConfig": {
+    "mermaid-hybrid": {
+      "plugin": {
+        "embed": false
+      }
+    },
     "theme-default": {
       "showLevel": true
     },

@@ -50,57 +50,94 @@ Write the task contract before selecting a model:
 
 The hybrid pattern is a strong enterprise default: the audio model handles conversation, while a typed control plane owns identity, policy, tool schemas, action state and evidence. A transcript is useful evidence but is not a perfect record of what the audio model perceived; preserve corrections and model/tool state separately.
 
+Use the following decision path as a design prompt, not as an automatic selector. A single product can use explicit turns for high-risk actions and full duplex for low-risk guidance.
+
+```mermaid
+flowchart TB
+    accTitle: Voice conversation architecture decision path
+    accDescr: A decision tree selects explicit turns, a cascade, native speech, or a hybrid design from environment, consequence, audit, and latency needs.
+
+    START["Is voice useful in the target environment?"]
+    ALT["Lead with text or a visual interface"]
+    NOISE["Is the channel noisy, shared, or safety critical?"]
+    EXPLICIT["Use push-to-talk or explicit turns"]
+    RISK["Can a misunderstood turn cause a consequential action?"]
+    HYBRID["Use hybrid audio plus typed control and confirmation"]
+    AUDIT["Must components be independently inspected or replaced?"]
+    CASCADE["Use a cascaded speech-text-speech pipeline"]
+    NATIVE["Evaluate native speech-to-speech"]
+
+    START -- "No" --> ALT
+    START -- "Yes" --> NOISE
+    NOISE -- "Yes" --> EXPLICIT
+    NOISE -- "No" --> RISK
+    RISK -- "Yes" --> HYBRID
+    RISK -- "No" --> AUDIT
+    AUDIT -- "Yes" --> CASCADE
+    AUDIT -- "No; latency and expression dominate" --> NATIVE
+```
+
 ## 3. Reference architecture and trust boundaries
 
 ```mermaid
-flowchart LR
-    subgraph Channels["Untrusted or partially trusted channels"]
-        PSTN["PSTN / SIP"]
+flowchart TB
+    accTitle: Production voice agent trust boundaries
+    accDescr: Untrusted voice channels enter a real-time media edge, then a conversation plane; governed identity, policy, tools, records, and evidence remain separate.
+
+    subgraph CH["Untrusted or partially trusted channels"]
+        PSTN["PSTN or SIP"]
         RTC["Browser or mobile WebRTC"]
         DEV["Device audio"]
     end
 
-    subgraph Edge["Real-time edge"]
-        SIG["Signaling, admission, rate limit"]
-        MED["Media gateway: codec, jitter, echo/noise"]
-        SES["Session and consent state"]
+    subgraph EDGE["Real-time media edge"]
+        ADMIT["Signaling and admission"]
+        MEDIA["Codec, jitter, echo, and noise"]
+        SESSION["Session and consent state"]
     end
 
-    subgraph Conversation["Conversation plane"]
-        TURN["Turn manager / interruption"]
-        SPEECH["ASR + model + TTS or native audio model"]
-        DIALOG["Dialogue and task state"]
+    subgraph CONV["Conversation plane"]
+        TURN["Turn and interruption manager"]
+        MODEL["Speech pipeline or native audio model"]
+        TASK["Dialogue and task state"]
+        PLAY["Playback controller"]
     end
 
-    subgraph Control["Governed control plane"]
-        ID["Independent identity and policy"]
+    subgraph CTRL["Governed control plane"]
+        POLICY["Identity and policy"]
         TOOLS["Typed tool gateway"]
-        SYS["Systems of record"]
-        HUMAN["Human transfer / callback"]
+        RECORD["Systems of record"]
+        HUMAN["Human transfer"]
     end
 
-    subgraph Evidence["Governed evidence"]
-        TRACE["Turn, tool and outcome telemetry"]
-        AUDIO["Optional audio / transcript store"]
+    subgraph EVID["Governed evidence plane"]
+        TRACE["Turn, action, and outcome events"]
+        STORE["Optional audio and transcript store"]
     end
 
-    PSTN --> SIG
-    RTC --> SIG
-    DEV --> SIG
-    SIG --> MED --> TURN
-    SES --> TURN
-    TURN <--> SPEECH
-    SPEECH <--> DIALOG
-    DIALOG --> ID --> TOOLS --> SYS
-    DIALOG --> HUMAN
+    CH --> ADMIT --> MEDIA --> TURN
+    SESSION --> TURN
+    TURN <--> MODEL
+    TURN <--> PLAY
+    MODEL <--> TASK
+    TASK --> POLICY --> TOOLS --> RECORD
+    TASK --> HUMAN
     TURN --> TRACE
-    DIALOG --> TRACE
+    TASK --> TRACE
     TOOLS --> TRACE
-    MED -. "only under recording policy" .-> AUDIO
-    SPEECH -. "correctable transcript" .-> AUDIO
+    MEDIA -. "recording policy permits" .-> STORE
+    MODEL -. "correctable transcript" .-> STORE
 ```
 
 Trust the authenticated session, not caller ID or vocal resemblance. Treat ambient speech, hold music, other speakers and media played near the microphone as untrusted input. Keep credentials and raw system responses away from the speech prompt unless the task requires them.
+
+The separation has an operational purpose:
+
+- the **media data plane** moves frequent, latency-sensitive audio frames;
+- the **control plane** moves lower-frequency session, turn, cancellation and action events;
+- the **evidence plane** records enough immutable facts to reconstruct outcomes without retaining every raw utterance.
+
+Do not make audio delivery wait for a database write. Publish evidence asynchronously with a bounded buffer, but make an action receipt durable before announcing that the action completed.
 
 ## 4. Select channel and transport deliberately
 
@@ -114,6 +151,10 @@ The [W3C WebRTC Recommendation](https://www.w3.org/TR/webrtc/) supplies browser 
 | On-device | privacy, offline or edge response | model size, battery, hardware variance, update and telemetry limits |
 
 Avoid unnecessary transcodes. Record the negotiated codec, sample rate, packet loss, jitter and audio path because they influence recognition and turn behavior. Test the production telephone path; studio microphones conceal the failures users experience.
+
+RTP receiver reports expose packet loss and interarrival jitter, while RTCP Extended Reports can distinguish network loss from packets discarded by the jitter buffer ([RFC 3550](https://www.rfc-editor.org/rfc/rfc3550.html); [RFC 3611](https://www.rfc-editor.org/rfc/rfc3611.html)). That distinction matters: a buffer that is too small discards late packets, while a buffer that is too large makes the conversation sluggish. [RFC 8451](https://www.rfc-editor.org/rfc/rfc8451.html) connects those buffer metrics to conversational quality. WebRTC endpoints must adapt media to changing network paths rather than assuming fixed bandwidth or delay ([RFC 8834](https://www.rfc-editor.org/rfc/rfc8834.html)).
+
+For telephony, transmit keypad input as an explicit telephone event rather than trying to recognize tones from decoded speech; [RFC 4733](https://www.rfc-editor.org/rfc/rfc4733.html) defines the common RTP payload. Treat DTMF as sensitive input where it carries an account number or verification secret.
 
 ## 5. Make the session contract explicit
 
@@ -132,6 +173,58 @@ A reconnectable voice session should carry at least:
 
 Expire model-session credentials independently from the user session. Do not restore a stale conversation merely because a media connection reconnects.
 
+### A provider-neutral event contract
+
+Normalize provider events at the boundary. Application code should consume the book's event vocabulary, while adapters translate OpenAI, Google, AWS or Azure payloads. This prevents a model replacement from changing action authority or audit semantics.
+
+The following listing is illustrative TypeScript. It is intentionally small enough to review and adapt; production code also needs schema validation, authentication and bounded payload sizes.
+
+```ts
+type VoiceEventKind =
+  | "speech.started"
+  | "turn.committed"
+  | "response.started"
+  | "response.interrupted"
+  | "action.proposed"
+  | "action.settled";
+
+interface VoiceEvent<TPayload> {
+  eventId: string;
+  sessionId: string;
+  turnId: string;
+  sequence: number;
+  occurredAt: string;
+  kind: VoiceEventKind;
+  payload: TPayload;
+}
+
+interface ActionState {
+  actionId: string;
+  idempotencyKey: string;
+  status: "proposed" | "submitted" | "verified" | "unknown";
+}
+```
+
+An event on the wire can carry provider evidence without exposing the provider's protocol to the business workflow:
+
+```json
+{
+  "eventId": "evt_01K0",
+  "sessionId": "ses_84F2",
+  "turnId": "turn_19",
+  "sequence": 42,
+  "occurredAt": "2026-07-16T19:42:18.231Z",
+  "kind": "response.interrupted",
+  "payload": {
+    "playedThroughMs": 1840,
+    "providerItemId": "item_7",
+    "pendingActionId": null
+  }
+}
+```
+
+Sequence numbers identify gaps; event IDs support deduplication; audio offsets identify what the user actually heard. The authoritative business outcome still comes from the system of record.
+
 ## 6. Budget perceived latency, not model latency
 
 ```text
@@ -148,6 +241,53 @@ capture and packetization
 Set task-specific p50, p95 and timeout targets for each term. There is no universal “human” latency threshold: a short acknowledgment, a factual answer and a transaction have different expectations. Acknowledgment can mask tool time only when it accurately states that work is still pending; it must not imply completion.
 
 Measure interruption stop time from detected user speech to silence at the speaker, not to a server cancellation event. Also measure the time until the agent correctly resumes or asks for clarification.
+
+### Build a latency worksheet
+
+Use separate budgets for response onset and completed work. A sample worksheet might allocate time as follows; the numbers are an example, not a universal target.
+
+| Stage | Example p95 budget | Measurement boundary |
+| --- | ---: | --- |
+| capture, packetization and network | 120 ms | microphone sample → edge receipt |
+| jitter buffer and end-of-turn | 350 ms | edge receipt → committed turn |
+| first model/audio output | 500 ms | committed turn → first output frame |
+| return network and playback | 130 ms | first output frame → audible output |
+| **response-onset budget** | **1,100 ms** | user stops → user hears response |
+| tool completion | workload-specific | accepted call → authoritative result |
+
+Instrument timestamps at both endpoints; server-only traces cannot reveal a blocked browser audio queue. Track time-to-first-audio, time-to-last-audio, turn-commit delay, tool duration, and detected-speech-to-local-silence separately.
+
+```mermaid
+sequenceDiagram
+    accTitle: Voice turn event loop and latency boundaries
+    accDescr: The client streams audio to an edge turn manager, which commits a turn, streams model output, acknowledges played audio, and cancels both playback and generation on interruption.
+
+    participant C as Client media
+    participant E as Edge and turn manager
+    participant M as Audio model
+    participant T as Typed tool adapter
+    participant X as Evidence stream
+
+    C->>E: Audio frames with monotonic offsets
+    E->>X: speech.started
+    E->>M: Stream accepted audio
+    E->>M: Commit turn
+    E->>X: turn.committed
+    M-->>E: Response audio frames
+    E-->>C: Playable audio frames
+    C-->>E: Played-through offset
+    opt Model requests a tool
+        M->>T: Typed call with action ID
+        T-->>M: Result or explicit error
+        T->>X: Durable action outcome
+    end
+    alt User interrupts
+        C->>C: Stop and clear local playback
+        C->>E: speech.started plus played offset
+        E->>M: Cancel and truncate unheard output
+        E->>X: response.interrupted
+    end
+```
 
 ## 7. Engineer turn-taking, not just voice activity detection
 
@@ -178,6 +318,9 @@ When the user interrupts, these are separate operations:
 
 ```mermaid
 stateDiagram-v2
+    accTitle: Voice session states during interruption and action recovery
+    accDescr: A voice session moves among listening, thinking, speaking, acting, interruption, reconciliation, and human transfer states.
+
     [*] --> Listening
     Listening --> Thinking: turn committed
     Thinking --> Speaking: response audio begins
@@ -191,6 +334,30 @@ stateDiagram-v2
 ```
 
 The media pipeline can be cancelled; an external side effect may already have committed. Give every consequential action a durable state and idempotency key.
+
+Provider protocols use different event names, but the invariant is the same. Google's Live API guidance says to discard buffered playback when the server reports interruption. OpenAI Realtime and Azure Voice Live expose output truncation or cancellation events so server conversation state can match what the user actually heard. Amazon Nova Sonic requires a tool result—including an error result—for every accepted tool use so the model does not wait indefinitely. Keep those details inside adapters and test the invariant against every provider.
+
+The following provider-neutral interruption handler illustrates the order. It stops local audio before awaiting the network, aborts model generation, and reconciles an action independently. Adapt the methods to the selected SDK and media player.
+
+```ts
+async function interruptTurn(turnId: string): Promise<void> {
+  const playedThroughMs = player.playedThroughMs();
+
+  player.stop();
+  player.clearQueuedAudio();
+  generationByTurn.get(turnId)?.abort();
+
+  await model.truncateResponse({ turnId, playedThroughMs });
+
+  const action = actionByTurn.get(turnId);
+  if (action?.status === "submitted") {
+    action.status = "unknown";
+    await reconcileFromSystemOfRecord(action);
+  }
+}
+```
+
+Do not present this snippet as complete application code: the real handler also needs timeouts, retry policy, authorization, telemetry, and race tests. Its purpose is to make cancellation order reviewable.
 
 ## 9. Write for the ear
 
@@ -219,6 +386,32 @@ Use a propose → confirm → execute → verify protocol:
 6. The agent verifies the system of record before announcing completion.
 
 “Yes” is not sufficient when the confirmation question was ambiguous or interrupted. Never infer approval from silence, a positive tone or continued conversation.
+
+```mermaid
+sequenceDiagram
+    accTitle: Two-phase safety protocol for a consequential voice action
+    accDescr: The agent proposes an action, obtains confirmation through an appropriate channel, executes once with an idempotency key, and verifies the system of record before speaking success.
+
+    participant U as User
+    participant A as Conversation agent
+    participant P as Policy and approval
+    participant G as Typed tool gateway
+    participant S as System of record
+
+    A->>P: Validate subject, policy, limits, and parameters
+    P-->>A: Proposal permitted, confirmation required
+    A->>U: Read exact action and material parameters
+    U->>P: Confirm through approved channel
+    P->>G: Execute with action ID and idempotency key
+    G->>S: Submit once
+    S-->>G: Durable transaction ID
+    G->>S: Read authoritative state
+    S-->>G: Verified outcome
+    G-->>A: Verified result and evidence reference
+    A-->>U: Speak result and durable reference
+```
+
+If the connection fails after submission, move the action to `unknown`, query by transaction or idempotency key, and speak no success or failure until authoritative state is known. This is a saga boundary: conversational rollback cannot undo a committed external action.
 
 ## 11. Separate vocal likeness from identity
 
@@ -294,6 +487,30 @@ Raw audio is not a prerequisite for useful telemetry. Trace:
 
 Treat call recording as a separately justified data product with access, retention and deletion controls. Sample only when the purpose and permissions allow it; prefer derived operational metrics for routine monitoring.
 
+### Connect media quality to task outcomes
+
+Do not stop at infrastructure dashboards. Join media, turn, model, action and outcome events by opaque identifiers so the team can answer questions such as “did jitter-buffer discard precede entity correction?” without putting raw speech or customer data into metric labels.
+
+```mermaid
+flowchart LR
+    accTitle: Voice agent observability evidence path
+    accDescr: Media, turn, model, tool, and client-playback events flow through privacy controls into traces and metrics, which are joined to authoritative task outcomes.
+
+    MEDIA["Media quality events"] --> FILTER["Redact, sample, and classify"]
+    TURN["Turn and interruption events"] --> FILTER
+    MODEL["Model and prompt versions"] --> FILTER
+    TOOL["Action receipts and outcomes"] --> FILTER
+    CLIENT["Played-audio acknowledgments"] --> FILTER
+    FILTER --> TRACE["Correlated trace"]
+    FILTER --> METRIC["Low-cardinality metrics"]
+    RECORD["System-of-record outcome"] --> JOIN["Evaluation join"]
+    TRACE --> JOIN
+    METRIC --> JOIN
+    JOIN --> GATE["Release and rollback gates"]
+```
+
+Keep raw identifiers in access-controlled traces and use bounded labels for operational metrics. A graph that shows low model latency alongside rising interruption recovery failures should block release even if aggregate task success looks stable.
+
 ## 16. Evaluate the conversation and the action
 
 | Dimension | Measures and tests |
@@ -312,6 +529,32 @@ Slice results by language, accent/dialect, speaking rate, disability, device, mi
 
 Recent work proposes richer evaluation of timing, overlap, interruption and backchannels instead of scoring only transcription or response content ([Talking Turns, 2025](https://arxiv.org/abs/2503.01174)). Treat new benchmarks as evidence to evaluate, not universal production acceptance criteria.
 
+Peer-reviewed work reinforces two gaps in common scorecards. [FD-Bench, Interspeech 2025](https://www.isca-archive.org/interspeech_2025/peng25b_interspeech.html) tests full-duplex systems under delays, interruptions and noise, conditions in which evaluated systems degraded. [Mori et al., Interspeech 2025](https://www.isca-archive.org/interspeech_2025/mori25_interspeech.html) argues that word error rate alone misses whether a system selectively attends and responds to task-relevant speech. Use these findings to add disturbance scenarios and task-state checks, not to copy a leaderboard threshold into production.
+
+Store evaluation policy as versioned data. This illustrative YAML makes slices and hard safety gates explicit while leaving workload-specific numbers to the owning team.
+
+```yaml
+evaluation_suite: voice-refund-v3
+required_slices:
+  - channel: pstn
+  - network: packet-loss-3-percent
+  - speech: long-hesitation
+  - speech: overlapping-speakers
+  - accessibility: text-fallback
+hard_gates:
+  duplicate_consequential_actions: 0
+  unauthorized_disclosures: 0
+  unreconciled_unknown_outcomes: 0
+regression_metrics:
+  - verified_task_success
+  - false_cut_in_rate
+  - interruption_to_silence_ms_p95
+  - correction_burden
+  - human_transfer_completion
+```
+
+Run repeated, seeded scenarios before release and a smaller privacy-safe canary suite after release. Model-based judges can help classify style or intent, but authoritative system state and human review must decide whether an action was correct.
+
 ## 17. Plan capacity and unit economics
 
 Voice holds resources for the duration of a live session. Model:
@@ -326,6 +569,30 @@ Voice holds resources for the duration of a live session. Model:
 
 Use per-success economics, not cost per call. Enforce call/session limits with a graceful continuation or callback path, and load-test reconnection and synchronized cancellation—not merely requests per second.
 
+### Roll out by authority, not traffic percentage alone
+
+| Stage | Agent authority | Required exit evidence |
+| --- | --- | --- |
+| offline replay | none | disturbance suite passes; no prohibited output |
+| shadow mode | none; human remains authoritative | event alignment, latency and transfer brief are correct |
+| employee pilot | read-only tools | task and accessibility targets pass across slices |
+| customer canary | narrow tools; confirmation required | zero hard-gate failures and stable human handoff |
+| limited action | capped amount/scope; rapid rollback | verified outcomes, reconciliation and abuse controls pass |
+| expansion | policy-governed by task and cohort | sustained per-success quality, safety and economics |
+
+Traffic percentage is not a safety boundary. A 1% canary with unrestricted refund authority can still cause unacceptable harm. Limit tool scope, amount, geography, customer cohort and operating hours independently, and keep a server-side action kill switch outside the prompt.
+
+Common anti-patterns are useful review triggers:
+
+| Anti-pattern | Why it fails | Replacement |
+| --- | --- | --- |
+| one silence timeout for every caller | cuts off hesitation or creates dead air | semantic endpointing plus task/language tuning |
+| server cancellation equals silence | queued client audio can keep playing | local stop, buffer clear, then remote truncate |
+| transcript is the audit log | it omits unheard audio, revisions and tool state | correlated event and outcome evidence |
+| “yes” authorizes any proposal | ambiguity and interruption break consent | exact proposal plus risk-appropriate confirmation |
+| model message proves tool success | disconnect and retries create unknown outcomes | verify the system of record |
+| average latency proves responsiveness | tails and false cut-ins are hidden | p50/p95 plus turn and interruption metrics |
+
 ## 18. Dated platform mapping
 
 The durable architecture above should survive provider changes. As of **2026-07-16**, representative managed options include:
@@ -339,12 +606,17 @@ The durable architecture above should survive provider changes. As of **2026-07-
 
 Do not let a feature checklist choose the architecture. Run the same task, network, accent/language, interruption, safety and recovery suite against every candidate. Keep provider events behind an internal session/action contract so model replacement does not rewrite business controls.
 
+Implementation details are easy to miss in overview pages. Review the current provider protocol documentation before coding: [Google Live API best practices](https://ai.google.dev/gemini-api/docs/live-api/best-practices), [OpenAI Realtime client events](https://platform.openai.com/docs/api-reference/realtime-client-events/session), [Amazon Nova 2 Sonic tool configuration](https://docs.aws.amazon.com/nova/latest/nova2-userguide/sonic-tool-configuration.html), and [Azure Voice Live API events](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/voice-live-api-reference-2026-04-10). Pin adapter conformance tests to the event semantics the application depends on.
+
 ## Northstar worked example
 
 Northstar's customer calls about a damaged order and requests a refund.
 
 ```mermaid
 sequenceDiagram
+    accTitle: Northstar governed voice refund journey
+    accDescr: A customer corrects a proposed refund before authenticated confirmation; policy and a typed workflow execute and verify the action, with human transfer for uncertainty.
+
     participant U as Customer
     participant V as Voice channel
     participant A as Conversation agent
@@ -359,8 +631,8 @@ sequenceDiagram
     P-->>A: Permitted orders and assurance level
     A->>U: Confirm selected order and proposed amount
     U->>A: Interrupt and correct the amount
-    A->>A: Cancel playback; update proposed action only
-    A->>U: Read exact corrected action; request confirmation
+    A->>A: Cancel playback and update proposed action only
+    A->>U: Read exact corrected action and request confirmation
     U->>P: Confirm through authenticated app or approved channel
     P->>R: Execute typed action with idempotency key
     R-->>P: Durable refund ID and verified state
@@ -419,6 +691,11 @@ Build or simulate the Northstar flow. Inject noisy speech, long hesitation, a ba
 - [Kurata et al.: multimodal end-of-utterance prediction, Interspeech 2023](https://www.isca-archive.org/interspeech_2023/kurata23_interspeech.html).
 - [Talking Turns: benchmarking audio foundation models on turn-taking dynamics, 2025](https://arxiv.org/abs/2503.01174).
 - [ASVspoof 2021: accelerating progress in spoofed and deepfake speech detection](https://arxiv.org/abs/2109.00537).
+- [FD-Bench: full-duplex dialogue evaluation under delays, interruptions and noise, Interspeech 2025](https://www.isca-archive.org/interspeech_2025/peng25b_interspeech.html).
+- [Mori et al.: task-relevant listening beyond word error rate, Interspeech 2025](https://www.isca-archive.org/interspeech_2025/mori25_interspeech.html).
+- [RFC 8834: media transport and RTP use in WebRTC](https://www.rfc-editor.org/rfc/rfc8834.html).
+- [RFC 3611: RTP Control Protocol Extended Reports](https://www.rfc-editor.org/rfc/rfc3611.html).
+- [RFC 8451: RTP metrics for conversational multimedia quality](https://www.rfc-editor.org/rfc/rfc8451.html).
 - [Multimodal, real-time voice and computer-use architectures](../02-ai-landscape/05-multimodal.md).
 - [Tools, authorization and identity](../05-agents/01-tools-authorization.md).
 - [Reliability, latency and resilience](../04-llm-systems/02-reliability-latency.md).
