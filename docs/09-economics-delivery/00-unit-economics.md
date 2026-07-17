@@ -76,6 +76,16 @@ flowchart LR
     A --> V
 ```
 
+| Step | Diagram input or stage | Detailed description |
+| ---: | --- | --- |
+| 1 | Request/task IDs | Assign stable correlation identifiers that connect a user goal, model routes, agent steps, tools, retries, human work, and final outcome. |
+| 2 | Usage: tokens, compute, retrieval, tools | Meter internal resource consumption at task and step level, including cached/reasoning tokens, media duration, storage, search, and external APIs. |
+| 3 | Provider/cloud billing | Ingest authoritative invoice and cost/usage records with account, region, SKU, commitment, credit, and billing-period context. |
+| 4 | Cost normalization | Convert heterogeneous charges into consistent currencies, units, amortization, discounts, shared-platform cost, and time windows. |
+| 5 | Allocation by product, tenant, feature, route | Join usage and normalized cost, then allocate shared spend with documented rules and tenant-safe dimensions rather than high-cardinality raw identifiers. |
+| 6 | Outcome labels | Record verified success, failure, retry, escalation, harm, latency, and human effort for the same correlated task population. |
+| 7 | Cost and value per success | Divide total attributable cost by verified useful outcomes and compare it with measured value, baseline performance, risk, and displaced or added human work. |
+
 Tag task, product, environment, tenant-safe cost center, model route, agent, feature and owner. Reconcile telemetry with invoices. The [FOCUS 1.2 specification](https://focus.finops.org/focus-specification/v1-2/) standardizes cost/usage data from technology providers, while AI-specific internal meters—tokens, tools and outcomes—still need correlation.
 
 The current [FinOps for AI guidance](https://www.finops.org/framework/technology-categories/ai/) emphasizes allocation, forecasting, anomaly management and linking granular AI usage with business outputs.

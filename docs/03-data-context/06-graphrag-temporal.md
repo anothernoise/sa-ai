@@ -62,6 +62,21 @@ flowchart LR
     K --> L
 ```
 
+| Step | Diagram stage | Detailed description |
+| ---: | --- | --- |
+| 1 | Source documents | Start from governed, versioned sources with ownership, access scope, authority, effective time, and resolvable citation coordinates. |
+| 2 | Parse and segment | Extract document structure and bounded text units while preserving source revision, offsets, tables, sections, and transformation versions. |
+| 3 | Extract entities, relations, claims | Produce typed candidate nodes, edges, and claims with evidence spans and calibrated confidence; treat extraction as fallible. |
+| 4 | Resolve and canonicalize entities | Link aliases conservatively to stable domain identities, preserve reversible merge evidence, and avoid combining different subjects. |
+| 5 | Attach provenance and time | Record source, observed time, valid-from/to, derivation, confidence, tenant, and ACL metadata on claims and relationships. |
+| 6 | Construct graph | Materialize validated entities and typed relationships while preserving claim-level evidence rather than storing only synthesized edges. |
+| 7 | Detect communities | Identify bounded clusters that may reveal themes or connected subgraphs; version the algorithm and invalidate affected results after change. |
+| 8 | Generate multi-level summaries | Create source-linked summaries for communities and hierarchy levels, with freshness and contradiction handling rather than timeless narratives. |
+| 9 | Create chunk embeddings | Embed source segments for semantic recall of details that may not be reachable through an exact graph path. |
+| 10 | Create node and description embeddings | Embed entity names, aliases, descriptions, and optionally relationships to support entity-centric semantic entry points. |
+| 11 | Community report index | Index multi-level reports for broad or global questions that require synthesis across many connected source units. |
+| 12 | Hybrid query plane | Combine lexical/vector candidates, graph traversal, temporal and ACL predicates, and community reports under explicit hop, latency, and cost budgets. |
+
 The outputs remain derived indexes. The source documents and systems of record remain authoritative.
 
 ## Graph construction is the hard part
@@ -174,6 +189,13 @@ flowchart LR
     B -->|"CORRECTED_BY"| C["Carrier correction\nobserved T4"]
     C --> D["Revised route claim\nvalid from T2"]
 ```
+
+| Step | Diagram relationship | Detailed description |
+| ---: | --- | --- |
+| 1 | Shipment at SEA-02, valid T1–T2 | The first claim is retained with the interval during which the system believed the shipment was at the facility. |
+| 2 | `NEXT_EVENT` → shipment delayed, valid T2–T3 | A later event advances the timeline without deleting the preceding state, allowing queries to reconstruct sequence. |
+| 3 | `CORRECTED_BY` → carrier correction, observed T4 | The carrier supplies a correction at observation time T4; the explicit edge preserves which earlier claim is being challenged. |
+| 4 | Revised route claim, valid from T2 | The corrected interpretation receives its own validity interval, while provenance and the superseded history remain queryable. |
 
 [Zep: A Temporal Knowledge Graph Architecture for Agent Memory](https://arxiv.org/abs/2501.13956) describes Graphiti, which combines conversational and business data in a temporal graph. It is a useful implementation case study, but it is a vendor-authored preprint; validate its benchmark claims independently before using them in a platform decision.
 

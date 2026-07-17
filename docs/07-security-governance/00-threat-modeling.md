@@ -33,6 +33,18 @@ flowchart LR
     M --> O["Logs, evals and feedback"]
 ```
 
+| Step | Diagram path or boundary | Detailed description |
+| ---: | --- | --- |
+| 1 | Users / attackers → UI and API edge | Treat every external request as untrusted; authenticate, validate, rate-limit, constrain uploads, and record the originating principal and channel. |
+| 2 | Documents, web, email → context and memory | Classify retrieved content as data, preserve its origin and trust, scan active content, enforce tenant/ACL scope, and stage durable memory writes. |
+| 3 | UI/API edge → gateway and policy | Exchange identity for narrow service credentials and enforce authorization, purpose, budgets, region, and routing outside the model. |
+| 4 | Context and memory → model / agent loop | Prevent retrieved instructions from changing policy or authority; bound context, iterations, delegation depth, and disclosure. |
+| 5 | Model / agent loop → tools and agents | Broker typed capabilities with per-resource authorization, least privilege, confirmation, timeout, idempotency, and egress controls. |
+| 6 | Tools and agents → systems of record | Validate exact targets and parameters, protect credentials, capture durable transaction identity, and verify authoritative outcomes. |
+| 7 | Model / agent loop → sandbox / browser | Isolate generated execution from host secrets and user sessions; restrict filesystem, network, origins, clipboard, downloads, and uploads. |
+| 8 | Providers and packages → model / agent loop | Treat models, SDKs, skills, MCP servers, dependencies, and updates as supply-chain inputs requiring provenance, pinning, review, and monitoring. |
+| 9 | Model / agent loop → logs, evals and feedback | Minimize and protect telemetry, prevent secrets/PII from becoming labels, validate feedback before reuse, and detect poisoning or incident indicators. |
+
 For each boundary list assets, entry points, principals, data classes, authority, assumptions, consequences and owners. Include control plane, build pipeline, evaluation data, telemetry, skills, MCP servers, model providers, human reviewers, browser sessions and derived artifacts.
 
 ## Threat taxonomy

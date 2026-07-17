@@ -47,6 +47,16 @@ flowchart LR
     W --> H["Human workflow / abstain"]
 ```
 
+| Step | Diagram route | Detailed description |
+| ---: | --- | --- |
+| 1 | Workload + policy | Classify task complexity, consequence, modality, volume, data rules, latency, cost ceiling, and evidence requirements before routing. |
+| 2 | Deterministic / non-AI | Route stable rules, arithmetic, authorization, validation, and transactions to ordinary software when probabilistic behavior adds no value. |
+| 3 | Small fast model | Use a lower-cost model for bounded, high-volume work only after it clears quality and safety thresholds for every required slice. |
+| 4 | Frontier general model | Reserve the most capable general model for ambiguity, long context, difficult reasoning, or complex tasks where measured gain justifies cost and latency. |
+| 5 | Specialized multimodal/code model | Select a purpose-built model for speech, vision, embeddings, reranking, moderation, or code when it outperforms a general route on the target workload. |
+| 6 | Adapted or distilled model | Fine-tune, specialize, or distill when stable task volume and representative proprietary data justify the added lifecycle burden. |
+| 7 | Human workflow / abstain | Escalate or abstain when the request is unsupported, high-consequence, policy-blocked, or below the minimum confidence/evidence threshold. |
+
 - **Deterministic software** wins for stable rules, arithmetic, authorization, and transactions.
 - **Small models** suit high-volume bounded tasks when they clear slice thresholds.
 - **Frontier models** justify their cost for ambiguous, long-horizon, multimodal, or high-complexity work that shows measured gain.

@@ -44,6 +44,18 @@ flowchart LR
     V --> M["Monitor, correct, delete"]
 ```
 
+| Step | Diagram stage | Detailed description |
+| ---: | --- | --- |
+| 1 | Source + owner | Identify the canonical source, accountable owner, steward, schema/media type, change process, and incident contact. |
+| 2 | Authority / license / consent | Confirm ownership, permitted purposes, consent, geographic restrictions, retention, and whether the source is authoritative for the intended claim. |
+| 3 | Ingest and quarantine | Copy or reference inputs through a controlled boundary, scan untrusted content, cap resource use, and prevent immediate parser or agent access. |
+| 4 | Parse / OCR / normalize | Extract structure and content with versioned transformations while preserving source bytes or resolvable source coordinates. |
+| 5 | Classify / ACL / provenance | Attach tenant, sensitivity, authorization labels, effective time, source revision, checksum, and derivation lineage. |
+| 6 | Quality and security checks | Measure task-relevant correctness and coverage; reject active content, unexpected loss, malformed records, missing ACLs, and policy violations. |
+| 7 | Derive chunks, embeddings, graph, dataset | Produce purpose-specific derived assets without treating them as more authoritative than their governed sources. |
+| 8 | Validate and publish version | Run retrieval/training smoke tests, completeness and leakage checks, then atomically expose a traceable version with rollback. |
+| 9 | Monitor, correct, delete | Detect drift and missed changes, propagate corrections and deletions, measure freshness, and retire obsolete versions. |
+
 Quarantine untrusted inputs before parsers and agent access. Scan active content and archives; cap size and complexity; patch parsing dependencies; preserve source bytes or governed references where needed for audit.
 
 ## Data contract

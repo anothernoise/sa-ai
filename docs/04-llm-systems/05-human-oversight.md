@@ -32,6 +32,17 @@ flowchart LR
     C --> K["Compensate / recover"]
 ```
 
+| Step | Diagram stage or branch | Detailed description |
+| ---: | --- | --- |
+| 1 | Goal + constraints | Establish the user's intended outcome, affected resources, authority, limits, prohibited effects, duration/cost expectations, and escalation path. |
+| 2 | Plan / preview | Show the material proposed steps, data disclosures, tool targets, uncertainties, and expected consequences before execution removes meaningful choice. |
+| 3 | Bounded execution | Run only reversible or pre-approved work inside explicit resource, authority, time, and scope limits while exposing progress and material changes. |
+| 4 | Approval before consequence | Present the exact action, target, parameters, evidence, consequence, reversibility, and expiry to the authorized approver before commit. |
+| 5 | Commit + verify | Execute with idempotency and durable identity, then read authoritative state rather than trusting the model or transport response alone. |
+| 6 | Result, correction, appeal | Distinguish proposed, attempted, and verified effects; provide evidence and a usable path to correct, contest, or escalate the outcome. |
+| 7 | Interrupt / cancel branch | Allow the user or policy layer to stop bounded execution or a pending approval; separately reconcile any effect that may already have committed. |
+| 8 | Compensate / recover branch | When a committed action cannot be cancelled, invoke an authorized compensating workflow and preserve both the original and recovery evidence. |
+
 At initiation, show capabilities, limits, data/tools involved, likely duration/cost, and whether actions can occur. During execution, expose progress, material plan changes, blocked states, approvals, and a working stop control. At completion, distinguish proposed from attempted and confirmed effects, show evidence, and provide correction or appeal.
 
 ## Choose the control mode

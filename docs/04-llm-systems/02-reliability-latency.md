@@ -46,6 +46,16 @@ flowchart LR
     V --> S["Stream / persist result"]
 ```
 
+| Step | Diagram stage | Detailed description |
+| ---: | --- | --- |
+| 1 | Edge + auth | Authenticate the caller, establish tenant and policy context, validate request shape, rate-limit abuse, and create the end-to-end deadline and trace. |
+| 2 | Context / retrieval | Assemble only authorized, fresh, task-relevant context within token, latency, and cost budgets; retain evidence identity for later verification. |
+| 3 | Queue + admission | Admit, defer, shed, or route work from current capacity, priority, remaining deadline, and graceful-degradation policy. |
+| 4 | Model | Invoke the selected model with bounded output, cancellation, versioned configuration, and a failure policy that distinguishes transient service errors from bad results. |
+| 5 | Tools / agents | Execute typed reads or actions with least authority, timeouts, idempotency, concurrency limits, and reconciliation for unknown outcomes. |
+| 6 | Validation | Enforce schema, citation, safety, policy, and task-specific invariants before a result or action claim becomes externally visible. |
+| 7 | Stream / persist result | Stream useful output only while monitoring disconnect/cancellation, then persist an explicit final status and outcome evidence distinct from partial text. |
+
 For each stage assign deadline, retry budget, concurrency limit, failure policy, telemetry, and fallback. Propagate one absolute deadline so a downstream retry cannot outlive the user's request or task lease.
 
 Track time to first useful token separately from completion. Streaming improves perceived latency but creates obligations: cancellation, moderation of partial output, disconnect handling, and a final committed status distinct from text already displayed.

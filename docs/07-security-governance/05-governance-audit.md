@@ -103,6 +103,28 @@ The dossier includes inventory record, impact/risk assessments, architecture and
 
 Minimize and protect audit content. Use hashes, references, structured decisions, access controls, retention schedules, and legal holds rather than copying every prompt and personal record into a permanent archive.
 
+## Assurance case: connect claims to evidence
+
+A dossier is a collection; an assurance case is the reviewable argument that the collection supports. For each consequential use profile, state a bounded claim, its context and assumptions, the control argument, supporting evidence, counter-evidence, credible defeaters, residual uncertainty, and accountable acceptance.
+
+```yaml
+claim: "The assistant cannot issue an unapproved refund"
+scope: "Northstar production refund profile v3"
+argument:
+  - "The model can only propose a typed refund action"
+  - "Policy and a supervisor authorize the exact action hash"
+  - "The payment adapter rejects absent or stale approval"
+evidence:
+  - control_test: approval-binding-2026-07-15
+  - fault_campaign: ambiguous-payment-2026-Q3
+defeaters:
+  - "privileged operator bypasses the action broker"
+residual_risk_owner: payments-risk-director
+expires: 2026-10-16
+```
+
+Trace each claim to current evidence and each release tuple to the applicable claims. A passing test does not establish more than its population, environment, and confidence support. Open findings and negative results remain visible. If a defeater becomes credible or evidence expires, the release gate must reduce scope or stop the affected profile.
+
 ## Runtime governance
 
 Translate policy into enforceable mechanisms: eligible model/provider/region routes, data-loss and residency checks, authorization, tool allowlists, approval thresholds, sandbox profiles, budget/depth limits, logging/redaction, and kill switches. Monitor both technical SLOs and impact indicators. Sample decisions and appeals; investigate leading indicators before incidents.
