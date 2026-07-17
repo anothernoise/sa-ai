@@ -10,7 +10,10 @@
     "clean": "rimraf _book"
   },
   "devDependencies": {
+    "highlight.js": "^11.11.1",
     "honkit": "^6.0.2",
+    "honkit-plugin-mermaid-hybrid": "^1.0.2",
+    "honkit-plugin-sa-code-tools": "file:plugins/sa-code-tools",
     "rimraf": "^5.0.5"
   },
   "engines": {

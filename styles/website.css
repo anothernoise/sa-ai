@@ -27,3 +27,28 @@
   display: table;
   width: 100%;
 }
+
+/* Mermaid renders in the browser so diagrams stay sharp at every zoom level. */
+.markdown-section .mermaid {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  overflow-x: auto;
+  border: 1px solid #dbe3ec;
+  border-radius: 0.5rem;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.markdown-section .mermaid svg {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .markdown-section .mermaid {
+    padding: 0.6rem;
+  }
+}
