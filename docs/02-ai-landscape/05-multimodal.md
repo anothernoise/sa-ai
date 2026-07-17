@@ -43,6 +43,17 @@ flowchart LR
     V --> O["Text, audio, visual or action output"]
 ```
 
+| Step | Diagram stage | Detailed description |
+| ---: | --- | --- |
+| 1 | Capture / upload | Accept live or stored media with stable source identity, timestamps, checksums, channel metadata, and bounded size/duration. |
+| 2 | Consent, classify, quarantine | Verify permitted purpose and consent, assign data sensitivity and tenant scope, and isolate untrusted or active media before parsing. |
+| 3 | Normalize / transcode / segment | Convert supported formats while preserving source references; split by page, region, scene, speaker, or time without losing alignment. |
+| 4 | ASR, OCR, vision, speaker/scene events | Produce modality-specific observations with confidence, offsets, extraction versions, and explicit uncertainty rather than a single unqualified transcript. |
+| 5 | Fuse with time + provenance | Align observations across modalities and retain which source frame, page, speaker, or segment supports each derived claim. |
+| 6 | Model / agent | Reason over the intentionally assembled multimodal evidence within task, context, latency, and authority limits. |
+| 7 | Verify / policy / tool control | Validate critical fields and claims, enforce policy and authorization, and mediate every external action through typed controls. |
+| 8 | Text, audio, visual or action output | Deliver an accessible channel-appropriate result, distinguish statements from verified actions, and preserve evidence needed for correction or appeal. |
+
 Preserve source media ID, checksum, timestamps, page/region/time offsets, transformation versions, confidence and access policy. An answer citation should locate the frame, segment, page or region that supports it.
 
 ## Document and vision systems

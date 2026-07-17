@@ -134,6 +134,14 @@ flowchart LR
     D --> E
 ```
 
+| Step | Diagram layer | Detailed description |
+| ---: | --- | --- |
+| 1 | Index/write quality | Measure whether useful memories were extracted, correctly scoped, deduplicated, linked to provenance, indexed promptly, and deleted or corrected when required. |
+| 2 | Retrieval quality | Evaluate authorized recall, precision, ranking, temporal filters, source diversity, latency, and cross-scope leakage for the target query distribution. |
+| 3 | Context/read quality | Check that selected memories are compact, current, correctly attributed, conflict-aware, and interpreted as evidence rather than higher-priority instruction. |
+| 4 | Task outcome | Measure verified task success, correction burden, harmful reliance, user control, escalation, latency, and cost with and without memory. |
+| 5 | Governance and security | Apply privacy, authorization, retention, poisoning, audit, and deletion tests across every preceding layer instead of treating governance as a final-stage review. |
+
 ### Write and index metrics
 
 - extraction precision and recall by memory class;
@@ -308,4 +316,3 @@ Do not approve release if cross-tenant leakage occurs, deletion is unverifiable,
 - Microsoft, [GraphRAG documentation](https://github.com/microsoft/graphrag).
 - Anthropic, [*Effective context engineering for AI agents*](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
 - Google Cloud, [Agent Platform documentation](https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale).
-

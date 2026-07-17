@@ -54,6 +54,19 @@ flowchart LR
     M --> E
 ```
 
+| Step | Diagram stage | Detailed description |
+| ---: | --- | --- |
+| 1 | Change | Declare the modified prompts, models, code, tools, policies, data/indexes, infrastructure, or evaluators and the expected behavior/risk impact. |
+| 2 | Build + sign | Reproduce artifacts from pinned inputs, scan dependencies, generate provenance/SBOM evidence, and sign immutable versions. |
+| 3 | Unit / contract tests | Verify deterministic code, schemas, adapters, policy decisions, migrations, idempotency, and compatibility before stochastic evaluation. |
+| 4 | Offline eval + adversarial tests | Run versioned task suites, critical slices, regressions, prompt-injection and abuse scenarios, repeated trials, and calibrated graders. |
+| 5 | Security, privacy, policy review | Block releases that violate authorization, isolation, retention, data-use, safety, or required human-approval invariants. |
+| 6 | Ephemeral integration environment | Deploy the complete change with isolated identities and governed fixtures; test cross-component behavior, failure, rollback, and capacity. |
+| 7 | Shadow | Process representative traffic without affecting users or systems of record; compare behavior, latency, cost, and traces with the incumbent. |
+| 8 | Canary | Expose a bounded cohort with limited authority, rapid rollback, explicit outcome monitoring, and hard safety stop conditions. |
+| 9 | Progressive production | Expand by workload, cohort, region, and authority only as evidence remains within release thresholds. |
+| 10 | Outcomes + drift + incidents | Join technical telemetry to authoritative outcomes, detect regressions and drift, respond to incidents, and feed new cases back into offline evaluation. |
+
 Changes declare affected components and expected behavior. The pipeline selects relevant suites but always runs cross-component smoke tests. A tool schema change can break a model route; a new embedding can alter access-filter behavior; a policy change can invalidate an approval flow.
 
 ## Gates that block promotion

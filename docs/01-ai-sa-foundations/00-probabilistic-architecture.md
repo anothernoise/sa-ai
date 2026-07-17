@@ -44,6 +44,16 @@ flowchart LR
     P --> D
 ```
 
+| Step | Diagram stage | Detailed description |
+| ---: | --- | --- |
+| 1 | Discover | Observe the real workflow, actors, inputs, exceptions, incentives, systems of record, and current outcome baseline. |
+| 2 | Frame | Express the user, decision, desired outcome, unacceptable outcome, evidence standard, and safe fallback as a testable problem statement. |
+| 3 | Require | Convert goals into measurable quality, safety, privacy, reliability, latency, cost, and human-workload requirements. |
+| 4 | Options | Compare non-AI, deterministic, search, model, agent, and human approaches before committing to a solution pattern. |
+| 5 | Architect | Define components, trust boundaries, data and control flows, authority, failure containment, and operational ownership. |
+| 6 | Evidence | Test the architecture against representative cases, critical slices, adversarial conditions, baselines, and release thresholds. |
+| 7 | Promote and operate | Release progressively, observe real outcomes, manage incidents and drift, and feed production evidence into the next discovery cycle. |
+
 ### 1. Discover the real workflow
 
 Observe current work, users, inputs, handoffs, exceptions, systems of record, delays, corrections, and incentives. Interview people who perform, supervise, receive, and are affected by the decision. Sample real cases before writing a solution statement.

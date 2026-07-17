@@ -37,6 +37,20 @@ flowchart LR
     K --> G
 ```
 
+| Step | Diagram stage | Detailed description |
+| ---: | --- | --- |
+| 1 | Observe event | Capture a task, conversation, tool, correction, or outcome event with subject, tenant, time, source, and trust metadata. |
+| 2 | Classify and scope | Determine the candidate memory class, subject and workspace boundary, sensitivity, permitted purpose, retention, and authority. |
+| 3 | Worth remembering? | Apply an explicit usefulness and risk policy; transient details and unverified claims should normally remain events rather than durable memory. |
+| 4 | Retain only in governed event log | Preserve the original event under its audit and retention policy without promoting it into future task context. |
+| 5 | Extract candidate memory | Convert the useful part into a typed candidate fact, preference, episode, procedure, or relationship linked to its evidence. |
+| 6 | Validate, deduplicate, resolve conflict | Check source authority, schema, identity, existing equivalent memories, contradictions, and whether a correction supersedes an older claim. |
+| 7 | Persist with provenance and policy | Store the accepted memory with stable identity, version, confidence, source links, access controls, validity, expiry, and deletion lineage. |
+| 8 | Retrieve and rerank | Enforce scope before search, combine suitable retrieval signals, and rank by relevance, authority, freshness, diversity, and risk. |
+| 9 | Assemble task context | Select a bounded context that labels memory as evidence rather than instruction and keeps system-of-record facts distinct. |
+| 10 | Observe outcome | Record whether the memory improved or harmed task success, caused correction, leaked scope, or became stale. |
+| 11 | Reinforce, correct, supersede, or forget | Feed outcome evidence back into governed updates; never let the model silently overwrite durable history. |
+
 The memory subsystem is therefore partly a data system, partly a retrieval system, and partly a policy system. The model may propose memories, but code and policy must determine identity boundaries, retention, authorization, and destructive updates.
 
 ## Separate context, state, and memory

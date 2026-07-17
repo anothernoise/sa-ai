@@ -48,6 +48,18 @@ flowchart LR
     V --> M["Scoped durable memory"]
 ```
 
+| Step | Diagram stage | Detailed description |
+| ---: | --- | --- |
+| 1 | User goal | Convert the request into a bounded objective with subject, tenant, permissions, success evidence, budget, and stop/escalation rules. |
+| 2 | Coordinator | Own decomposition, delegation, deadlines, fan-out, retries, evidence collection, and the decision about what may update shared state. |
+| 3 | Authoritative task state | Persist goal, plan, completed steps, approvals, action identities, and current status in a typed store with one clear writer. |
+| 4 | Customer worker | Receive only customer-domain inputs and least-privilege tools, then return evidence and proposed updates rather than mutating shared state directly. |
+| 5 | Logistics worker | Perform the independently scoped logistics investigation under its own tool, data, time, and authority limits. |
+| 6 | Result artifacts | Return immutable, typed outputs containing conclusions, evidence, uncertainty, tool receipts, and proposed state changes for replayable review. |
+| 7 | Coordinator aggregation | Correlate both artifacts by task identity, detect conflict or missing evidence, and decide whether to retry, ask, escalate, or proceed. |
+| 8 | Validate and commit | Apply schema, policy, provenance, consistency, and authorization checks before atomically updating authoritative task state. |
+| 9 | Scoped durable memory | Promote only validated, useful information into a subject/tenant-scoped store with provenance, retention, correction, and deletion semantics. |
+
 Workers return evidence and proposed changes. The coordinator or a policy service validates and commits shared state. This makes retry, audit, and conflict behavior observable.
 
 ## Coordination patterns

@@ -30,6 +30,16 @@ flowchart LR
     D --> H["Self-host / train"]
 ```
 
+| Step | Diagram stage | Detailed description |
+| ---: | --- | --- |
+| 1 | Measure baseline | Freeze an evaluation set and quantify the current system by task, slice, failure class, latency, cost, and safety before changing it. |
+| 2 | Prompt / schema | Improve instructions, examples, structured outputs, decoding constraints, and deterministic validation first because these changes are cheapest to reverse. |
+| 3 | RAG / tools | Add governed retrieval for current/private knowledge and typed tools for authoritative calculations or actions. |
+| 4 | Verifier / test-time compute | Add bounded critique, verification, search, or additional inference only where it produces measured gains within latency and cost budgets. |
+| 5 | Fine-tune / preference tune | Adapt stable behavior, format, terminology, or preferences using representative, rights-cleared data and a sequestered evaluation set. |
+| 6 | Distill / specialize | Transfer proven behavior to a smaller or narrower model, then quantify quality loss, coverage limits, and new operational obligations. |
+| 7 | Self-host / train | Assume model-serving or training responsibility only when control, isolation, economics, or capability requirements justify the infrastructure and lifecycle cost. |
+
 Stop at the first level that clears quality, risk, latency and cost thresholds. Fix the system layer that caused the error.
 
 ## Pattern selection

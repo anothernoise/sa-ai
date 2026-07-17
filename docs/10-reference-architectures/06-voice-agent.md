@@ -509,6 +509,20 @@ flowchart LR
     JOIN --> GATE["Release and rollback gates"]
 ```
 
+| Step | Diagram source or stage | Detailed description |
+| ---: | --- | --- |
+| 1 | Media quality events | Capture codec, sample rate, packet loss, jitter, jitter-buffer discard, reconnects, and other transport signals without placing customer data in metric labels. |
+| 2 | Turn and interruption events | Record speech start, turn commit, endpoint decision, playback stop, truncation, correction, and resume timing with session and turn correlation. |
+| 3 | Model and prompt versions | Attach the exact provider/model, prompt, tool schema, policy, and adapter versions required to reproduce a behavioral change. |
+| 4 | Action receipts and outcomes | Preserve proposal, confirmation, submission, idempotency, durable transaction identity, unknown state, reconciliation, and verified external outcome. |
+| 5 | Played-audio acknowledgments | Report the last audio offset actually played by the client so evidence distinguishes generated content from what the user heard. |
+| 6 | Redact, sample, and classify | Minimize sensitive content, enforce consent/retention and access policy, classify telemetry, and sample only where the operational purpose permits it. |
+| 7 | Correlated trace | Retain access-controlled high-detail events joined by opaque identifiers for incident reconstruction and targeted analysis. |
+| 8 | Low-cardinality metrics | Aggregate bounded operational measures for dashboards, alerts, SLOs, and regression comparisons without leaking raw identifiers. |
+| 9 | System-of-record outcome | Read the authoritative task or transaction result independently from what the model said, the transcript recorded, or the transport returned. |
+| 10 | Evaluation join | Combine traces and metrics with verified outcomes to identify which media, turn, model, or action conditions caused success, correction, or failure. |
+| 11 | Release and rollback gates | Promote, pause, or roll back using slice-aware thresholds and zero-tolerance invariants rather than average latency or fluent sample calls. |
+
 Keep raw identifiers in access-controlled traces and use bounded labels for operational metrics. A graph that shows low model latency alongside rising interruption recovery failures should block release even if aggregate task success looks stable.
 
 ## 16. Evaluate the conversation and the action

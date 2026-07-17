@@ -50,6 +50,21 @@ flowchart LR
     V --> O["Answer, abstain, or escalate"]
 ```
 
+| Step | Diagram stage | Detailed description |
+| ---: | --- | --- |
+| 1 | Authoritative sources | Select governed systems and documents with explicit owners, revision semantics, permitted purpose, and deletion behavior. |
+| 2 | Parse, normalize, classify | Extract text and structure with versioned parsers; assign content type, sensitivity, language, and task-relevant quality signals. |
+| 3 | ACL and provenance enrichment | Bind tenant and authorization labels, canonical source identity, revision, effective time, checksum, and citation coordinates to every indexable unit. |
+| 4 | Chunk and index | Segment by document semantics and create lexical, vector, metadata, or graph indexes appropriate to the target question classes. |
+| 5 | Validate and publish version | Test parse fidelity, ACL completeness, retrieval quality, volume anomalies, and rollback before making an index version queryable. |
+| 6 | User + authenticated context | Begin the online path with server-established identity, tenant, entitlements, locale, task, and other non-model authority. |
+| 7 | Query understanding | Identify intent, entities, timeframe, required authority, and whether retrieval is appropriate without letting the model invent security scope. |
+| 8 | Filter + hybrid retrieve | Apply authenticated filters and combine exact, semantic, metadata, and optional graph retrieval under bounded candidate and latency budgets. |
+| 9 | Rerank and evidence pack | Score and diversify a bounded candidate set, remove near-duplicates, and package compact passages with source identity and dates. |
+| 10 | Generate under citation contract | Require the model to distinguish retrieved evidence from instructions, cite supported claims, expose conflict, and avoid unsupported completion. |
+| 11 | Verify support and policy | Check citation entailment, authorization, freshness, prohibited disclosure, structured output, and task-specific invariants. |
+| 12 | Answer, abstain, or escalate | Return a supported answer, explicitly abstain when evidence is insufficient, or route consequential/conflicting cases to an approved workflow. |
+
 Treat the offline and online paths as independently deployable subsystems. A bad parser, missing ACL, stale index, weak reranker, or unsupported generator can each fail an otherwise impressive demo.
 
 ## Ingestion is controlled publishing
