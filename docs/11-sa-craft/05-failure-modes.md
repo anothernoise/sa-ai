@@ -1,41 +1,58 @@
 # Failure-mode case studies
 
-> _Editorial blueprint — last reviewed: 2026-07-16. See the [freshness policy](../appendix/maintenance.md)._
+> Last reviewed: 2026-07-16. See the [freshness policy](../appendix/maintenance.md).
 
-## Learning objectives
+## Diagnose systems, not “bad AI”
 
-After this chapter you will be able to:
+Use this causal chain:
 
-- frame the architecture decision in measurable terms;
-- compare viable options and expose their trade-offs;
-- produce an artifact that can survive design and governance review.
+```mermaid
+flowchart TB
+    accTitle: AI failure analysis and redesign
+    accDescr: An observed harm is traced through failed controls and enabling conditions to architecture and operating-model causes, which then produce corrective actions and regression evidence.
 
-## Decision this chapter teaches
+    H["Observed harm / missed outcome"] --> E["Event and evidence timeline"]
+    E --> C["Failed or absent controls"]
+    C --> A["Architecture assumptions and incentives"]
+    A --> R["Contain, redesign, and assign owner"]
+    R --> T["Regression test and effectiveness review"]
+```
 
-Diagnose why plausible AI programs fail and redesign them before repeating the pattern.
+## Case patterns
 
-## Scope
+| Failure | Proximate symptom | Deeper cause | Redesign |
+|---|---|---|---|
+| Demo became product | impressive examples, poor real quality | no population, baseline, or eval gate | scoped profile and representative evaluation |
+| Vector-only enterprise RAG | plausible wrong joins | source semantics ignored | hybrid typed planning and evidence lineage |
+| “Human in loop” theater | reviewers approve everything | no time, evidence, authority, or accountability | decision-bound approval UX and sampling |
+| Autonomous action duplicate | double refund after timeout | transcript state and non-idempotent tool | durable action ledger and reconciliation |
+| Prompt patch security | injection succeeds through document | model asked to enforce trust boundary | capability isolation, authorization, output validation |
+| Multi-agent sprawl | slow, costly, inconsistent runs | roles added without distinct authority/value | workflow or one bounded orchestrator |
+| Cheapest-model routing | quality and complaints worsen | cost/token optimized instead of outcome | qualified-task economics and critical-slice gates |
+| Silent provider drift | behavior changes without release | mutable aliases and weak contract | manifest, canaries, change detection, fallback |
+| Shadow AI adoption | sensitive data sent externally | approved path too slow or absent | usable paved road, inventory, training, enforcement |
+| Pilot never scales | no owner, SLO, funding, or integration | project model instead of product lifecycle | operating ownership and production gates |
 
-This chapter will develop the durable mental model, walk through the Northstar case, map the design to representative platform choices, and show how the system fails. It will explicitly cover data flow, trust boundaries, evaluation, operability, cost, and human accountability where they apply.
+## Pre-mortem
 
-## Practical artifact
+Before approval, assume the system caused harm or failed to deliver value six months later. Generate causes across purpose, people, data, model, retrieval, tools, identity, security, operations, vendor, cost, adoption, and governance. Rank by consequence, plausibility, detectability, and current control strength. Convert the top items into architecture changes, tests, monitors, or explicit accepted risk.
 
-A pre-mortem and corrective architecture plan.
+## Corrective-action quality
 
-## Planned lab
+“Improve the prompt” or “train users” is weak unless it addresses a demonstrated mechanism. Strong actions change authority, isolation, data quality, state, evaluation, or decision rights and include an owner, deadline, verification method, and rollback. Verify effectiveness after deployment and watch for risk transfer.
 
-Apply the decision to the Northstar case. Submit the artifact, the assumptions behind it, at least two alternatives, the dominant quality attribute, and the evidence that would change the decision.
+## Northstar lab
+
+Choose three patterns and write a causal timeline, five-whys/control analysis, containment, redesign, regression case, and organizational change. Include one case where stopping or narrowing is the correct action.
 
 ## Check yourself
 
-1. What evidence is required before making this decision?
-2. Which quality attributes are in tension, and which one wins ties?
-3. What is the safest useful fallback when the AI component is unavailable or uncertain?
-4. Which assumption is most likely to invalidate the design?
+1. Which enabling condition made the incident possible?
+2. Did the correction change an enforceable control?
+3. What regression evidence proves effectiveness?
+4. Did the redesign transfer harm to another group?
 
-## Authoring notes
+## Further reading
 
-- Lead with a realistic failure or decision, not a product catalog.
-- Keep the main explanation vendor-neutral; date all product mappings.
-- Include one decision table or diagram and one worked example.
-- Prefer primary standards, documentation, and research in further reading.
+- [NIST AI 600-1: Generative AI Profile](https://doi.org/10.6028/NIST.AI.600-1)
+- [NIST SP 800-61 Rev. 3](https://csrc.nist.gov/pubs/sp/800/61/r3/final)

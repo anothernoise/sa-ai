@@ -78,11 +78,12 @@
 - [Responsible AI & risk classification](docs/07-security-governance/04-responsible-ai.md)
 - [AI governance operating system, audit & regulation](docs/07-security-governance/05-governance-audit.md)
 - [Secure agent execution & sandboxing](docs/07-security-governance/06-secure-agent-execution.md)
+- [AI supply chain & content provenance](docs/07-security-governance/07-ai-supply-chain.md)
 
 ## Part 8 — Platforms, deployment & operations
 
 - [AI platform capability map](docs/08-platform-operations/00-capability-map.md)
-- [Managed APIs, cloud AI & self-hosting](docs/08-platform-operations/01-hosting-options.md)
+- [Managed APIs, cloud AI, self-hosting & edge](docs/08-platform-operations/01-hosting-options.md)
 - [AgentOps & LLMOps: lifecycle, CI/CD & promotion](docs/08-platform-operations/02-llmops-cicd.md)
 - [AI observability, SRE & incident response](docs/08-platform-operations/03-observability.md)
 - [Incident response & graceful degradation](docs/08-platform-operations/04-incidents-degradation.md)
@@ -109,6 +110,7 @@
 - [Agentic operations assistant](docs/10-reference-architectures/04-agentic-operations.md)
 - [Natural-language analytics](docs/10-reference-architectures/05-natural-language-analytics.md)
 - [Designing production voice AI agents](docs/10-reference-architectures/06-voice-agent.md)
+- [Coding agent & software delivery architecture](docs/10-reference-architectures/07-code-agent.md)
 
 ## Part 11 — The SA craft & capstone
 
