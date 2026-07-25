@@ -226,6 +226,7 @@ Deliver a boundary diagram, authorization sequence, contract tests, audit sample
 
 ## Further reading
 
+- [Agent identity, discovery, registry and reputation](13-agent-identity-registry.md).
 - [MCP specification, 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/).
 - [MCP authorization](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) and [security best practices](https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices).
 - [MCP 2026-07-28 release candidate notice](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/) — track as pre-release until finalized.

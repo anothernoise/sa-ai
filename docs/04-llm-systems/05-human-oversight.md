@@ -1,6 +1,6 @@
 # Human-agent interaction, control and oversight
 
-> _Last reviewed: 2026-07-16 — see the [freshness policy](../appendix/maintenance.md)._
+> _Last reviewed: 2026-07-24 — see the [freshness policy](../appendix/maintenance.md)._
 
 ## Learning objectives
 
@@ -17,6 +17,8 @@ After this chapter you will be able to:
 > **Give people sufficient understanding, authority, time, and recovery options at the moment their judgment can still change the outcome.**
 
 “Human in the loop” is not a control if the person sees no evidence, cannot refuse, is interrupted constantly, or reviews after the effect. The objective is calibrated human control, not maximum confirmation dialogs.
+
+For durable pause/resume, reviewer queues, staffing, calibration, feedback governance, and modern tooling, see [Human-in-the-loop and HILOps](../06-evaluation/08-hitl-hilops.md).
 
 ## Control across the task lifecycle
 
@@ -143,3 +145,4 @@ Prototype Northstar's plan, progress, approval, cancellation, unknown-outcome, a
 - [Google People + AI Guidebook](https://pair.withgoogle.com/guidebook/).
 - [Approvals, compensating actions and recovery](../05-agents/04-approvals-recovery.md).
 - [Responsible AI and risk classification](../07-security-governance/04-responsible-ai.md).
+- [Human-in-the-loop and HILOps](../06-evaluation/08-hitl-hilops.md).

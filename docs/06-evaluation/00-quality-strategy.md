@@ -1,6 +1,6 @@
 # Evaluation-driven development
 
-> _Last reviewed: 2026-07-16 — see the [freshness policy](../appendix/maintenance.md)._
+> _Last reviewed: 2026-07-24 — see the [freshness policy](../appendix/maintenance.md)._
 
 ## Learning objectives
 
@@ -17,6 +17,8 @@ After this chapter you will be able to:
 > **Define success, unacceptable failure, evidence, and release thresholds before optimizing prompts or choosing models.**
 
 An AI demo asks, “Can it work?” Evaluation-driven development asks, “For which population and conditions, how often, compared with what, with what harm and cost, and what happens when it fails?”
+
+Use the [LLM system evaluation SA playbook](07-llm-system-evaluation-playbook.md) to turn this method into a complete evaluation architecture, tooling decision, cloud-service mapping, and release dossier.
 
 ## The quality contract
 

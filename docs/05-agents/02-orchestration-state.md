@@ -121,6 +121,8 @@ Implement a resumable Northstar investigation with one parallel read, one approv
 
 ## Further reading
 
+- [Event-driven, ambient and background agents](09-event-driven-agents.md).
+- [Agent run API, streaming and artifact contracts](12-agent-run-api.md).
 - [Agent system design](06-agent-system-design.md).
 - [Approvals, compensating actions and recovery](04-approvals-recovery.md).
 - [Production reliability](../04-llm-systems/02-reliability-latency.md).

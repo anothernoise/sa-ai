@@ -134,6 +134,7 @@ Compare prompting, few-shot, RAG, LoRA-style tuning or a simulated tuned candida
 
 ## Further reading
 
+- [Agent post-training and trajectory learning](07-agent-post-training.md).
 - [LoRA](https://arxiv.org/abs/2106.09685), Hu et al.
 - [Model portfolio strategy](02-model-selection.md).
 - [Evaluation measurement science](../06-evaluation/06-measurement-science.md).

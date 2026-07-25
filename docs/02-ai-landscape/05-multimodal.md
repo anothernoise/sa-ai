@@ -126,6 +126,7 @@ Design Northstar voice plus damaged-package intake. Inject noisy speech, overlap
 
 ## Further reading
 
+- [Computer-use, browser and mobile agents](../10-reference-architectures/08-computer-use-agent.md).
 - [W3C WebRTC](https://www.w3.org/TR/webrtc/).
 - [Document intelligence reference architecture](../10-reference-architectures/02-document-intelligence.md).
 - [Real-time voice agent](../10-reference-architectures/06-voice-agent.md).

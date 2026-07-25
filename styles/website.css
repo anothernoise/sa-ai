@@ -24,8 +24,11 @@
 }
 
 .markdown-section table {
-  display: table;
+  display: block;
   width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Mermaid renders in the browser so diagrams stay sharp at every zoom level. */

@@ -1,41 +1,82 @@
-# Portability, lock-in & exit plans
+# Portability, lock-in, and exit plans
 
-> _Editorial blueprint — last reviewed: 2026-07-16. See the [freshness policy](../appendix/maintenance.md)._
+> _Resilience guide — last reviewed: 2026-07-25._
 
 ## Learning objectives
 
-After this chapter you will be able to:
+- distinguish beneficial dependency from unmanaged lock-in;
+- choose portability boundaries by business consequence;
+- design and rehearse an executable exit plan.
 
-- frame the architecture decision in measurable terms;
-- compare viable options and expose their trade-offs;
-- produce an artifact that can survive design and governance review.
+## The decision in one sentence
 
-## Decision this chapter teaches
+Make critical data, behavior, and evidence portable; accept provider-specific optimization only where its value exceeds tested switching cost.
 
-Invest in portability where it has option value and accept lock-in where it buys justified speed or capability.
+## Lock-in is multidimensional
 
-## Scope
+| Dimension | Example dependency | Mitigation |
+|---|---|---|
+| API/model | proprietary messages, tool or fine-tune format | internal request contract and conformance tests |
+| Data | opaque vector/index or memory representation | source-of-truth export plus rebuild pipeline |
+| Workflow | provider-specific state machine | portable business state and event schema |
+| Identity/policy | cloud-only principal semantics | workload identity mapping and externalized policy |
+| Evaluation | vendor dashboards and judges only | owned datasets, rubrics, raw results |
+| Operations | unique telemetry and deployment tooling | OpenTelemetry and infrastructure definitions |
+| Commercial | egress, minimum spend, support dependency | price scenarios and contractual exit terms |
+| Skills | knowledge concentrated in supplier | paired ownership and runbooks |
 
-This chapter will develop the durable mental model, walk through the Northstar case, map the design to representative platform choices, and show how the system fails. It will explicitly cover data flow, trust boundaries, evaluation, operability, cost, and human accountability where they apply.
+Portability is not identical deployments everywhere. It is the ability to preserve an outcome within a stated recovery time, cost, and quality loss after a dependency changes.
 
-## Practical artifact
+## Portability boundary
 
-A lock-in inventory and tested exit trigger.
+```mermaid
+flowchart TB
+    accTitle: Portable AI system boundary
+    accDescr: Stable enterprise contracts isolate replaceable provider adapters while owned data, evaluations, policies, and telemetry support an exit.
+    A["Channels and business workflow"] --> B["Enterprise run contract"]
+    B --> C["Gateway and provider adapters"]
+    C --> D["Provider A"]
+    C --> E["Provider B or self-hosted model"]
+    B --> F["Owned context, tools and state"]
+    G["Owned evaluations, policy and telemetry"] --> B
+    H["Export, rebuild and rehearsal pipeline"] --> F
+    H --> C
+```
 
-## Planned lab
+| Element | What remains stable | What may vary |
+|---|---|---|
+| Run contract | task, identity, events, artifacts, errors | provider streaming details |
+| Context | document IDs, provenance, permissions | index implementation |
+| Tools | typed intent and idempotency | SDK and transport |
+| Evaluation | cases, rubrics, thresholds | judge model |
+| Telemetry | trace/run correlation and cost fields | backend |
+| Adapter | normalized capability and error mapping | provider feature use |
 
-Apply the decision to the Northstar case. Submit the artifact, the assumptions behind it, at least two alternatives, the dominant quality attribute, and the evidence that would change the decision.
+## Choose a portability tier
 
-## Check yourself
+- **Tier 0 — documented dependency:** noncritical experiment; export is sufficient.
+- **Tier 1 — rebuildable:** infrastructure, data, prompts, and tests recreate the service within weeks.
+- **Tier 2 — warm alternative:** a second compatible route is regression-tested and can take selected traffic.
+- **Tier 3 — continuous portability:** critical service runs across providers or regions with routine failover.
 
-1. What evidence is required before making this decision?
-2. Which quality attributes are in tension, and which one wins ties?
-3. What is the safest useful fallback when the AI component is unavailable or uncertain?
-4. Which assumption is most likely to invalidate the design?
+Higher tiers cost more and can suppress useful provider features. Assign the tier from business impact, supplier concentration, regulatory needs, and recovery objective—not ideology.
 
-## Authoring notes
+## Design the exit before signing
 
-- Lead with a realistic failure or decision, not a product catalog.
-- Keep the main explanation vendor-neutral; date all product mappings.
-- Include one decision table or diagram and one worked example.
-- Prefer primary standards, documentation, and research in further reading.
+Inventory every artifact required to leave: source data, normalized chunks, graph schema, embeddings rebuild process, prompts, tool schemas, policies, fine-tuning datasets and weights where licensed, evaluation results, audit events, user feedback, configuration, and infrastructure. Specify export format, frequency, deletion evidence, transition support, egress fees, keys, and retained rights in the contract.
+
+Adapters do not create portability if semantics differ. Run conformance tests for tool arguments, structured output, token/context behavior, safety filters, citations, streaming, errors, and rate limits. Maintain a capability-degradation matrix so failover can disable unsupported features safely.
+
+## Northstar exit rehearsal
+
+Quarterly, Northstar rebuilds a small retrieval index from authoritative documents, routes the golden evaluation set through an alternate model, verifies policy decisions, and restores recent workflow state. The test records elapsed time, quality delta, manual steps, missing artifacts, and cost. A failed rehearsal creates platform backlog before a supplier incident forces the migration.
+
+## Practical artifact: exit runbook
+
+Include trigger and authority, dependency inventory, target architecture, data export and verification, secrets/identity changes, quality acceptance, cutover/canary plan, customer communications, rollback, supplier deletion evidence, and a rehearsal schedule.
+
+## Further reading
+
+- [OpenTelemetry](https://opentelemetry.io/docs/)
+- [CloudEvents specification](https://github.com/cloudevents/spec)
+- [SPDX specifications](https://spdx.dev/use/specifications/)

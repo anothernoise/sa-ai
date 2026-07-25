@@ -8,6 +8,18 @@ A machine-readable A2A document describing an agent's identity, skills, endpoint
 
 The compute and control environment that executes agent application logic, including its framework loop, sessions, tools, isolation, scaling, and telemetry integrations.
 
+## Agent harness
+
+The deterministic software surrounding a model that owns context compilation, task state, policy, tool execution, budgets, stop rules, telemetry, and user/API transport.
+
+## Agent evaluation environment
+
+A resettable task world with versioned initial state, observations, actions, hidden truth, terminal conditions, scorers, identities, and resource limits used to measure stateful agent behavior.
+
+## Agent run
+
+One execution attempt for a durable task under a specific model, prompt, tool, policy, workflow, and environment release tuple.
+
 ## AgentOps
 
 The engineering and operating discipline for versioning, evaluating, releasing, observing, securing, recovering, and retiring agent systems, including their models, tools, identities, state, memory, policies, and human controls.
@@ -44,6 +56,14 @@ An organizational system of policies, roles, processes, controls, evidence, revi
 
 The design of the information, instructions, tools, memory, and state supplied to a model for a task.
 
+## Computer-use agent
+
+An agent that observes and controls a browser, desktop, or mobile interface through semantic UI information, screenshots, pointer/keyboard actions, or a combination of these.
+
+## Continual agent evolution
+
+A governed operating loop that derives candidate knowledge, instruction, program, or model-parameter improvements from evidence and promotes them through independent evaluation, staged release, and rollback.
+
 ## Cost per successful task
 
 The complete attributable cost of model, retrieval, tools, compute, retries, human work and operations divided by verified tasks that meet the defined success contract.
@@ -59,6 +79,10 @@ Training a smaller student model to reproduce selected behavior of a larger teac
 ## Evaluation
 
 A repeatable measurement of system behavior against representative tasks, rubrics, safety constraints, and operational requirements.
+
+## Event-driven agent
+
+An agent task initiated by an authenticated domain event, webhook, schedule, queue, telemetry condition, or user-channel event after deterministic admission, deduplication, policy, and budget checks.
 
 ## Endpointing
 
@@ -87,6 +111,14 @@ Fluent output that is unsupported, fabricated, or inconsistent with available ev
 ## Human-in-the-loop
 
 A workflow in which a person reviews, approves, corrects, or takes responsibility for a system decision or action.
+
+## Human-on-the-loop
+
+An operating pattern in which people supervise an automated system and intervene by exception, rather than participating in every task.
+
+## HILOps
+
+The production operating practice for human-in-the-loop and human-on-the-loop systems: review triggers, queues, skills, service levels, capacity, calibration, quality, audit, privacy, economics, and governed feedback into evaluation or learning. It is a useful architecture term, not a formal standard.
 
 ## LoRA
 
@@ -135,6 +167,10 @@ The governed process of deduplicating, summarizing, reflecting on, correcting, s
 ## Memory contract
 
 A specification for a memory class defining its purpose, owner, scope, permitted sources, write and read authority, conflict behavior, retention, user controls, evaluation, and fallback.
+
+## Semantic event
+
+A durable product-level task event—such as a tool starting, approval becoming required, artifact changing, or task completing—distinct from disposable token-stream deltas.
 
 ## pass@k
 
@@ -200,6 +236,10 @@ Computation allocated while answering a request, including longer reasoning, mul
 
 A narrowly defined capability—such as search, database read, calculation, or workflow action—that a model or agent may invoke through a typed contract.
 
+## Workload identity
+
+A cryptographically verifiable identity assigned to running software or compute, distinct from the user or organization it may represent and from the task authority delegated to it.
+
 ## Verifier
 
 A deterministic check, executable test, evidence check, human review, or calibrated model grader used to assess a candidate result or intermediate state.
@@ -215,3 +255,51 @@ An AI-enabled system that conducts spoken interaction through a real-time media 
 ## Workflow
 
 A system in which the control path is defined primarily by code or configuration, even when individual steps call models. This contrasts with an agent that dynamically selects its process and tools.
+
+## Agentic commerce
+
+A commerce pattern in which an agent discovers, compares, negotiates, or purchases on behalf of a principal under explicit constraints. Consequential transactions require verifiable delegation, cart binding, payment authorization, reconciliation, and dispute evidence.
+
+## Artifact-centric agent
+
+An agent whose durable work product is a typed, versioned, reviewable artifact with provenance, rather than a chat transcript. Conversation may express intent, but the artifact is the coordination and publication surface.
+
+## Digital twin
+
+A maintained digital representation of a physical asset, process, or environment used for simulation, replay, monitoring, and experimentation. A twin can strengthen evidence but does not eliminate simulation-to-real gaps.
+
+## Embodied agent
+
+An agent that senses and acts in a physical environment. Its semantic planner must remain separated from deterministic real-time control, safety supervision, and independent emergency mechanisms.
+
+## Paved road
+
+A supported platform path that combines templates, secure defaults, runtime services, evidence gates, dashboards, and runbooks for a recurring product need while retaining documented extension and exception paths.
+
+## Policy-as-code
+
+Authorization, compliance, or operational policy represented as versioned, testable, deployable code or data and evaluated by a deterministic policy decision point. For agent actions, policy evaluates trusted principal, action, resource, and context outside the model.
+
+## Reflection loop
+
+A bounded inference process that generates, critiques or verifies, and optionally repairs a candidate before acceptance, fallback, or escalation. Its value depends on verifier quality, independence, and explicit compute limits.
+
+## Synthetic trajectory
+
+An artificially generated sequence of agent observations, tool interactions, decisions, artifacts, and outcomes used for training, evaluation, or simulation, with generator lineage and real-world validation.
+
+## Vision-language-action model
+
+A multimodal model, often abbreviated VLA, that maps visual observations and language instructions to robot actions or action representations. It does not replace embodiment-specific control and safety engineering.
+
+## Agent marketplace
+
+A governed distribution layer for agents, skills, or tools that adds publisher, package, review, commercial, reputation, version, and retirement lifecycle to discovery. Marketplace admission does not itself grant runtime authorization.
+
+## Forensic readiness
+
+The capability to preserve and correlate trustworthy identities, versions, inputs, policy decisions, tool actions, artifacts, and operational events so an incident can be reconstructed, contained, and remediated.
+
+## Locale readiness
+
+Evidence that an AI system meets quality, safety, cultural, jurisdictional, accessibility, support, and outcome requirements for a specific language-locale-task combination.

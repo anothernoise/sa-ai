@@ -26,6 +26,8 @@
 - [Fine-tuning, distillation & inference optimization](docs/02-ai-landscape/04-adaptation.md)
 - [Multimodal, real-time voice & computer-use architectures](docs/02-ai-landscape/05-multimodal.md)
 - [Reasoning systems & test-time compute](docs/02-ai-landscape/06-reasoning-test-time-compute.md)
+- [Agent post-training & trajectory learning](docs/02-ai-landscape/07-agent-post-training.md)
+- [Reflection, metacognition & verifier loops](docs/02-ai-landscape/08-reflection-verifier-loops.md)
 
 ## Part 3 — Data, knowledge & context engineering
 
@@ -38,6 +40,7 @@
 - [GraphRAG and temporal knowledge](docs/03-data-context/06-graphrag-temporal.md)
 - [Production memory: governance, evaluation & operations](docs/03-data-context/07-production-memory.md)
 - [Lab — compare vector RAG, GraphRAG & temporal memory](docs/03-data-context/08-memory-graphrag-lab.md)
+- [Production context engineering](docs/03-data-context/09-production-context-engineering.md)
 
 ## Part 4 — Designing production LLM systems
 
@@ -47,6 +50,9 @@
 - [Caching, batching & asynchronous patterns](docs/04-llm-systems/03-efficiency-patterns.md)
 - [Multi-tenant AI, privacy & confidential data](docs/04-llm-systems/04-state-tenancy.md)
 - [Human-agent interaction, control & oversight](docs/04-llm-systems/05-human-oversight.md)
+- [Agent product UX & trust calibration](docs/04-llm-systems/06-agent-product-ux.md)
+- [Artifact-centric agents & workspaces](docs/04-llm-systems/07-artifact-centric-agents.md)
+- [Multilingual & cross-cultural agents](docs/04-llm-systems/08-multilingual-agents.md)
 
 ## Part 5 — Agents & workflow automation
 
@@ -58,16 +64,27 @@
 - [MCP, A2A & enterprise agent interoperability](docs/05-agents/05-agent-protocols.md)
 - [Agent system design: patterns, context & control](docs/05-agents/06-agent-system-design.md)
 - [Agent Skills: reusable expertise for agents](docs/05-agents/07-agent-skills.md)
+- [Production tool engineering for agents](docs/05-agents/08-production-tool-engineering.md)
+- [Event-driven, ambient & background agents](docs/05-agents/09-event-driven-agents.md)
+- [Agent harness engineering](docs/05-agents/10-agent-harness-engineering.md)
+- [Enterprise integration & systems of record](docs/05-agents/11-enterprise-integration.md)
+- [Agent run API, streaming & artifact contracts](docs/05-agents/12-agent-run-api.md)
+- [Agent identity, discovery, registry & reputation](docs/05-agents/13-agent-identity-registry.md)
+- [Multi-agent scaling science](docs/05-agents/14-multi-agent-scaling.md)
 
 ## Part 6 — Evaluation, safety & quality
 
 - [Evaluation-driven development](docs/06-evaluation/00-quality-strategy.md)
+- [LLM system evaluation: an SA decision playbook](docs/06-evaluation/07-llm-system-evaluation-playbook.md)
 - [Evaluation datasets & rubrics](docs/06-evaluation/01-datasets-rubrics.md)
 - [Evaluation measurement science](docs/06-evaluation/06-measurement-science.md)
 - [RAG and agent evaluation](docs/06-evaluation/02-rag-agent-evals.md)
+- [Human-in-the-loop & HILOps](docs/06-evaluation/08-hitl-hilops.md)
 - [Adversarial testing & red teaming](docs/06-evaluation/03-adversarial-testing.md)
 - [Online experiments & production feedback](docs/06-evaluation/04-online-evaluation.md)
 - [Regression gates & release decisions](docs/06-evaluation/05-regression-gates.md)
+- [Agent evaluation environments & benchmark engineering](docs/06-evaluation/09-agent-evaluation-environments.md)
+- [Synthetic data & trajectory factories](docs/06-evaluation/10-synthetic-trajectory-factories.md)
 
 ## Part 7 — Security, privacy, governance & responsible AI
 
@@ -79,6 +96,8 @@
 - [AI governance operating system, audit & regulation](docs/07-security-governance/05-governance-audit.md)
 - [Secure agent execution & sandboxing](docs/07-security-governance/06-secure-agent-execution.md)
 - [AI supply chain & content provenance](docs/07-security-governance/07-ai-supply-chain.md)
+- [Policy-as-code for agent actions](docs/07-security-governance/08-agent-policy-as-code.md)
+- [Legal, licensing & IP architecture](docs/07-security-governance/09-legal-licensing-ip.md)
 
 ## Part 8 — Platforms, deployment & operations
 
@@ -91,6 +110,11 @@
 - [Build and operate agents on AWS](docs/08-platform-operations/06-agents-aws.md)
 - [Build and operate agents on Google Cloud](docs/08-platform-operations/07-agents-gcp.md)
 - [Build and operate agents on Azure](docs/08-platform-operations/08-agents-azure.md)
+- [Continual agent evolution without self-corruption](docs/08-platform-operations/09-continual-agent-evolution.md)
+- [Local, edge & hybrid agents](docs/08-platform-operations/10-local-edge-agents.md)
+- [Agent platform engineering & paved roads](docs/08-platform-operations/11-agent-platform-engineering.md)
+- [Agent incident forensics](docs/08-platform-operations/12-agent-incident-forensics.md)
+- [Agent marketplaces & ecosystem governance](docs/08-platform-operations/13-agent-marketplaces.md)
 
 ## Part 9 — Economics, adoption & delivery
 
@@ -100,6 +124,7 @@
 - [Operating model & organizational readiness](docs/09-economics-delivery/03-operating-model.md)
 - [Vendor and RFP evaluation](docs/09-economics-delivery/04-vendor-rfp.md)
 - [From prototype to production](docs/09-economics-delivery/05-prototype-production.md)
+- [Agentic commerce, mandates & payments](docs/09-economics-delivery/06-agentic-commerce.md)
 
 ## Part 10 — Reference architectures
 
@@ -111,10 +136,15 @@
 - [Natural-language analytics](docs/10-reference-architectures/05-natural-language-analytics.md)
 - [Designing production voice AI agents](docs/10-reference-architectures/06-voice-agent.md)
 - [Coding agent & software delivery architecture](docs/10-reference-architectures/07-code-agent.md)
+- [Computer-use, browser & mobile agents](docs/10-reference-architectures/08-computer-use-agent.md)
+- [Deep-research & web agents](docs/10-reference-architectures/09-deep-research-agent.md)
+- [Embodied agents, robotics & digital twins](docs/10-reference-architectures/10-embodied-agent.md)
+- [Production starter architecture](docs/10-reference-architectures/11-production-starter-architecture.md)
 
 ## Part 11 — The SA craft & capstone
 
 - [Discovery workshop playbook](docs/11-sa-craft/00-discovery-workshop.md)
+- [Solution architecture presales work & cloud pursuit process](docs/11-sa-craft/06-presales-process.md)
 - [Stakeholder communication & executive narratives](docs/11-sa-craft/01-stakeholder-communication.md)
 - [AI architecture review](docs/11-sa-craft/02-architecture-review.md)
 - [Capstone brief](docs/11-sa-craft/03-capstone.md)

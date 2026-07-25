@@ -1,41 +1,92 @@
 # Build, buy, adapt, or abstain
 
-> _Editorial blueprint — last reviewed: 2026-07-16. See the [freshness policy](../appendix/maintenance.md)._
+> _Decision guide — last reviewed: 2026-07-25. See the [freshness policy](../appendix/maintenance.md)._
 
 ## Learning objectives
 
 After this chapter you will be able to:
 
-- frame the architecture decision in measurable terms;
-- compare viable options and expose their trade-offs;
-- produce an artifact that can survive design and governance review.
+- separate a business capability from an attractive AI feature;
+- compare abstain, rules, compose, buy, adapt, and custom-build options;
+- define evidence, stop conditions, and an exit path before committing.
 
-## Decision this chapter teaches
+## The decision in one sentence
 
-Choose among a managed product, composition, model adaptation, custom training, or a non-AI solution.
+Choose the least-custom option that meets the risk-adjusted outcome, and abstain when no option clears the evidence and control gates.
 
-## Scope
+## Start with the outcome, not the model
 
-This chapter will develop the durable mental model, walk through the Northstar case, map the design to representative platform choices, and show how the system fails. It will explicitly cover data flow, trust boundaries, evaluation, operability, cost, and human accountability where they apply.
+“Should we build an agent?” is already too narrow. Write a one-page decision brief with the user, decision or task, economic value, unacceptable harm, required service levels, data constraints, and a measurable baseline. Include the current manual or deterministic process. AI must beat that baseline after review effort, exception handling, and failure cost—not only on a demo set.
 
-## Practical artifact
+Use six options:
 
-A weighted decision matrix and exit criteria.
+| Option | Best fit | Hidden cost | Evidence gate |
+|---|---|---|---|
+| Abstain or redesign | harm is high, value is weak, or feedback is unavailable | opportunity cost | no safe, testable operating envelope exists |
+| Deterministic software | stable rules and exact outcomes | rule maintenance | rules cover the important cases |
+| Compose with managed models | differentiated workflow, commodity model capability | integration and operations | system-level evaluation passes |
+| Buy a product | common business process with acceptable fit | process change and vendor dependence | end-to-end pilot with your data |
+| Adapt an existing model | persistent domain or behavior gap | data, training, and regression burden | prompting/RAG cannot close the gap |
+| Train a custom model | strategic capability and unique data at sufficient scale | research, compute, safety, serving | an investment case survives downside analysis |
 
-## Planned lab
+## Evidence-led decision flow
 
-Apply the decision to the Northstar case. Submit the artifact, the assumptions behind it, at least two alternatives, the dominant quality attribute, and the evidence that would change the decision.
+```mermaid
+flowchart TB
+    accTitle: Build, buy, adapt, or abstain decision flow
+    accDescr: A staged decision that starts with value and risk, tests deterministic and purchased options, and permits custom work only after evidence gates.
+    A["Define outcome, baseline and harm"] --> B{"Safe and measurable?"}
+    B -- "No" --> C["Abstain or redesign"]
+    B -- "Yes" --> D{"Rules meet the need?"}
+    D -- "Yes" --> E["Build deterministic workflow"]
+    D -- "No" --> F{"Product fits process and controls?"}
+    F -- "Yes" --> G["Buy and configure"]
+    F -- "No" --> H["Compose model, context and tools"]
+    H --> I{"Persistent capability gap?"}
+    I -- "No" --> J["Operate composed system"]
+    I -- "Yes" --> K["Adapt model; custom-train only with strategic evidence"]
+```
+
+| Step | SA question | Required artifact |
+|---|---|---|
+| Define | What outcome and harm can stakeholders recognize? | outcome contract and baseline |
+| Eliminate | Can rules or process redesign solve it? | non-AI alternative |
+| Validate fit | Does a product satisfy data, control, UX, and integration needs? | scripted proof of value |
+| Compose | Can retrieval, tools, and workflow close the gap? | system evaluation report |
+| Adapt | Is the remaining gap stable and worth owning? | data rights, training, rollback, and TCO plan |
+
+## Score the whole lifecycle
+
+A weighted matrix is useful only when weights come from agreed quality attributes. Score outcome quality, safety, integration fit, data control, time to value, operability, portability, skills, three-year cost, and supplier viability. Add confidence beside each score; an unsupported “5” is not evidence. Treat hard constraints—residency, accessibility, regulated approval, recovery point, or license—as pass/fail before weighting.
+
+Calculate expected value across normal, degraded, and harmful outcomes. Include human review minutes, model and tool calls, integration change, evaluation upkeep, incident response, vendor migration, and decommissioning. Run sensitivity analysis: if a small change in token price or review rate changes the winner, the decision is fragile.
+
+## Northstar example
+
+Northstar wants faster benefits-case triage. Fully automated approval is rejected because errors create financial and regulatory harm. Rules already validate completeness and eligibility. A purchased document product extracts common fields, while a composed retrieval-and-reasoning service drafts a recommendation with citations. A human retains approval authority. Adaptation is deferred until six months of adjudicated examples show a stable error class that prompt, retrieval, or UI changes cannot fix.
+
+The ADR records three stop conditions: citation coverage below target, reviewer disagreement above threshold, or no reduction in end-to-end handling time. The exit plan exports source documents, normalized facts, decisions, evaluation cases, prompts, and audit events in open formats.
+
+## Practical artifact: option dossier
+
+For every finalist capture:
+
+1. architecture and trust boundaries;
+2. evaluation results on representative and adversarial cases;
+3. hard constraints and residual risks;
+4. three-year cost range and sensitivity;
+5. operating model, incident owner, and rollback;
+6. commercial assumptions, data rights, and exit test;
+7. the evidence that would reverse the decision.
 
 ## Check yourself
 
-1. What evidence is required before making this decision?
-2. Which quality attributes are in tension, and which one wins ties?
-3. What is the safest useful fallback when the AI component is unavailable or uncertain?
-4. Which assumption is most likely to invalidate the design?
+1. Which hard constraint removes an option before scoring?
+2. Does the business case include review and failure costs?
+3. What result triggers abstention or a deterministic fallback?
+4. Which asset must remain portable to preserve negotiating power?
 
-## Authoring notes
+## Further reading
 
-- Lead with a realistic failure or decision, not a product catalog.
-- Keep the main explanation vendor-neutral; date all product mappings.
-- Include one decision table or diagram and one worked example.
-- Prefer primary standards, documentation, and research in further reading.
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
+- [FinOps Framework](https://www.finops.org/framework/)

@@ -1,6 +1,6 @@
 # RAG and agent evaluation
 
-> _Last reviewed: 2026-07-16 — see the [freshness policy](../appendix/maintenance.md). Benchmark implementations and model judges change; pin every evaluated version._
+> _Last reviewed: 2026-07-24 — see the [freshness policy](../appendix/maintenance.md). Benchmark implementations and model judges change; pin every evaluated version._
 
 ## Learning objectives
 
@@ -241,6 +241,9 @@ Create a resettable Northstar refund environment with retrieval, order, policy, 
 
 - [RAG: Retrieval-Augmented Generation for Knowledge-Intensive NLP](https://arxiv.org/abs/2005.11401).
 - [RAGAS: automated evaluation of retrieval-augmented generation](https://arxiv.org/abs/2309.15217).
+- [LLM system evaluation: an SA decision playbook](07-llm-system-evaluation-playbook.md).
+- [Agent evaluation environments and benchmark engineering](09-agent-evaluation-environments.md).
+- [Human-in-the-loop and HILOps](08-hitl-hilops.md).
 - [AgentBench](https://arxiv.org/abs/2308.03688).
 - [SWE-bench](https://arxiv.org/abs/2310.06770).
 - [τ-bench](https://arxiv.org/abs/2406.12045).

@@ -191,6 +191,7 @@ Benchmark a managed endpoint and a local serving runtime with Northstar’s shor
 
 ## Further reading
 
+- [Local, edge and hybrid agents](10-local-edge-agents.md)
 - [MLPerf Inference benchmark documentation](https://docs.mlcommons.org/inference/index_gh/)
 - [Kubernetes: scheduling, preemption, and eviction](https://kubernetes.io/docs/concepts/scheduling-eviction/)
 - [Kubernetes: schedule GPUs](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/)
