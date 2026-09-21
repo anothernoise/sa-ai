@@ -112,6 +112,25 @@ Deliver resource schemas, lifecycle, methods, idempotency, concurrency, semantic
 
 Model a task that disconnects during streaming, pauses for approval and loses the first callback. Demonstrate replay by cursor, one approval decision and one terminal outcome.
 
+## Check yourself
+
+1. Why is a single session_id for everything a design bug?
+2. A client reconnects after a dropped stream. What must the server have done before exposing a cursor, and what may backpressure never drop?
+3. Why is an approval bound to a task version, and what happens if the task changed after it was shown?
+4. A webhook callback carries the full sensitive report. What is wrong, and what should it carry instead?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Conversation, task, run, step, message, and artifact are different things. A client may retry a request, a task may have several attempts, and one conversation may contain several tasks; collapsing them makes retries, approvals, and audit ambiguous.</li>
+<li>Persisted the resumable events (with bounded retention) before exposing the cursor. Backpressure may coalesce progress but must never drop terminal state, approval requests, or effect receipts.</li>
+<li>Mutations carry an expected task or state version so stale approvals and cancellation races are rejected. If the state changed, the approval is refused and a fresh, current interruption is required.</li>
+<li>A callback should carry only the task ID and new state, be signed and deduplicated, and let the client fetch authoritative state. Sensitive outputs live as artifacts with an access policy and short-lived or authenticated access.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [A2A task lifecycle](https://a2aproject.github.io/A2A/latest/topics/life-of-a-task/)

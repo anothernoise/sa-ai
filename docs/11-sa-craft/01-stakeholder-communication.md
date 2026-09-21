@@ -57,9 +57,11 @@ For incidents: observed impact, scope/time, containment, current limitations, ne
 
 Produce a one-page executive decision, user/operator capability card, technical diagrams/NFRs, risk assurance summary, and economics/vendor appendix. Keep a common glossary, version, assumptions, and decision log so the narratives cannot contradict one another.
 
-## Northstar lab and checks
+## Northstar lab
 
 Present the shipment assistant to each audience in two minutes. The executive must decide whether to fund a trial; the operator must know when to escalate; security must locate identity and data boundaries; finance must see the unit and exit case.
+
+## Check yourself
 
 1. What decision does this audience own?
 2. Which uncertainty is material to that decision?

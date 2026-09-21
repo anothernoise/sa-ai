@@ -83,9 +83,11 @@ Proceed to architecture only when there is a named outcome owner, observed basel
 
 Northstar rejects “autonomous customer-service agent” as too broad. It starts with shipment evidence and draft replies for trained agents. Refund execution is excluded. A controlled trial compares it with unified deterministic search and measures correctly resolved cases, effort, repeat contact, and policy violations.
 
-## Artifact, lab, and checks
+## Artifact and lab
 
 Produce an **AI opportunity canvas**, current-state workflow, assumption register, and discovery decision. For the lab, interview three Northstar roles, sample ten cases, and recommend build, buy, process repair, or abstention.
+
+## Check yourself
 
 1. Which observed root cause requires probabilistic behavior?
 2. Who bears a false positive and a false negative?

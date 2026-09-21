@@ -65,6 +65,25 @@ For each purchase class record principal, agent identity, allowed merchants/item
 
 Continue with [policy-as-code for agent actions](../07-security-governance/08-agent-policy-as-code.md) and [agent incident forensics](../08-platform-operations/12-agent-incident-forensics.md).
 
+## Check yourself
+
+1. Describe the four autonomy tiers and why to begin at recommend or prepare.
+2. A merchant changes the delivery date after the user approved the cart. What must happen?
+3. Why must payment credentials never appear in model context, and what is used instead?
+4. Northstar's procurement mandate has a CAD 500 ceiling and requires confirmation above CAD 200. Which checks apply to a merchant-signed cart?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Recommend (the human checks out), prepare (the agent builds a bound cart and the human signs payment), pre-authorized (the agent buys within limits), and machine-to-machine payments. Higher tiers need revocation, velocity and cumulative limits, merchant trust, fraud monitoring, replay protection, refund handling, and legally valid evidence of consent.</li>
+<li>The approval is invalid. Authorization binds to the exact cart, currency, total, delivery terms, and expiry, so any material change requires a new approval; the agent may not accept substitutions on its own.</li>
+<li>The model can be manipulated, and merchant content is untrusted input. A wallet or payment service issues purpose-bound tokens, execution uses an idempotency key, and the processor result is recorded.</li>
+<li>The signed mandate (ceiling, dates, approved vendors, no substitutions) and the merchant-signed cart's hash are checked deterministically, and the CAD 200 human-confirmation rule applies before payment.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [UCP architecture overview](https://ucp.dev/2026-01-23/specification/overview/)

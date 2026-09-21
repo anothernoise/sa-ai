@@ -115,6 +115,25 @@ Document owner, purpose, schemas, effect class, data class, identity, authorizat
 
 Design five Northstar tools, including two intentionally overlapping ones. Measure selection accuracy before and after hierarchical discovery, then inject denial, timeout and lost-response failures.
 
+## Check yourself
+
+1. An engineer argues that because the agent connected to an MCP server it may call any tool listed. What is wrong with that?
+2. Why split refund into preview and commit instead of one refund tool?
+3. Tool-selection accuracy falls as the catalog grows from 20 to 400 tools. What do you change?
+4. A tool starts returning 'conflict' where it used to return 'denied'. Is that a minor version bump?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>A tool description says what may exist; it is not permission. The policy engine decides whether this actor, task, and moment may use it, and the executor holds short-lived credentials. Neither a connection nor registry presence attests that a server is safe or authorized.</li>
+<li>Narrow, outcome-oriented tools keep effects governable: preview has no effect, and commit needs a current preview, approval, and an idempotency key. Northstar exposes only the preview schema until policy confirms eligibility, and an unknown outcome triggers reconciliation.</li>
+<li>Use hierarchical discovery: retrieve candidate metadata by task, domain, and policy; rank with descriptions and negative examples; expose full schemas only for the small permitted set; and require explicit policy before execution. Large catalogs both hurt selection and inflate context.</li>
+<li>No. A change in effect, authorization, or error semantics is breaking. Support overlapping versions during migration, record the selected version in traces, and publish deprecation dates.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [MCP specification and registry](https://modelcontextprotocol.io/)

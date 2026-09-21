@@ -84,9 +84,11 @@ Northstar establishes product teams for support and supply operations, one share
 
 Produce a **target operating model** with team topology, decision rights, service catalog, lifecycle forums, readiness evidence, exception process, capability gaps, funding model, metrics, and 30/90/180-day roadmap.
 
-## Lab and checks
+## Lab
 
 Map Northstar’s current owners and find five orphan decisions. Design the target topology, define one paved-road service contract, and sequence the top three blocking capability gaps.
+
+## Check yourself
 
 1. Which team owns production outcomes and on-call?
 2. Who can accept residual risk and who challenges it?

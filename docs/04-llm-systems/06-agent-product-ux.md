@@ -96,6 +96,25 @@ Document users, channels, mental model, intent summary, progress vocabulary, evi
 
 Prototype ordinary success, denial, unknown outcome and cancellation for Northstar. Test with keyboard-only and screen-reader flows. Ask participants what changed in the system and compare their answer with actual state.
 
+## Check yourself
+
+1. Why does Northstar show 'investigating' and 'waiting for carrier' rather than a token stream, and what does 'Submitted' wait for?
+2. A '92% confident' badge tests well in a demo. Why might it damage trust calibration, and what would you show instead?
+3. Approvals rise fivefold after launch and reviewers now approve in under two seconds. What failure is this, and which design changes address it?
+4. How would you test the refund approval flow for accessibility, and what could an aggregate success metric hide?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>People need semantic progress, not internal reasoning or raw logs. 'Submitted' appears only after an authoritative receipt; completion language before a receipt is misleading, and an unknown outcome offers reconciliation and human support, not a retry button.</li>
+<li>A global percentage is not calibrated for the specific decision and invites over-reliance. Show specific status: source age, missing evidence, unresolved conflict, permission denial, or 'action not yet confirmed'.</li>
+<li>Approval fatigue — rubber-stamping. Risk-tier the interruptions, batch related decisions, use defaults only where safe, expire stale approvals, and give high-consequence approvals structured values, evidence, and alternatives. Measure approval quality, not approval rate.</li>
+<li>Test keyboard-only and screen-reader flows, focus management, status not conveyed by color alone, adjustable timing, and a non-voice fallback; ask participants what changed and compare with actual state. Aggregate success can hide exclusion across language, literacy, disability, device, and connectivity.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [Guidelines for Human-AI Interaction](https://www.microsoft.com/en-us/research/project/guidelines-for-human-ai-interaction/)

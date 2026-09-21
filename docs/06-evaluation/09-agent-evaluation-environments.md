@@ -121,6 +121,25 @@ Document task distributions, snapshots, interfaces, identities, hidden truth, re
 
 Implement five Northstar tasks in a resettable simulator. Run a deterministic workflow and an agent five times each. Separate agent, environment and scorer failures and report confidence intervals.
 
+## Check yourself
+
+1. Why can a public benchmark shortlist models but not gate a release?
+2. Why score environment state instead of requiring an exact trajectory?
+3. Success drops eight points overnight with no agent change. How do you separate environment drift from a regression?
+4. List the four evaluation layers from simulation to production, and say what promotion requires.
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Public results show capability, not acceptance: they cannot prove data residency, accessibility, policy compliance, production SLOs, or business value, and they may be contaminated. Northstar uses a public score to shortlist and only its private environment to gate.</li>
+<li>Several paths can be valid. Use state assertions for effects, schema checks for contracts, and trace invariants for prohibited paths; reserve LLM judges for semantics that state cannot capture, calibrated against blinded human labels.</li>
+<li>Pin container images, application versions, seeds, time, locale, and network fixtures; classify environment failures separately from agent failures; run sentinel agents or deterministic scripts that reveal environment change; compare against frozen historical suites.</li>
+<li>Deterministic component and contract tests, isolated stateful simulations, shadow runs on real inputs without effects, and limited production exposure with monitoring. Promotion needs agreement across the layers appropriate to the consequence; neither simulation nor production experimentation excuses the other.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [OSWorld](https://os-world.github.io/)

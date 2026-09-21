@@ -78,9 +78,11 @@ Northstar’s primary outcome is correctly resolved shipment cases per paid hour
 
 Produce a **benefits map and register** linking quality to use, workflow, outcome, and value; include counterfactual, data definitions, guardrails, uncertainty, owner, review cadence, and stop decision.
 
-## Lab and checks
+## Lab
 
 Rewrite three Northstar “AI goals” as falsifiable hypotheses. Design a staggered rollout, calculate an expected benefit range, and identify two plausible confounders and two gaming risks.
+
+## Check yourself
 
 1. What counterfactual supports the benefit claim?
 2. Where can time saved disappear?

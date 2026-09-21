@@ -110,6 +110,25 @@ Include component boundaries, ports, transition schema, state/event model, contr
 
 Implement a pure reducer for `investigating → waiting_for_approval → executing → completed/unknown`. Feed valid and adversarial model proposals and prove that no proposal bypasses policy or commits twice.
 
+## Check yourself
+
+1. What belongs in deterministic code and what may be model-directed? Describe Northstar's split.
+2. Why is the model's stated reason not authorization evidence, and what does the harness reject?
+3. How do you detect a no-progress loop without appending stack traces to context?
+4. Name the criteria for build versus framework, and one thing that should not decide it.
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Authority, state transitions, and side effects belong in deterministic code; the model proposes bounded next actions. Northstar uses a deterministic case state machine and refund saga: the model picks read-only investigation tools and proposes an outcome, policy and the reducer decide whether approval is needed, and the executor commits with an idempotency key — a deterministic outer workflow, a bounded agentic inner loop, and a deterministic commit.</li>
+<li>The reason helps debugging only; authority is computed from policy. The harness rejects stale state versions, unknown tools, impossible transitions, and budget violations.</li>
+<li>Normalize errors into safe codes, retryability, effect certainty, and bounded detail. Track repeated tool and argument pairs, unchanged state, circular handoffs, and a shrinking budget, then stop, ask, or escalate with evidence.</li>
+<li>Durability, control, portability, operational skills, and total lifecycle cost. Lines of code in the first prototype should not decide it; ports and adapters keep the framework replaceable either way.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [12-Factor Agents](https://github.com/humanlayer/12-factor-agents)

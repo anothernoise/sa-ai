@@ -118,6 +118,25 @@ Include evidence sources, taxonomy, data minimization, root-cause method, update
 
 Take ten Northstar failure traces. Cluster them, identify the responsible plane, propose one minimal change per cluster and build a promotion matrix. Include one poisoned feedback item and show where the pipeline rejects it.
 
+## Check yourself
+
+1. Why keep knowledge, instruction, program, and parameter updates separate, and what releases each?
+2. A thumbs-up rate rises after a prompt change but repeat contacts also rise. What does 'production traces are observations, not truth' warn about?
+3. What must an update proposal state before optimization starts?
+4. A rollback restores the code, but the agent still misbehaves. What was probably missed?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Each has a different release mechanism and dominant risk: knowledge via a reviewed index or graph version (poisoned or stale truth), instructions via a prompt and skill registry (hidden conflicts), programs via normal CI/CD (code and supply-chain defects), and parameters via a model registry with staged serving (broad regression). Treating all as 'memory' hides that.</li>
+<li>Feedback can reward pleasing language, a success may have been repaired manually, and a reviewer correction may be wrong. Record outcome receipts, reviewer role, rubric, and sampling bias, and guard against metric gaming and repeated users dominating optimization.</li>
+<li>The failure cluster and evidence count, the affected slice, a causal root-cause hypothesis, the change plane, the proposal and expected effect, explicit non-goals, and the rollback target.</li>
+<li>Rewritten memory or an incompatible index. Version the compatible bundle, and give database, memory, and context migrations backward-read or explicit cutover strategies; a rollback that restores only code is incomplete.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [Microsoft Agent Lightning](https://github.com/microsoft/agent-lightning)

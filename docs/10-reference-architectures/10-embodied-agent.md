@@ -57,6 +57,25 @@ Include operational domain, hazard analysis, skill catalogue, safety boundary, i
 
 Start implementation from the [production starter architecture](11-production-starter-architecture.md), then specialize its runtime and incident controls for physical safety.
 
+## Check yourself
+
+1. Why must no language-model output bypass the safety boundary, and what does each layer own?
+2. What is an operational design domain, and what must every skill define?
+3. A digital twin passes thousands of simulated near-misses. Why is that not proof of safety, and how should promotion proceed?
+4. Northstar's warehouse assistant loses connectivity mid-task. What should happen, and why?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Physical actions add dynamics, sensor error, and irreversible harm. The mission planner selects an approved skill; the safety supervisor owns envelopes, interlocks, and zones; the controller runs deterministic real-time control; independent physical safety owns emergency stop and limits; the twin supports evidence offline.</li>
+<li>The environment, lighting, floor, payload, people, network, temperature, sensors, and allowed tasks the system is designed for. Each skill needs preconditions, postconditions, parameter limits, a timeout, recovery, and a safe state.</li>
+<li>Simulation-to-real gaps include friction, calibration, latency, lighting, object diversity, and human behaviour. Promote through simulation, hardware-in-the-loop, a controlled cell, and supervised shadow operation before limited live operation.</li>
+<li>It enters a safe state. It can only propose certified skills, never arbitrary joint commands; human detection slows or stops motion, and uncertain perception requests another view.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [ROS 2 concepts](https://docs.ros.org/en/rolling/Concepts/)

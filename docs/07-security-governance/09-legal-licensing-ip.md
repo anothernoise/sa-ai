@@ -59,6 +59,25 @@ For each asset record immutable ID/version, origin, owner, license/contract, con
 
 Join the register to the [AI supply-chain inventory](07-ai-supply-chain.md) and the [agent marketplace admission dossier](../08-platform-operations/13-agent-marketplaces.md).
 
+## Check yourself
+
+1. A team wants to fine-tune on customer adjudication records 'because we already have them'. What must be true first?
+2. Does an SPDX or C2PA record make a use legal?
+3. A document must be taken down. Which artifacts must you be able to find?
+4. Why is a licensing policy document alone insufficient?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Known provenance, permitted use, consent and purpose, deletion lineage, and an owner for the obligations. Northstar uses separately approved adjudication records, and tags are enforced at ingestion, dataset assembly, training, and registry promotion.</li>
+<li>No. They carry evidence and claims — software inventory and media provenance — but do not establish that a use is permitted; that remains a legal determination.</li>
+<li>Every dataset, index, model version, and output derived from it. The rights register joins each asset to its downstream products, versions, and evidence, and to a takedown owner.</li>
+<li>A policy disconnected from pipelines drifts. Obligations must be tagged on assets and enforced technically, and contracts must cover input and output rights, training use, telemetry, retention, subprocessors, model changes, and indemnity.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [SPDX specification](https://spdx.dev/use/specifications/)

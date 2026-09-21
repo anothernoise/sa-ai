@@ -75,6 +75,25 @@ Quarterly, Northstar rebuilds a small retrieval index from authoritative documen
 
 Include trigger and authority, dependency inventory, target architecture, data export and verification, secrets/identity changes, quality acceptance, cutover/canary plan, customer communications, rollback, supplier deletion evidence, and a rehearsal schedule.
 
+## Check yourself
+
+1. Pick two lock-in dimensions from the table and give a mitigation for each.
+2. What does a tier-2 portability posture promise that tier 1 does not, and how do you choose a tier?
+3. An adapter to a second model provider exists, yet failover fails in a drill. Why do adapters not create portability by themselves?
+4. What does Northstar's quarterly exit rehearsal record, and what follows a failed one?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Examples: data — keep a source-of-truth export and a rebuild pipeline rather than an opaque index; evaluation — own the datasets, rubrics, and raw results rather than relying on vendor dashboards and judges; API/model — an internal request contract with conformance tests; commercial — price scenarios and contractual exit terms.</li>
+<li>Tier 2 is a warm alternative: a second compatible route is regression-tested and can take selected traffic, whereas tier 1 only promises a rebuild within weeks. Choose from business impact, supplier concentration, regulatory need, and recovery objective — not ideology; higher tiers cost more and can suppress useful provider features.</li>
+<li>Semantics differ. Run conformance tests for tool arguments, structured output, token and context behaviour, safety filters, citations, streaming, errors, and rate limits, and keep a capability-degradation matrix so failover can disable unsupported features safely.</li>
+<li>Elapsed time, quality delta, manual steps, missing artifacts, and cost. A failed rehearsal produces remediation work so the exit plan is executable rather than a document.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [OpenTelemetry](https://opentelemetry.io/docs/)

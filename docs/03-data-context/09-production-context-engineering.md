@@ -122,6 +122,25 @@ Produce a context-class inventory, authority/provenance rules, budget table, ord
 
 Compile the same Northstar task under 8k, 32k and 128k token budgets. Inject a stale policy, cross-tenant passage and malicious tool result. Demonstrate safe degradation and measure the marginal value of each context component.
 
+## Check yourself
+
+1. A 128k context window is available. Why is 'include everything that fits' the wrong policy, and what should each model call receive instead?
+2. You are over budget. Put the degradation steps in order, and name what must never be summarized away.
+3. A team puts a tenant's confidential policy text in the shared stable prefix to raise the cache hit rate. What is wrong, and how should the cache key be built?
+4. After twenty turns a compaction step keeps the transcript's tone but drops a pending refund approval. How should you have caught it, and what does the compaction contract require?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Each call should get the minimum authorized, attributable, task-relevant context for the next decision. A large window does not guarantee the model uses every token well, and more context costs latency and money and widens the privacy and injection surface.</li>
+<li>Drop redundant presentation and duplicate evidence; replace large payloads with typed fields and artifact references; retrieve narrower passages; compact older interaction into a source-linked state summary; isolate a subtask in a fresh context; finally ask the user to narrow the task or defer. Never summarize away approvals, denials, deadlines, unresolved side effects, identity/policy, or source identity.</li>
+<li>Cached material must not cross tenant, policy, or confidentiality boundaries, and secrets do not belong in a stable prefix. The key needs the model, tokenizer/chat template, prefix hash, policy scope, and relevant provider controls, with leakage and invalidation tests alongside the hit-rate metric.</li>
+<li>Evaluate compaction by whether downstream tasks preserve decisions and constraints, not by similarity to the old transcript. The contract preserves verified facts, user constraints, approvals and denials, pending effects, and unresolved questions; Northstar keeps an outstanding approval and an unknown refund outcome verbatim in task state.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [12-Factor Agents: own your context window](https://github.com/humanlayer/12-factor-agents)

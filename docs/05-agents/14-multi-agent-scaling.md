@@ -58,6 +58,25 @@ Capture task DAG, baseline, topology, specialization rationale, shared-state des
 
 Pair the experiment with [durable orchestration](02-orchestration-state.md) and [agent evaluation environments](../06-evaluation/09-agent-evaluation-environments.md).
 
+## Check yourself
+
+1. A team proposes six agents, including a 'manager persona', for a strictly sequential task. What does the chapter suggest, and what do you test first?
+2. Why might redundant agents fail to improve reliability, and what does independence require?
+3. How does Northstar resolve a conflict between the policy-review and calculation-review agents?
+4. What does a scaling experiment card contain, and what is its rollback threshold for?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Benefit depends on task structure; sequential dependencies can degrade. Benchmark a strong single agent, a single agent with more test-time compute, a deterministic parallel workflow, and the proposed topology. A persona that adds no unique evidence or tools is removed.</li>
+<li>Redundancy helps only if errors are sufficiently independent and an objective merge or verifier can identify the correct result. The same model, context, and bias produce correlated errors, and a subjective majority vote can amplify them.</li>
+<li>Findings are typed and carry provenance into a deterministic case assembler; a conflict routes to a human. Agents do not debate until one sounds persuasive.</li>
+<li>The task DAG, baseline, topology, specialization rationale, shared-state design, independence assumption, aggregation rule, concurrency and budget, failure injection, metrics with confidence intervals. The rollback threshold is a pre-declared result at which you revert to the simpler design.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [Scaling Large Language Model-based Multi-Agent Collaboration, ICLR 2025](https://proceedings.iclr.cc/paper_files/paper/2025/hash/66a026c0d17040889b50f0dfa650e5e0-Abstract-Conference.html)

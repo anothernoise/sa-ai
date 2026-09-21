@@ -47,9 +47,11 @@ Classify findings by consequence and likelihood in context. A release blocker th
 
 Review quality matters: track recurring findings, escaped architecture defects, time to decision, expired conditions, and whether the process finds issues before production. Avoid approval theater caused by oversized meetings and late documents.
 
-## Artifact, lab, and checks
+## Artifact and lab
 
 Produce a **review checklist, finding log, and signed decision record**. Conduct a 45-minute Northstar review using the ten challenge scenarios; reviewers must issue one of approve, conditional, redesign, or stop.
+
+## Check yourself
 
 1. Which claim lacks evidence?
 2. Which failure crosses a trust boundary?

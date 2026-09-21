@@ -69,6 +69,25 @@ Document accepted input, output schema, evidence source, independence assumption
 
 Use the contract with [evaluation measurement science](../06-evaluation/06-measurement-science.md) and the [synthetic trajectory factory](../06-evaluation/10-synthetic-trajectory-factories.md).
 
+## Check yourself
+
+1. When does a self-critique loop reproduce the original error, and what would you substitute for it?
+2. A verify-and-repair loop triples cost for a one-point gain in success. What do you do, and what do you measure first?
+3. Why does the controller sit outside the model, and what must it enforce?
+4. Compare verifier design for a code-generation agent with a unit-test suite and a legal-summary assistant. What is the residual risk in each?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>When the critic shares the generator's blind spots — the same model, prompt, and misconception. Substitute an independent verifier: a deterministic tool, retrieved primary evidence, a differently prompted or different model, or a qualified human.</li>
+<li>Compare the whole policy against a single-pass baseline on task success, harmful acceptance, false rejection, p95 latency, cost per successful task, and escalation. If the gain does not justify the cost, remove the loop or restrict it to high-risk cases.</li>
+<li>A model cannot be trusted to bound its own loop. The controller enforces maximum candidates, rounds, wall time, and token and tool budget, applies a monotonic acceptance rule, and keeps verifier secrets and expected answers out of untrusted context.</li>
+<li>Code has an executable oracle: run the tests; the residual risk is incomplete test coverage. A legal summary has no oracle, so use a citation-entailment verifier plus human escalation; the residual risk is correlated bias in any model-based rubric evaluator.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [Self-Refine](https://arxiv.org/abs/2303.17651)

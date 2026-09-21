@@ -66,6 +66,25 @@ Include publisher verification, package manifest, provenance/signature, SBOM/mod
 
 Use the [agent identity and registry model](../05-agents/13-agent-identity-registry.md) for discovery, and the [rights register](../07-security-governance/09-legal-licensing-ip.md) for admission evidence.
 
+## Check yourself
+
+1. A tool has 10,000 installs and a verified publisher. What can you and can't you conclude?
+2. Why install a new package into a quarantine first, and what do admission checks validate?
+3. How can marketplace reputation be gamed, and what should you weight instead of stars?
+4. A vulnerable version is found. Which lifecycle controls let Northstar respond?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Publisher verification shows an accountable source, not package safety; a signature shows integrity and origin, not good behaviour; reputation is history, not a guarantee. A listing is not runtime permission — only current identity, policy, evidence, and context grant scoped authority.</li>
+<li>To observe it before it can reach real data or tools. Checks cover schemas, signatures, malware, dependencies, licenses, prohibited permissions, data egress, prompt-injection defences, sandbox behaviour, and baseline evaluations, with human review for high-risk use.</li>
+<li>Self-dealing, Sybil ratings, survivorship bias, and silent package changes. Weight verified outcomes, incident history, maintenance responsiveness, provenance, and evaluator confidence, segmented by version, task, environment, and risk; a critical incident overrides the score.</li>
+<li>Pinning, staged updates, advisories, revocation, emergency disablement, and consumer notification, with the registry identifying every installed instance and affected artifact, followed by evidence-preserving retirement.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [Sigstore documentation](https://docs.sigstore.dev/)

@@ -59,6 +59,25 @@ For every tool/action record principal types, delegation, resources, conditions,
 
 Apply the matrix to [production tool engineering](../05-agents/08-production-tool-engineering.md) and retain its decisions for [agent incident forensics](../08-platform-operations/12-agent-incident-forensics.md).
 
+## Check yourself
+
+1. Why is 'the system prompt forbids it' not an authorization control, and what is one?
+2. The policy service is down. What happens to a refund write and to a low-risk read?
+3. An agent denied 'case.update_address' retries with a semantically equivalent tool. What did the design miss?
+4. How would you release a policy change safely?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>A prompt guides behaviour but is not a security boundary. A deterministic policy decision point authorizes the exact action from trusted inputs, default-deny, and an enforcement point controls execution.</li>
+<li>Consequential writes fail closed. A low-risk read may use a carefully defined cached decision only while identity, policy version, and resource attributes remain valid; policy availability belongs in the service SLO.</li>
+<li>Enforcement over action families and sequence and rate constraints. Tool intents must be normalized before evaluation, free text must never become an action name or resource ID, and the agent must not reinterpret a deny.</li>
+<li>Schema validation, unit and property tests, negative tests, review, a signed artifact, replay against minimized historical decision logs (Northstar replays 90 days), staged or canary rollout, decision telemetry, and a rapid rollback path.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [OPA documentation](https://www.openpolicyagent.org/docs)

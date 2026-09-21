@@ -69,9 +69,11 @@ Northstar attributes each support case’s model, retrieval, tool, and review us
 
 Produce a **FinOps model** with allocation taxonomy, usage schema, unit definition, forecast, budgets, guardrails, anomaly runbook, optimization backlog, and benefit verification.
 
-## Lab and checks
+## Lab
 
 Cost 1,000 Northstar cases across short, long, escalated, failed, and retried paths. Find the top variance, propose two controls, and show their effect on quality-adjusted cost.
+
+## Check yourself
 
 1. Which shared costs are currently unallocated?
 2. Can a budget limit degrade safety or access controls?

@@ -40,6 +40,22 @@ Link a public starter and state the exact deliverable and acceptance criteria. A
 
 Ask three to five questions that require reasoning, not recall. At least one should apply the concept to an unfamiliar case.
 
+Follow the numbered questions with a collapsible answer block, one `<li>` per question, so a reader can check their reasoning. Use an HTML list here, not a markdown one: the book's renderer (HonKit) does not render markdown lists inside `<details>`.
+
+```markdown
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Answer to question one.</li>
+<li>Answer to question two.</li>
+</ol>
+
+</details>
+```
+
+`scripts/extract_check_yourself.py` turns every chapter's questions (and answers, where present) into `data/check-yourself.json`; rerun it after editing a chapter.
+
 ## Further reading
 
 Prefer primary documentation, standards, and papers. Record a last-reviewed date and avoid undated claims about fast-moving products.

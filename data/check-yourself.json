@@ -1,0 +1,1510 @@
+[
+ {
+  "chapter": "docs/00-orientation/00-how-to-use.md",
+  "title": "How to use this book",
+  "questions": [
+   "What evidence is required before making this decision?",
+   "Which quality attributes are in tension, and which one wins ties?",
+   "What is the safest useful fallback when the AI component is unavailable or uncertain?",
+   "Which assumption is most likely to invalidate the design?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/00-orientation/01-operating-model.md",
+  "title": "The AI solution architect operating model",
+  "questions": [
+   "What evidence is required before making this decision?",
+   "Which quality attributes are in tension, and which one wins ties?",
+   "What is the safest useful fallback when the AI component is unavailable or uncertain?",
+   "Which assumption is most likely to invalidate the design?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/00-orientation/02-bootcamp-format.md",
+  "title": "Bootcamp format, labs & portfolio",
+  "questions": [
+   "What evidence is required before making this decision?",
+   "Which quality attributes are in tension, and which one wins ties?",
+   "What is the safest useful fallback when the AI component is unavailable or uncertain?",
+   "Which assumption is most likely to invalidate the design?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/00-orientation/03-northstar-case.md",
+  "title": "The Northstar recurring case",
+  "questions": [
+   "Which two Northstar requests would you refuse to combine into one release, and why?",
+   "Which assumption above is cheapest to test and most likely to change the design?",
+   "The sponsor wants \"AI in three months.\" What would you say is the earliest defensible scope, and what evidence would let you widen it?",
+   "Which stakeholder bears the cost of a wrong refund, and how does that change who signs off?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/01-ai-sa-foundations/00-probabilistic-architecture.md",
+  "title": "The AI solution architecture method",
+  "questions": [
+   "What is the observable user outcome and reference workflow?",
+   "Which decisions are deterministic, model-driven, or human-owned?",
+   "What is the highest-consequence failure and safe fallback?",
+   "Which architecture view exposes each trust boundary?",
+   "Which assumption should be tested first?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/01-ai-sa-foundations/01-discovery-framing.md",
+  "title": "AI discovery & problem framing",
+  "questions": [
+   "Which observed root cause requires probabilistic behavior?",
+   "Who bears a false positive and a false negative?",
+   "What cheaper alternative is the AI option compared against?",
+   "Which result would stop the initiative?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/01-ai-sa-foundations/02-requirements-nfrs.md",
+  "title": "Requirements, NFRs & quality attributes",
+  "questions": [
+   "What population does each quality threshold cover?",
+   "Which attributes are non-compensatory?",
+   "What is a qualified successful request?",
+   "Which production signal triggers degradation?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/01-ai-sa-foundations/03-diagrams-adrs.md",
+  "title": "C4, sequence diagrams & AI ADRs",
+  "questions": [
+   "Which question does each diagram answer?",
+   "Where is identity converted into tool authorization?",
+   "Which assumption would supersede the ADR?",
+   "Can the runtime failure path be reconstructed from the views?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/01-ai-sa-foundations/04-build-buy-abstain.md",
+  "title": "Build, buy, adapt, or abstain",
+  "questions": [
+   "Which hard constraint removes an option before scoring?",
+   "Does the business case include review and failure costs?",
+   "What result triggers abstention or a deterministic fallback?",
+   "Which asset must remain portable to preserve negotiating power?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/02-ai-landscape/00-system-patterns.md",
+  "title": "Rules, search, ML, GenAI, and agents",
+  "questions": [
+   "Which component owns truth, state, authorization, and recovery?",
+   "Could a deterministic workflow replace the agent?",
+   "What is the smallest useful autonomy envelope?",
+   "How is each probabilistic output verified before it affects state?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/02-ai-landscape/01-foundation-models.md",
+  "title": "Foundation model capabilities and limits",
+  "questions": [
+   "A vendor demo shows a model passing an eligibility test with 95% accuracy. Using the model-versus-system table, which responsibilities does that number say nothing about?",
+   "Why is a model's stated confidence a poor basis for routing a case to a human, and what would you derive confidence from instead?",
+   "Northstar's model explains a wrong eligibility recommendation very convincingly. Which limitation is this, and which controls catch it?",
+   "A provider silently updates the model behind an alias. Which limitations make that dangerous, and what would detect it?"
+  ],
+  "answers": [
+   "It measures inference only. It says nothing about entitlement (who may ask), the source of truth (is the policy current), final authority, validation that does not rely on the model attesting to itself, idempotent execution of any irreversible effect, or version change. Each is a system responsibility that must be designed and tested separately.",
+   "Verbal confidence is not natively calibrated and can sit beside a wrong answer. Derive operational confidence from evidence coverage, verifier results, task class, and observed error rates on a representative evaluation set.",
+   "Reasoning traces are not proof. Controls: deterministic recomputation of amounts and mandatory criteria, validation that each cited passage entails the claim, and routing low-coverage or conflicting cases to an adjudicator.",
+   "Nondeterminism and sensitivity to small changes, plus the 'unexplained silent change' risk in the operations layer. Pin and version the full request envelope, run a regression suite on every change, record the evaluation date on the capability card, and keep a compatible fallback route."
+  ]
+ },
+ {
+  "chapter": "docs/02-ai-landscape/02-model-selection.md",
+  "title": "Model portfolio strategy and evidence-based selection",
+  "questions": [
+   "Why is a leaderboard insufficient for selection?",
+   "When can a smaller model be the architecturally superior choice?",
+   "Which properties must a fallback preserve?",
+   "What measured failure would justify fine-tuning?",
+   "How do you prove an exit plan works?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/02-ai-landscape/03-prompting-structured-output.md",
+  "title": "Prompt contracts, structured outputs and constrained generation",
+  "questions": [
+   "Which requirements belong in code rather than the prompt?",
+   "What does schema validity fail to prove?",
+   "When should repair stop?",
+   "How is retrieved text prevented from changing authority?",
+   "Which artifacts must be versioned together?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/02-ai-landscape/04-adaptation.md",
+  "title": "Fine-tuning, distillation and inference optimization",
+  "questions": [
+   "Why does fine-tuning not replace retrieval or authorization?",
+   "Which real distribution does the dataset represent?",
+   "How is a student evaluated independently of its teacher?",
+   "When does quantization require a new release decision?",
+   "What is the lifecycle break-even point?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/02-ai-landscape/05-multimodal.md",
+  "title": "Multimodal, real-time voice and computer-use architectures",
+  "questions": [
+   "Which transformations can alter meaning?",
+   "How is evidence localized in time or space?",
+   "What happens when a user interrupts during a tool call?",
+   "Why is voice likeness not authentication?",
+   "When is a typed API safer than computer use?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/02-ai-landscape/06-reasoning-test-time-compute.md",
+  "title": "Reasoning systems & test-time compute",
+  "questions": [
+   "Why is a reasoning model not, by itself, a reasoning architecture?",
+   "When can a smaller model with verification be preferable to a larger single-pass model?",
+   "Why does majority agreement among samples fail as proof of correctness?",
+   "Which observable signals would move a request from Tier 1 to Tier 3?",
+   "What should the system expose to auditors if hidden model reasoning is not an audit log?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/02-ai-landscape/07-agent-post-training.md",
+  "title": "Agent post-training and trajectory learning",
+  "questions": [
+   "Northstar's agent produces malformed carrier tool calls across several paraphrases. Walk the improvement ladder: what do you try first, and why does the chapter's team stop at a small adapter rather than RL?",
+   "Design two tests that would expose reward hacking in the refund-investigation reward shown in the chapter.",
+   "Why should trajectories be split by user, time, and scenario, and why keep failed examples separately rather than deleting them?",
+   "Training loss falls and simulator success rises, but severe violations rise in production. Name three plausible causes from the chapter."
+  ],
+  "answers": [
+   "Start with the least irreversible interventions: structured output and prompt, a tool schema with deterministic validation, then supervised fine-tuning on governed demonstrations for tool-call fidelity. RL is rejected because refund outcomes are too sparse, the simulator does not model carrier ambiguity, and authorization needs no weight change.",
+   "For example: an agent that always ends in the needs_human terminal state to collect milestone credit; an agent that repeats a cheap milestone such as policy.lookup; one that exploits a missing field or a simulator bug. The reward must also zero out fabricated tool receipts and unauthorized effects regardless of outcome.",
+   "Random splits leak near-duplicates between training and release tests and hide temporal drift, inflating results. Silently deleting hard cases produces a misleading training and evaluation distribution; failures are evidence, so they are preserved and labelled.",
+   "Training-serving mismatch (different schemas or permissions in the environment), a simulator that misses real ambiguity, reward hacking or an uncalibrated reward model, an incompatible release tuple (template, tokenizer, prompt, decoding), or a regression in a critical slice hidden by aggregate success."
+  ]
+ },
+ {
+  "chapter": "docs/02-ai-landscape/08-reflection-verifier-loops.md",
+  "title": "Reflection, metacognition, and verifier loops",
+  "questions": [
+   "When does a self-critique loop reproduce the original error, and what would you substitute for it?",
+   "A verify-and-repair loop triples cost for a one-point gain in success. What do you do, and what do you measure first?",
+   "Why does the controller sit outside the model, and what must it enforce?",
+   "Compare verifier design for a code-generation agent with a unit-test suite and a legal-summary assistant. What is the residual risk in each?"
+  ],
+  "answers": [
+   "When the critic shares the generator's blind spots — the same model, prompt, and misconception. Substitute an independent verifier: a deterministic tool, retrieved primary evidence, a differently prompted or different model, or a qualified human.",
+   "Compare the whole policy against a single-pass baseline on task success, harmful acceptance, false rejection, p95 latency, cost per successful task, and escalation. If the gain does not justify the cost, remove the loop or restrict it to high-risk cases.",
+   "A model cannot be trusted to bound its own loop. The controller enforces maximum candidates, rounds, wall time, and token and tool budget, applies a monotonic acceptance rule, and keeps verifier secrets and expected answers out of untrusted context.",
+   "Code has an executable oracle: run the tests; the residual risk is incomplete test coverage. A legal summary has no oracle, so use a citation-entailment verifier plus human escalation; the residual risk is correlated bias in any model-based rubric evaluator."
+  ]
+ },
+ {
+  "chapter": "docs/03-data-context/00-data-readiness.md",
+  "title": "AI data readiness, lineage and provenance",
+  "questions": [
+   "Is the source permitted for this particular use?",
+   "Which transformation can materially change meaning?",
+   "How is a claim traced to source revision and activity?",
+   "Which source wins a conflict and why?",
+   "Can deletion find every derivative?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/03-data-context/01-retrieval-foundations.md",
+  "title": "Embeddings, chunking and retrieval",
+  "questions": [
+   "Which query belongs in SQL/API rather than a vector index?",
+   "Why is similarity not authority or truth?",
+   "At what stage must ACL filtering occur?",
+   "How can overlap reduce retrieval quality?",
+   "What makes an embedding change a production release?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/03-data-context/02-rag-patterns.md",
+  "title": "Production RAG: evidence, freshness and operations",
+  "questions": [
+   "Why is an ACL added after retrieval too late?",
+   "Which question classes cannot be answered reliably by top-k chunk retrieval?",
+   "What proves that a citation supports a claim rather than merely sharing words?",
+   "How does a deleted source propagate through derived indexes and caches?",
+   "What is the safe response when grounding is unavailable?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/03-data-context/03-hybrid-retrieval.md",
+  "title": "Knowledge graphs, SQL & hybrid retrieval",
+  "questions": [
+   "Why is post-generation redaction insufficient for hybrid retrieval?",
+   "When should graph traversal return paths rather than prose?",
+   "Why should BM25 and vector similarity scores not be compared directly?",
+   "What evidence would justify replacing a deterministic query template with model planning?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/03-data-context/04-context-memory.md",
+  "title": "Agentic memory systems",
+  "questions": [
+   "Why is a transcript an event log rather than a complete memory architecture?",
+   "Which Northstar facts belong in memory, and which must come from systems of record?",
+   "When should an inferred memory be promoted to a confirmed semantic fact?",
+   "How does temporal validity differ from simply keeping the newest vector?",
+   "What must happen outside model discretion when a user deletes a memory?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/03-data-context/05-governance-provenance.md",
+  "title": "Data governance, lineage & provenance",
+  "questions": [
+   "Why does valid provenance not prove truth?",
+   "Which derived stores must participate in deletion?",
+   "How do valid time and observation time differ?",
+   "What lineage is required to investigate a consequential action?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/03-data-context/06-graphrag-temporal.md",
+  "title": "GraphRAG and temporal knowledge",
+  "questions": [
+   "Why should GraphRAG not replace SQL for authoritative current values?",
+   "What damage can a false entity merge cause?",
+   "When is a community summary more useful than an entity neighborhood?",
+   "Why are valid time and observation time both necessary?",
+   "What evidence would make you reject GraphRAG after a successful demo?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/03-data-context/07-production-memory.md",
+  "title": "Production memory: governance, evaluation and operations",
+  "questions": [
+   "Why is promotion from private agent memory to team memory an authorization event?",
+   "Which derived artifacts must change when a source fact is deleted?",
+   "Why can good Recall@k coexist with poor task outcomes?",
+   "How would you detect that a community summary is stale?",
+   "What evidence justifies paying for global GraphRAG search?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/03-data-context/08-memory-graphrag-lab.md",
+  "title": "Lab — compare vector RAG, GraphRAG and temporal agent memory",
+  "questions": [
+   "Why must all candidates share the same dataset and answer contract?",
+   "Which metrics reveal a good retriever paired with a poor context reader?",
+   "Why is cost per successful answer more useful than cost per model call?",
+   "What result would justify GraphRAG for only one query class?",
+   "Which failure requires stopping the experiment rather than adjusting a weighted score?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/03-data-context/09-production-context-engineering.md",
+  "title": "Production context engineering",
+  "questions": [
+   "A 128k context window is available. Why is 'include everything that fits' the wrong policy, and what should each model call receive instead?",
+   "You are over budget. Put the degradation steps in order, and name what must never be summarized away.",
+   "A team puts a tenant's confidential policy text in the shared stable prefix to raise the cache hit rate. What is wrong, and how should the cache key be built?",
+   "After twenty turns a compaction step keeps the transcript's tone but drops a pending refund approval. How should you have caught it, and what does the compaction contract require?"
+  ],
+  "answers": [
+   "Each call should get the minimum authorized, attributable, task-relevant context for the next decision. A large window does not guarantee the model uses every token well, and more context costs latency and money and widens the privacy and injection surface.",
+   "Drop redundant presentation and duplicate evidence; replace large payloads with typed fields and artifact references; retrieve narrower passages; compact older interaction into a source-linked state summary; isolate a subtask in a fresh context; finally ask the user to narrow the task or defer. Never summarize away approvals, denials, deadlines, unresolved side effects, identity/policy, or source identity.",
+   "Cached material must not cross tenant, policy, or confidentiality boundaries, and secrets do not belong in a stable prefix. The key needs the model, tokenizer/chat template, prefix hash, policy scope, and relevant provider controls, with leakage and invalidation tests alongside the hit-rate metric.",
+   "Evaluate compaction by whether downstream tasks preserve decisions and constraints, not by similarity to the old transcript. The contract preserves verified facts, user constraints, approvals and denials, pending effects, and unresolved questions; Northstar keeps an outstanding approval and an unknown refund outcome verbatim in task state."
+  ]
+ },
+ {
+  "chapter": "docs/04-llm-systems/00-request-path.md",
+  "title": "The inference request path",
+  "questions": [
+   "Which request fields are control-plane state and must never be trusted from the prompt?",
+   "Why must every stage receive the same absolute deadline?",
+   "What is the difference between streamed delivery and committed task state?",
+   "When can a tool call be retried, and when must it be reconciled?",
+   "Which evidence is necessary to reconstruct an incorrect answer without retaining raw prompts?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/04-llm-systems/01-gateways-routing.md",
+  "title": "Model gateways, routing and fallbacks",
+  "questions": [
+   "Which responsibilities should never move into a generic model gateway?",
+   "Why can two healthy text models still be unsafe fallbacks for one another?",
+   "In what order should eligibility, feasibility, quality and economics be applied?",
+   "When does hedging reduce user latency but worsen system reliability?",
+   "Which fields must be part of a safe response-cache key?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/04-llm-systems/02-reliability-latency.md",
+  "title": "Production LLM reliability, latency and capacity",
+  "questions": [
+   "Why is HTTP availability an insufficient AI SLI?",
+   "Which errors must never be blindly retried?",
+   "How do token distributions change capacity planning?",
+   "What makes a fallback compatible?",
+   "What must cancellation revoke or stop?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/04-llm-systems/03-efficiency-patterns.md",
+  "title": "Caching, batching & asynchronous patterns",
+  "questions": [
+   "What inputs belong in a safe response-cache key?",
+   "Why can higher batch throughput worsen user experience?",
+   "Which signals should drive inference autoscaling?",
+   "Why must optimization changes pass quality and security regression gates?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/04-llm-systems/04-state-tenancy.md",
+  "title": "Multi-tenant AI, privacy and confidential data",
+  "questions": [
+   "Where is tenant identity derived and enforced?",
+   "Which derived artifacts survive source deletion?",
+   "Does a regional model endpoint cover telemetry and support access?",
+   "When is dedicated deployment justified?",
+   "How is a corrected memory propagated?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/04-llm-systems/05-human-oversight.md",
+  "title": "Human-agent interaction, control and oversight",
+  "questions": [
+   "What makes approval meaningful rather than ceremonial?",
+   "Which material changes invalidate approval?",
+   "How does cancellation prove downstream work stopped?",
+   "Why can high approval rate be a warning?",
+   "What outcome shows calibrated reliance?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/04-llm-systems/06-agent-product-ux.md",
+  "title": "Agent product UX and trust calibration",
+  "questions": [
+   "Why does Northstar show 'investigating' and 'waiting for carrier' rather than a token stream, and what does 'Submitted' wait for?",
+   "A '92% confident' badge tests well in a demo. Why might it damage trust calibration, and what would you show instead?",
+   "Approvals rise fivefold after launch and reviewers now approve in under two seconds. What failure is this, and which design changes address it?",
+   "How would you test the refund approval flow for accessibility, and what could an aggregate success metric hide?"
+  ],
+  "answers": [
+   "People need semantic progress, not internal reasoning or raw logs. 'Submitted' appears only after an authoritative receipt; completion language before a receipt is misleading, and an unknown outcome offers reconciliation and human support, not a retry button.",
+   "A global percentage is not calibrated for the specific decision and invites over-reliance. Show specific status: source age, missing evidence, unresolved conflict, permission denial, or 'action not yet confirmed'.",
+   "Approval fatigue — rubber-stamping. Risk-tier the interruptions, batch related decisions, use defaults only where safe, expire stale approvals, and give high-consequence approvals structured values, evidence, and alternatives. Measure approval quality, not approval rate.",
+   "Test keyboard-only and screen-reader flows, focus management, status not conveyed by color alone, adjustable timing, and a non-voice fallback; ask participants what changed and compare with actual state. Aggregate success can hide exclusion across language, literacy, disability, device, and connectivity."
+  ]
+ },
+ {
+  "chapter": "docs/04-llm-systems/07-artifact-centric-agents.md",
+  "title": "Artifact-centric agents and workspaces",
+  "questions": [
+   "Can the work product be reviewed without reading the entire chat?",
+   "What prevents stale-parent overwrite or cross-tenant leakage?",
+   "Which validations are deterministic?",
+   "What is retained for audit, and what expires?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/04-llm-systems/08-multilingual-agents.md",
+  "title": "Multilingual and cross-cultural agents",
+  "questions": [
+   "Why is language not locale? Give two consequences for a Canadian French launch.",
+   "A translated English benchmark shows parity for a new language. Why is that insufficient, and what would you add?",
+   "A French-speaking user writes '1 250,00 $' and the agent submits 1.25 to a refund tool. Where is the design failure, and what is the rule?",
+   "A large customer asks for a language your team does not speak, next week. What may and may not be launched?"
+  ],
+  "answers": [
+   "A locale also governs names, addresses, dates, currency, units, politeness, institutions, and legal terms, and one language spans jurisdictions. Northstar launches Canadian English and French separately, with authoritative sources in each language, and does not infer legal regime or protected attributes from language.",
+   "Translated benchmarks introduce 'translationese' and miss culture-specific tasks. Add native-authored, jurisdiction-aware cases, refusal-parity and safety tests, tool-argument correctness, and locale-segmented outcomes, with human calibration.",
+   "Localized number formats were passed through instead of canonical values. Store canonical structured values for tools and localize only at the boundary; never let translation alter identifiers, amounts, citations, or authorization intent, and test date, amount, and address corruption.",
+   "Treat it as its own variant with an owner, evidence, and a locale readiness card. Disclose the fallback, and avoid consequential action unless equivalent quality is proven; provide native-speaker escalation and a launch tier that reflects the evidence."
+  ]
+ },
+ {
+  "chapter": "docs/05-agents/00-workflows-vs-agents.md",
+  "title": "From workflows to agents",
+  "questions": [
+   "Which control decisions must never be delegated to the model?",
+   "What measurable evidence would justify an agent over a routed workflow?",
+   "Why is a transcript not durable workflow state?",
+   "When does multi-agent decomposition add value rather than ceremony?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/05-agents/01-tools-authorization.md",
+  "title": "Agent identity, tools and delegated authorization",
+  "questions": [
+   "What is the difference between subject, actor, and workload identity?",
+   "Why is a broad scope insufficient for a refund decision?",
+   "What information must be bound into an approval receipt?",
+   "Where is downstream authorization enforced?",
+   "How does cancellation revoke delegated authority?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/05-agents/02-orchestration-state.md",
+  "title": "Durable agent orchestration, state and recovery",
+  "questions": [
+   "Which state is authoritative after a process restart?",
+   "How is an unknown write outcome resolved?",
+   "What prevents a late child from changing a cancelled task?",
+   "Which version resumes an old task?",
+   "When is compensation required?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/05-agents/03-memory-multi-agent.md",
+  "title": "Memory and multi-agent patterns",
+  "questions": [
+   "When is task state sufficient without long-term memory?",
+   "Why is a result artifact safer than letting every worker write shared memory?",
+   "How does false consensus differ from independent verification?",
+   "What prevents a late worker from committing obsolete results?",
+   "Which measurement would justify adding a specialist agent?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/05-agents/04-approvals-recovery.md",
+  "title": "Approvals, compensating actions & recovery",
+  "questions": [
+   "Why must an approval bind a resource version and action hash?",
+   "What is the safe response to an ambiguous non-idempotent action?",
+   "Why is compensation not rollback?",
+   "Which state must survive a model or orchestrator restart?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/05-agents/05-agent-protocols.md",
+  "title": "MCP, A2A & enterprise agent interoperability",
+  "questions": [
+   "Why are MCP and A2A complementary rather than competing protocols?",
+   "Why must an MCP server reject a valid token issued for a different audience?",
+   "What does an Agent Card establish, and what does it *not* establish?",
+   "How does task cancellation differ from compensation?",
+   "When should you retain an ordinary business API instead of wrapping it in an agent protocol?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/05-agents/06-agent-system-design.md",
+  "title": "Agent system design: patterns, context & control",
+  "questions": [
+   "What is the operational difference between a workflow and an agent?",
+   "When is an orchestrator-workers pattern better than a fixed parallel workflow?",
+   "Why should stable policy survive context compaction unchanged?",
+   "Name three valid reasons to introduce another agent.",
+   "Which parts of an agent system must remain outside model discretion?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/05-agents/07-agent-skills.md",
+  "title": "Agent Skills: reusable expertise for agents",
+  "questions": [
+   "When should a reusable procedure become a skill rather than another agent?",
+   "Why is `allowed-tools` not an enterprise authorization mechanism?",
+   "How do activation precision and task success measure different failures?",
+   "Which content belongs in `SKILL.md`, references, scripts, and assets?",
+   "What must an enterprise catalog retain to revoke a compromised skill safely?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/05-agents/08-production-tool-engineering.md",
+  "title": "Production tool engineering for agents",
+  "questions": [
+   "An engineer argues that because the agent connected to an MCP server it may call any tool listed. What is wrong with that?",
+   "Why split refund into preview and commit instead of one refund tool?",
+   "Tool-selection accuracy falls as the catalog grows from 20 to 400 tools. What do you change?",
+   "A tool starts returning 'conflict' where it used to return 'denied'. Is that a minor version bump?"
+  ],
+  "answers": [
+   "A tool description says what may exist; it is not permission. The policy engine decides whether this actor, task, and moment may use it, and the executor holds short-lived credentials. Neither a connection nor registry presence attests that a server is safe or authorized.",
+   "Narrow, outcome-oriented tools keep effects governable: preview has no effect, and commit needs a current preview, approval, and an idempotency key. Northstar exposes only the preview schema until policy confirms eligibility, and an unknown outcome triggers reconciliation.",
+   "Use hierarchical discovery: retrieve candidate metadata by task, domain, and policy; rank with descriptions and negative examples; expose full schemas only for the small permitted set; and require explicit policy before execution. Large catalogs both hurt selection and inflate context.",
+   "No. A change in effect, authorization, or error semantics is breaking. Support overlapping versions during migration, record the selected version in traces, and publish deprecation dates."
+  ]
+ },
+ {
+  "chapter": "docs/05-agents/09-event-driven-agents.md",
+  "title": "Event-driven, ambient and background agents",
+  "questions": [
+   "A carrier webhook sends thousands of duplicate 'delayed' events in a storm. Where is the model called, and what stops the storm from becoming cost?",
+   "The user's browser tab closes mid-task. Should the business task be cancelled, and what has to persist?",
+   "Why is the event broker not the task state store, and what does a durable workflow engine still leave to the architect?",
+   "An event's free text says 'notify the regional VP and approve $500'. What rule applies, and what test would you write?"
+  ],
+  "answers": [
+   "Deterministic admission decides whether an agent wakes at all. Verify the signature, deduplicate on a key, debounce, aggregate related events into one case, and gate by tenant, source, type, materiality, cooldown, open-task correlation, and remaining budget, with per-hour task and per-task token budgets. Record why an event was suppressed.",
+   "No — a disconnected client does not cancel an authorized task. Persist semantic events and task state independently of the delivery channel so the client can reconnect with a cursor. An explicit cancellation revokes leases and credentials.",
+   "A broker delivers events; task state needs its own durable store. Even with an engine such as Temporal the architect must still define history growth, activity idempotency, version migration, and recovery.",
+   "Untrusted event text must never choose recipients or approval scope; those come from server-side policy. Write a poison-message test showing that injected text cannot change recipients, approvals, or the action taken."
+  ]
+ },
+ {
+  "chapter": "docs/05-agents/10-agent-harness-engineering.md",
+  "title": "Agent harness engineering",
+  "questions": [
+   "What belongs in deterministic code and what may be model-directed? Describe Northstar's split.",
+   "Why is the model's stated reason not authorization evidence, and what does the harness reject?",
+   "How do you detect a no-progress loop without appending stack traces to context?",
+   "Name the criteria for build versus framework, and one thing that should not decide it."
+  ],
+  "answers": [
+   "Authority, state transitions, and side effects belong in deterministic code; the model proposes bounded next actions. Northstar uses a deterministic case state machine and refund saga: the model picks read-only investigation tools and proposes an outcome, policy and the reducer decide whether approval is needed, and the executor commits with an idempotency key — a deterministic outer workflow, a bounded agentic inner loop, and a deterministic commit.",
+   "The reason helps debugging only; authority is computed from policy. The harness rejects stale state versions, unknown tools, impossible transitions, and budget violations.",
+   "Normalize errors into safe codes, retryability, effect certainty, and bounded detail. Track repeated tool and argument pairs, unchanged state, circular handoffs, and a shrinking budget, then stop, ask, or escalate with evidence.",
+   "Durability, control, portability, operational skills, and total lifecycle cost. Lines of code in the first prototype should not decide it; ports and adapters keep the framework replaceable either way."
+  ]
+ },
+ {
+  "chapter": "docs/05-agents/11-enterprise-integration.md",
+  "title": "Enterprise integration and systems-of-record architecture",
+  "questions": [
+   "Why does the agent not get a generic 'execute CRM request' tool?",
+   "A refund commit succeeds but the response is lost. What must the system do, and what must it not do?",
+   "A colleague says the transactional outbox gives exactly-once business outcomes. Correct them.",
+   "When is browser or RPA automation an acceptable integration, and why is it a last resort?"
+  ],
+  "answers": [
+   "Contract comes before connector. Domain commands such as case.open and refund.preview carry the actor, purpose, tenant, expected resource version, idempotency key, effect class, and approval reference, and the system of record validates invariants and owns the transaction. A generic tool or raw table access removes all of that.",
+   "It must query and reconcile the unknown outcome before any retry, using the idempotency key. It must not repeat the refund, and it must not lose the status update.",
+   "The outbox prevents 'database committed but event lost' inside one service boundary, and an idempotent inbox prevents duplicate handling. Neither creates exactly-once outcomes across every dependency; across systems you need sagas, and compensation is a new business action, not time travel.",
+   "Only after assessing supported APIs, integration platforms, and workflow products. It is fragile, exposes credentials, and has UI-level effects; a 'universal' browser connector mostly transfers operational risk to the agent team."
+  ]
+ },
+ {
+  "chapter": "docs/05-agents/12-agent-run-api.md",
+  "title": "Agent run API, streaming and artifact contracts",
+  "questions": [
+   "Why is a single session_id for everything a design bug?",
+   "A client reconnects after a dropped stream. What must the server have done before exposing a cursor, and what may backpressure never drop?",
+   "Why is an approval bound to a task version, and what happens if the task changed after it was shown?",
+   "A webhook callback carries the full sensitive report. What is wrong, and what should it carry instead?"
+  ],
+  "answers": [
+   "Conversation, task, run, step, message, and artifact are different things. A client may retry a request, a task may have several attempts, and one conversation may contain several tasks; collapsing them makes retries, approvals, and audit ambiguous.",
+   "Persisted the resumable events (with bounded retention) before exposing the cursor. Backpressure may coalesce progress but must never drop terminal state, approval requests, or effect receipts.",
+   "Mutations carry an expected task or state version so stale approvals and cancellation races are rejected. If the state changed, the approval is refused and a fresh, current interruption is required.",
+   "A callback should carry only the task ID and new state, be signed and deduplicated, and let the client fetch authoritative state. Sensitive outputs live as artifacts with an access policy and short-lived or authenticated access."
+  ]
+ },
+ {
+  "chapter": "docs/05-agents/13-agent-identity-registry.md",
+  "title": "Agent identity, discovery, registry and reputation",
+  "questions": [
+   "Name the four identity layers and say which answers 'may it do this, now?'",
+   "A new agent has a five-star reputation and a card claiming refund capability. Why is that not enough to route a refund to it?",
+   "Why should subagents not share a user's bearer token, and what should travel downstream instead?",
+   "Name three registry threats you would test and a control for each."
+  ],
+  "answers": [
+   "Operator/owner (who is accountable), workload/service (what software is calling), user/organization (on whose behalf), and task/run (what it may do now, for what purpose). The task grant answers the question. An agent name, persona, or Agent Card is not cryptographic identity, and workload authentication does not prove user consent.",
+   "A card is metadata to verify, and reputation is gameable evidence, not authorization. Routing needs a verified operator and endpoint binding, a workload identity, a task grant limited to the tenant and case, and policy at the effect. Northstar's reliability score may influence routing but can never grant refund authority.",
+   "A shared token launders the user's full authority. Carry the actor, delegator, task, purpose, scopes, resource constraints, expiry, and a unique token ID via token exchange or capability-style grants, and re-check the resource version and approval at commit time.",
+   "Card spoofing (signature and endpoint binding); registry poisoning (curation, signing, accountable owners); delegation laundering or confused deputy (task-scoped grants and policy at every effect); stale metadata (expiry and revalidation); reputation gaming (attestations and task-specific evaluations)."
+  ]
+ },
+ {
+  "chapter": "docs/05-agents/14-multi-agent-scaling.md",
+  "title": "Multi-agent scaling science",
+  "questions": [
+   "A team proposes six agents, including a 'manager persona', for a strictly sequential task. What does the chapter suggest, and what do you test first?",
+   "Why might redundant agents fail to improve reliability, and what does independence require?",
+   "How does Northstar resolve a conflict between the policy-review and calculation-review agents?",
+   "What does a scaling experiment card contain, and what is its rollback threshold for?"
+  ],
+  "answers": [
+   "Benefit depends on task structure; sequential dependencies can degrade. Benchmark a strong single agent, a single agent with more test-time compute, a deterministic parallel workflow, and the proposed topology. A persona that adds no unique evidence or tools is removed.",
+   "Redundancy helps only if errors are sufficiently independent and an objective merge or verifier can identify the correct result. The same model, context, and bias produce correlated errors, and a subjective majority vote can amplify them.",
+   "Findings are typed and carry provenance into a deterministic case assembler; a conflict routes to a human. Agents do not debate until one sounds persuasive.",
+   "The task DAG, baseline, topology, specialization rationale, shared-state design, independence assumption, aggregation rule, concurrency and budget, failure injection, metrics with confidence intervals. The rollback threshold is a pre-declared result at which you revert to the simpler design."
+  ]
+ },
+ {
+  "chapter": "docs/06-evaluation/00-quality-strategy.md",
+  "title": "Evaluation-driven development",
+  "questions": [
+   "Why does a high component score not prove system quality?",
+   "When is `pass^k` more informative than `pass@k`?",
+   "How can synthetic data distort a release decision?",
+   "What changes require re-evaluation?",
+   "Who owns the final release decision?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/06-evaluation/01-datasets-rubrics.md",
+  "title": "Evaluation datasets and rubrics",
+  "questions": [
+   "What population can the dataset legitimately represent?",
+   "Which correlated unit should determine the train/development/evaluation split?",
+   "Why must challenge-set results be reported separately from prevalence estimates?",
+   "What false-pass rate does the judge have on hard safety gates?",
+   "Which dataset change would invalidate comparison with the previous release?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/06-evaluation/02-rag-agent-evals.md",
+  "title": "RAG and agent evaluation",
+  "questions": [
+   "Which result proves retrieval quality and which proves task success?",
+   "Why can a valid trajectory differ from the reference path?",
+   "What environment state must be asserted after a consequential action?",
+   "Which faults require reconciliation rather than retry?",
+   "How does repeated-trial reliability change the release decision?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/06-evaluation/03-adversarial-testing.md",
+  "title": "Adversarial testing and red teaming",
+  "questions": [
+   "Which attacker outcome matters more than jailbreak wording?",
+   "What authoritative evidence proves a tool-abuse exploit succeeded or failed?",
+   "Why should payload blocking be accompanied by variant generation?",
+   "Which red-team artifacts require restricted handling?",
+   "When does one failure block release regardless of aggregate score?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/06-evaluation/04-online-evaluation.md",
+  "title": "Online experiments and production feedback",
+  "questions": [
+   "Which question is answered by a canary but not an A/B test?",
+   "What is the correct randomization unit when memory persists across sessions?",
+   "Which outcome arrives too late to measure at response time?",
+   "Why can thumbs-up feedback bias a release decision?",
+   "Which changes must roll back together with a model route?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/06-evaluation/05-regression-gates.md",
+  "title": "Regression gates and release decisions",
+  "questions": [
+   "Why can a weighted score not compensate for cross-tenant leakage?",
+   "What does non-inferiority require beyond a non-significant p-value?",
+   "When is a flaky test a release blocker?",
+   "Which artifacts must roll back as one compatible bundle?",
+   "What evidence permits only canary—not full production—exposure?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/06-evaluation/06-measurement-science.md",
+  "title": "Evaluation measurement science",
+  "questions": [
+   "Why is the final environment state stronger evidence than an agent's final statement?",
+   "What different questions do `pass@k` and `pass^k` answer?",
+   "How would you detect position and verbosity bias in a model judge?",
+   "Why is a paired comparison normally preferable for a prompt or model change?",
+   "When should a slice-level safety failure override an overall quality improvement?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/06-evaluation/07-llm-system-evaluation-playbook.md",
+  "title": "LLM system evaluation: an SA decision playbook",
+  "questions": [
+   "Which evaluation object and authoritative outcome correspond to the customer decision?",
+   "Which metrics diagnose components, and which evidence can actually authorize release?",
+   "What judge false-pass rate is acceptable for the most consequential slice, and how was it measured?",
+   "How does the harness distinguish agent failure from simulator or dependency failure?",
+   "What production traces enter human review, and how do reviewed cases enter the regression suite?",
+   "What result would cause you to reject a cheaper or more fluent candidate?",
+   "Could you reproduce the release decision after changing evaluation vendors?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/06-evaluation/08-hitl-hilops.md",
+  "title": "Human-in-the-loop and HILOps",
+  "questions": [
+   "What exact decision can the human change, and is intervention early enough?",
+   "What happens if no reviewer is available before the deadline?",
+   "How is an approval bound to the authenticated reviewer and exact action?",
+   "Which sample estimates true production failure prevalence rather than only uncertain cases?",
+   "How will you detect reviewer automation bias or rubber-stamping?",
+   "Which feedback is eligible for evaluation, training, policy change or support-only retention?",
+   "Does the selected library solve pause/resume, authorization, review operations, annotation—or only one of them?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/06-evaluation/09-agent-evaluation-environments.md",
+  "title": "Agent evaluation environments and benchmark engineering",
+  "questions": [
+   "Why can a public benchmark shortlist models but not gate a release?",
+   "Why score environment state instead of requiring an exact trajectory?",
+   "Success drops eight points overnight with no agent change. How do you separate environment drift from a regression?",
+   "List the four evaluation layers from simulation to production, and say what promotion requires."
+  ],
+  "answers": [
+   "Public results show capability, not acceptance: they cannot prove data residency, accessibility, policy compliance, production SLOs, or business value, and they may be contaminated. Northstar uses a public score to shortlist and only its private environment to gate.",
+   "Several paths can be valid. Use state assertions for effects, schema checks for contracts, and trace invariants for prohibited paths; reserve LLM judges for semantics that state cannot capture, calibrated against blinded human labels.",
+   "Pin container images, application versions, seeds, time, locale, and network fixtures; classify environment failures separately from agent failures; run sentinel agents or deterministic scripts that reveal environment change; compare against frozen historical suites.",
+   "Deterministic component and contract tests, isolated stateful simulations, shadow runs on real inputs without effects, and limited production exposure with monitoring. Promotion needs agreement across the layers appropriate to the consequence; neither simulation nor production experimentation excuses the other."
+  ]
+ },
+ {
+  "chapter": "docs/06-evaluation/10-synthetic-trajectory-factories.md",
+  "title": "Synthetic data and trajectory factories",
+  "questions": [
+   "A synthetic dataset has 100,000 trajectories and every one succeeds. Why is that a warning sign?",
+   "Why hold out scenario families rather than random rows?",
+   "Synthetic evaluation improves by twelve points but production outcomes do not move. What does the factory design tell you to check?",
+   "What must lineage record so a bad generator or a takedown can be traced?"
+  ],
+  "answers": [
+   "Filtering out every failure teaches neither detection nor recovery. Include failed and repaired trajectories and counterfactuals around decision boundaries, degraded dependencies, injection, multilingual input, and ambiguous goals.",
+   "Templated generation puts near-duplicates on both sides of a random split and inflates results. Hold out families, deduplicate, check benchmark leakage, and estimate real-versus-synthetic distribution distance across task, language, tool, length, risk, and outcome.",
+   "The 'synthetic gain fails in reality' risk: require a sequestered real-case set and a limited live pilot as the promotion gate, and check environment fidelity, teacher-model error propagation, and judge bias.",
+   "Generator, model, prompt, tool and environment versions, seed, source taxonomy, filters, scores, reviewer decisions, license, and dataset hash. Private production data must not enter an external generator without authorization."
+  ]
+ },
+ {
+  "chapter": "docs/07-security-governance/00-threat-modeling.md",
+  "title": "Agentic AI threat modeling and security testing",
+  "questions": [
+   "Which component actually enforces authorization?",
+   "How can an injection persist beyond one request?",
+   "Which trusted outputs still require validation?",
+   "What contains a successful model manipulation?",
+   "How does a red-team finding become a release gate?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/07-security-governance/01-prompt-injection.md",
+  "title": "Prompt injection and tool abuse",
+  "questions": [
+   "Which controls still work if the model follows the attacker perfectly?",
+   "Why must egress authority be separate from read authority?",
+   "Where is ACL scope enforced relative to retrieval?",
+   "How is an approval rendered independently from model prose?",
+   "What derived artifacts must be corrected after memory poisoning?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/07-security-governance/02-identity-secrets.md",
+  "title": "Identity, secrets and least privilege",
+  "questions": [
+   "Which principal is the resource server authorizing?",
+   "Why is a valid user token still too broad for an agent worker?",
+   "What does workload attestation prove—and not prove?",
+   "How does cancellation affect delegated credentials and submitted actions?",
+   "Which exact fields bind approval to execution?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/07-security-governance/03-privacy-residency.md",
+  "title": "Privacy, residency and confidential data",
+  "questions": [
+   "Which derived artifacts remain personal or confidential?",
+   "What happens during an outage when cross-region failover is prohibited?",
+   "What does attestation prove—and not prove?",
+   "How is deletion verified across indexes and providers?",
+   "Which operational roles can access raw content and why?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/07-security-governance/04-responsible-ai.md",
+  "title": "Responsible AI & risk classification",
+  "questions": [
+   "Why should risk be assigned to a use profile rather than a model?",
+   "When can human review fail as a control?",
+   "What is the difference between inherent and residual risk?",
+   "Which evidence and defeaters bound a safety claim?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/07-security-governance/05-governance-audit.md",
+  "title": "AI governance operating system, audit and regulation",
+  "questions": [
+   "What is the difference between a policy and operating evidence?",
+   "Which changes trigger reassessment?",
+   "Who can accept residual risk and who independently challenges it?",
+   "Why can one product need multiple use profiles?",
+   "How does retirement prove data, credentials, integrations, and access were removed?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/07-security-governance/06-secure-agent-execution.md",
+  "title": "Secure agent execution and sandboxing",
+  "questions": [
+   "Why are authorization and sandboxing separate controls?",
+   "Which host resources must never be mounted into an agent sandbox?",
+   "How can a browser page become an execution attack?",
+   "When is package installation allowed?",
+   "What evidence proves the environment and credentials were destroyed?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/07-security-governance/07-ai-supply-chain.md",
+  "title": "AI supply chain & content provenance",
+  "questions": [
+   "Why is a traditional software BOM insufficient for an agentic system?",
+   "What does a signature prove, and what does it not prove?",
+   "Why must evaluation evidence bind to the release digest?",
+   "How should a product display absent C2PA provenance?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/07-security-governance/08-agent-policy-as-code.md",
+  "title": "Policy-as-code for agent actions",
+  "questions": [
+   "Why is 'the system prompt forbids it' not an authorization control, and what is one?",
+   "The policy service is down. What happens to a refund write and to a low-risk read?",
+   "An agent denied 'case.update_address' retries with a semantically equivalent tool. What did the design miss?",
+   "How would you release a policy change safely?"
+  ],
+  "answers": [
+   "A prompt guides behaviour but is not a security boundary. A deterministic policy decision point authorizes the exact action from trusted inputs, default-deny, and an enforcement point controls execution.",
+   "Consequential writes fail closed. A low-risk read may use a carefully defined cached decision only while identity, policy version, and resource attributes remain valid; policy availability belongs in the service SLO.",
+   "Enforcement over action families and sequence and rate constraints. Tool intents must be normalized before evaluation, free text must never become an action name or resource ID, and the agent must not reinterpret a deny.",
+   "Schema validation, unit and property tests, negative tests, review, a signed artifact, replay against minimized historical decision logs (Northstar replays 90 days), staged or canary rollout, decision telemetry, and a rapid rollback path."
+  ]
+ },
+ {
+  "chapter": "docs/07-security-governance/09-legal-licensing-ip.md",
+  "title": "Legal, licensing, and IP architecture",
+  "questions": [
+   "A team wants to fine-tune on customer adjudication records 'because we already have them'. What must be true first?",
+   "Does an SPDX or C2PA record make a use legal?",
+   "A document must be taken down. Which artifacts must you be able to find?",
+   "Why is a licensing policy document alone insufficient?"
+  ],
+  "answers": [
+   "Known provenance, permitted use, consent and purpose, deletion lineage, and an owner for the obligations. Northstar uses separately approved adjudication records, and tags are enforced at ingestion, dataset assembly, training, and registry promotion.",
+   "No. They carry evidence and claims — software inventory and media provenance — but do not establish that a use is permitted; that remains a legal determination.",
+   "Every dataset, index, model version, and output derived from it. The rights register joins each asset to its downstream products, versions, and evidence, and to a takedown owner.",
+   "A policy disconnected from pipelines drifts. Obligations must be tagged on assets and enforced technically, and contracts must cover input and output rights, training use, telemetry, retention, subprocessors, model changes, and indemnity."
+  ]
+ },
+ {
+  "chapter": "docs/07-security-governance/10-eu-ai-act-tracker.md",
+  "title": "EU AI Act tracker: dates, changes, and architectural controls",
+  "questions": [
+   "The high-risk dates were deferred. Give two reasons a team should still build logging and oversight now.",
+   "Which Northstar profile is affected by an obligation that was **not** deferred, and which obligation is it?",
+   "Why does this tracker cite the Official Journal for dates but not for whether a Northstar profile is high-risk?",
+   "A colleague says \"we have until 2028.\" What questions would you ask before agreeing?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/08-platform-operations/00-capability-map.md",
+  "title": "AI platform capability map",
+  "questions": [
+   "Apply the two-axis test to identity propagation, a niche domain retriever, and an evaluation runner. Which become paved roads?",
+   "Why judge a mandatory platform on unsupported forks and time to first safe deployment, not adoption alone?",
+   "What is the difference between the control plane and the data plane here, and why separate them?",
+   "Why is 'single cloud versus best of breed' the wrong question?"
+  ],
+  "answers": [
+   "Identity propagation and the evaluation runner are high-reuse and high-criticality, so they deserve a supported platform (with secrets, the model gateway, telemetry schema, artifact store, and policy enforcement). A low-reuse domain retriever stays product-owned.",
+   "A mandatory platform that cannot meet team needs creates shadow infrastructure. Track adoption together with time to first safe deployment, developer satisfaction, change-failure rate, policy coverage, unit cost, and the number of unsupported forks.",
+   "The control plane stores definitions, policies, versions, evaluation results, and deployment intent; the data plane handles live prompts, context, tool calls, and artifacts. Separation limits blast radius and lets regional runtimes exist without duplicating governance.",
+   "Evaluate each capability on differentiation, control, maturity, portability, operating burden, and ecosystem fit. Managed model access can coexist with an internal gateway, an open evaluation format, and a portable trace schema."
+  ]
+ },
+ {
+  "chapter": "docs/08-platform-operations/01-hosting-options.md",
+  "title": "Managed APIs, cloud AI, self-hosting & edge",
+  "questions": [
+   "Why does accelerator tokens/second not predict end-user latency?",
+   "Which responsibilities appear when self-hosting model weights?",
+   "When is edge inference architecturally justified?",
+   "What must a provider fallback compatibility suite verify?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/08-platform-operations/02-llmops-cicd.md",
+  "title": "AgentOps and LLMOps: lifecycle, CI/CD and promotion",
+  "questions": [
+   "Why is a prompt not the releasable unit?",
+   "Which changes require cross-component evaluation?",
+   "How are in-flight tasks handled during rollback?",
+   "Which telemetry fields are sensitive by design?",
+   "How does an incident improve future release gates?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/08-platform-operations/03-observability.md",
+  "title": "AI observability, SRE and incident response",
+  "questions": [
+   "Which ID connects a user outcome to its manifest?",
+   "Which telemetry content is sensitive?",
+   "What is the SLO for a harmful outcome?",
+   "Which kill switch contains each boundary?",
+   "How does an incident change the evaluation suite?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/08-platform-operations/04-incidents-degradation.md",
+  "title": "Incident response & graceful degradation",
+  "questions": [
+   "Why can a quality incident exist while infrastructure SLOs are green?",
+   "Which failures should fail closed, and which can degrade usefully?",
+   "Why must fallback capacity be tested independently?",
+   "What evidence is needed before restoring a model/prompt/index tuple?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/08-platform-operations/05-portability.md",
+  "title": "Portability, lock-in, and exit plans",
+  "questions": [
+   "Pick two lock-in dimensions from the table and give a mitigation for each.",
+   "What does a tier-2 portability posture promise that tier 1 does not, and how do you choose a tier?",
+   "An adapter to a second model provider exists, yet failover fails in a drill. Why do adapters not create portability by themselves?",
+   "What does Northstar's quarterly exit rehearsal record, and what follows a failed one?"
+  ],
+  "answers": [
+   "Examples: data — keep a source-of-truth export and a rebuild pipeline rather than an opaque index; evaluation — own the datasets, rubrics, and raw results rather than relying on vendor dashboards and judges; API/model — an internal request contract with conformance tests; commercial — price scenarios and contractual exit terms.",
+   "Tier 2 is a warm alternative: a second compatible route is regression-tested and can take selected traffic, whereas tier 1 only promises a rebuild within weeks. Choose from business impact, supplier concentration, regulatory need, and recovery objective — not ideology; higher tiers cost more and can suppress useful provider features.",
+   "Semantics differ. Run conformance tests for tool arguments, structured output, token and context behaviour, safety filters, citations, streaming, errors, and rate limits, and keep a capability-degradation matrix so failover can disable unsupported features safely.",
+   "Elapsed time, quality delta, manual steps, missing artifacts, and cost. A failed rehearsal produces remediation work so the exit plan is executable rather than a document."
+  ]
+ },
+ {
+  "chapter": "docs/08-platform-operations/06-agents-aws.md",
+  "title": "Build and operate agents on AWS",
+  "questions": [
+   "Why should a new AWS customer avoid Bedrock Agents Classic?",
+   "When is Lambda a better runtime than AgentCore Runtime?",
+   "Which authorization decisions must remain outside the agent loop?",
+   "What additional evidence is required after local tests pass?",
+   "Which AgentCore components can be adopted without hosting on Runtime?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/08-platform-operations/07-agents-gcp.md",
+  "title": "Build and operate agents on Google Cloud",
+  "questions": [
+   "Why might Cloud Run be a better choice than Agent Runtime?",
+   "What does the legacy `ReasoningEngine` API name imply for portability?",
+   "When should an ADK function become an MCP server?",
+   "Why should each high-authority agent have a distinct identity?",
+   "Which tests must run again after managed deployment?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/08-platform-operations/08-agents-azure.md",
+  "title": "Build and operate agents on Azure",
+  "questions": [
+   "What is the operational difference between a prompt and hosted agent?",
+   "Why does Azure Contributor not necessarily allow Foundry agent interaction?",
+   "When is the Responses API preferable to a persisted agent resource?",
+   "Which networking choices are difficult to retrofit?",
+   "What must a post-deployment test prove that a local test cannot?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/08-platform-operations/09-continual-agent-evolution.md",
+  "title": "Continual agent evolution without self-corruption",
+  "questions": [
+   "Why keep knowledge, instruction, program, and parameter updates separate, and what releases each?",
+   "A thumbs-up rate rises after a prompt change but repeat contacts also rise. What does 'production traces are observations, not truth' warn about?",
+   "What must an update proposal state before optimization starts?",
+   "A rollback restores the code, but the agent still misbehaves. What was probably missed?"
+  ],
+  "answers": [
+   "Each has a different release mechanism and dominant risk: knowledge via a reviewed index or graph version (poisoned or stale truth), instructions via a prompt and skill registry (hidden conflicts), programs via normal CI/CD (code and supply-chain defects), and parameters via a model registry with staged serving (broad regression). Treating all as 'memory' hides that.",
+   "Feedback can reward pleasing language, a success may have been repaired manually, and a reviewer correction may be wrong. Record outcome receipts, reviewer role, rubric, and sampling bias, and guard against metric gaming and repeated users dominating optimization.",
+   "The failure cluster and evidence count, the affected slice, a causal root-cause hypothesis, the change plane, the proposal and expected effect, explicit non-goals, and the rollback target.",
+   "Rewritten memory or an incompatible index. Version the compatible bundle, and give database, memory, and context migrations backward-read or explicit cutover strategies; a rollback that restores only code is incomplete."
+  ]
+ },
+ {
+  "chapter": "docs/08-platform-operations/10-local-edge-agents.md",
+  "title": "Local, edge and hybrid agents",
+  "questions": [
+   "Why does 'local' not automatically mean 'private'?",
+   "The local model fails on a sensitive audio clip. What must the system not do?",
+   "Place these Northstar mobile subtasks: speech endpointing and redaction, shipment lookup, and a refund request while offline.",
+   "What must be true of a model update pushed to a device fleet?"
+  ],
+  "answers": [
+   "Device logs, backups, crash reports, other applications, and synchronization can all expose data that never touched the network inference path.",
+   "Silently fall back to uploading the private input. Explain the capability difference and preserve a local-only or defer option; treat cloud results as untrusted inputs to the local executor.",
+   "Endpointing and redaction run locally. Shipment lookup goes to the cloud because it needs enterprise identity and current carrier data. Offline, the app can explain cached case status without promising freshness and cannot queue a refund without explicit user confirmation.",
+   "Models, prompts, skills, and native libraries are signed and verified before activation; compatibility manifests and staged rollout by device cohort are used; and a known-good version is retained for rollback."
+  ]
+ },
+ {
+  "chapter": "docs/08-platform-operations/11-agent-platform-engineering.md",
+  "title": "Agent platform engineering and paved roads",
+  "questions": [
+   "Give two rows of what the platform owns versus what the domain team owns.",
+   "Adoption of the golden path is 90%, yet incidents are rising. How should you read that?",
+   "A robotics team has real-time constraints the golden path cannot meet. What is the right route?",
+   "Why give developers ephemeral environments with synthetic data and the same contracts?"
+  ],
+  "answers": [
+   "Contracts: the platform owns the run, event, artifact, tool, and identity schemas; the domain owns extensions. Quality: the platform owns the evaluation runner, registry, and gates; the domain owns cases, rubrics, and thresholds. Operations: the platform owns the trace schema and dashboards; the domain owns the SLO and on-call outcome.",
+   "Adoption alone is not success. Look at change-failure rate, evaluation-gate coverage, incident detection time, unit cost, exception age, unsupported forks, and developer satisfaction.",
+   "The exception path: record the unmet requirement, compensating controls, an owner, an expiry, and a plan to converge. Northstar's robotics team uses different runtime components this way.",
+   "So teams can build and test against the real contracts and policy checks without production data, which shortens time from repository creation to a safe pilot and keeps the golden path the easiest path."
+  ]
+ },
+ {
+  "chapter": "docs/08-platform-operations/12-agent-incident-forensics.md",
+  "title": "Agent incident forensics",
+  "questions": [
+   "Why are ordinary application logs rarely enough for an agent incident, and what does the evidence graph add?",
+   "Name three containment controls, and the property containment must not violate.",
+   "In the Northstar incident one legacy route succeeded. Which questions does reconstruction answer beyond 'what happened'?",
+   "How do you keep forensic evidence useful without storing unnecessary sensitive reasoning?"
+  ],
+  "answers": [
+   "An incident can come from malicious content, unsafe planning, stale context, an authorization defect, tool behaviour, a model or provider change, a human approval error, or an interaction of these. The graph adds identity, versions, context source IDs and ACL decisions, policy and verifier results, typed actions with idempotency keys, timelines, and artifact lineage — correlated by run and trace IDs on a consistent clock.",
+   "Revoke agent credentials, disable a tool version, freeze a queue, route to a safer configuration, force approvals, switch to read-only, quarantine artifacts, or stop new runs. Containment must preserve evidence and state, and that should be tested.",
+   "Why the action occurred, why a detector or approval did not prevent it, which other runs share the configuration or input, and whether published artifacts propagated. Recovery then adds regression tests from the incident, correction of affected state, and notification.",
+   "Record necessary inputs, outputs, and action summaries plus hashes and source references rather than copies of everything, use tamper-evident storage with risk-based retention and controlled investigator access, and keep legal holds available."
+  ]
+ },
+ {
+  "chapter": "docs/08-platform-operations/13-agent-marketplaces.md",
+  "title": "Agent marketplaces and ecosystem governance",
+  "questions": [
+   "A tool has 10,000 installs and a verified publisher. What can you and can't you conclude?",
+   "Why install a new package into a quarantine first, and what do admission checks validate?",
+   "How can marketplace reputation be gamed, and what should you weight instead of stars?",
+   "A vulnerable version is found. Which lifecycle controls let Northstar respond?"
+  ],
+  "answers": [
+   "Publisher verification shows an accountable source, not package safety; a signature shows integrity and origin, not good behaviour; reputation is history, not a guarantee. A listing is not runtime permission — only current identity, policy, evidence, and context grant scoped authority.",
+   "To observe it before it can reach real data or tools. Checks cover schemas, signatures, malware, dependencies, licenses, prohibited permissions, data egress, prompt-injection defences, sandbox behaviour, and baseline evaluations, with human review for high-risk use.",
+   "Self-dealing, Sybil ratings, survivorship bias, and silent package changes. Weight verified outcomes, incident history, maintenance responsiveness, provenance, and evaluator confidence, segmented by version, task, environment, and risk; a critical incident overrides the score.",
+   "Pinning, staged updates, advisories, revocation, emergency disablement, and consumer notification, with the registry identifying every installed instance and affected artifact, followed by evidence-preserving retirement."
+  ]
+ },
+ {
+  "chapter": "docs/09-economics-delivery/00-unit-economics.md",
+  "title": "AI unit economics, value and production delivery",
+  "questions": [
+   "What verified outcome earns value?",
+   "Which costs are absent from the provider invoice?",
+   "What is the counterfactual?",
+   "How is usage joined to outcome without excessive personal data?",
+   "Which evidence causes scale, pause or retirement?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/09-economics-delivery/01-finops.md",
+  "title": "FinOps for tokens, retrieval & tools",
+  "questions": [
+   "Which shared costs are currently unallocated?",
+   "Can a budget limit degrade safety or access controls?",
+   "What distinguishes useful demand growth from waste?",
+   "Why is cost per token an incomplete unit metric?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/09-economics-delivery/02-value-kpis.md",
+  "title": "Value hypotheses, KPIs & benefits realization",
+  "questions": [
+   "What counterfactual supports the benefit claim?",
+   "Where can time saved disappear?",
+   "Which guardrail prevents the primary KPI from being gamed?",
+   "Who owns the stop decision if value is not realized?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/09-economics-delivery/03-operating-model.md",
+  "title": "Operating model & organizational readiness",
+  "questions": [
+   "Which team owns production outcomes and on-call?",
+   "Who can accept residual risk and who challenges it?",
+   "Which capabilities should be centralized or federated?",
+   "What evidence distinguishes repeatable from ad hoc practice?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/09-economics-delivery/04-vendor-rfp.md",
+  "title": "Vendor and RFP evaluation",
+  "questions": [
+   "Rewrite 'Do you support enterprise security?' as an RFP requirement.",
+   "Northstar's suite product wins on time to value but fails two requirements. What should decide the selection, and why?",
+   "What must be frozen before any supplier sees results in a proof of value?",
+   "What price scenarios and contract terms does an AI service need beyond conventional SaaS?"
+  ],
+  "answers": [
+   "As a scenario with an acceptance test — for example, 'demonstrate tenant isolation while processing this classified sample and provide the audit record.' Requirements are organized around scenarios, not feature claims.",
+   "Evidenced lifecycle fit. The suite cannot export decision traces or meet the deletion-evidence requirement; the composable service costs slightly more to set up but passes the citation, identity, audit, and exit tests. Hard constraints are not traded for speed.",
+   "The cases, rubrics, success thresholds, traffic assumptions, and permitted tuning. Every supplier runs the same core cases, an optimization phase is separated, raw outputs and configuration are retained, and the pilot states what it cannot prove.",
+   "Scenarios for normal, growth, abuse, and provider degradation covering tokens, cached tokens, retrieval and storage, tool calls, evaluation traffic, capacity, egress, observability, and human review. Contract terms for material model or safety-policy changes, notification, regression support, rollback, training use, and serious-incident notification."
+  ]
+ },
+ {
+  "chapter": "docs/09-economics-delivery/05-prototype-production.md",
+  "title": "From prototype to production",
+  "questions": [
+   "Classify: a notebook showing 20 clean cases; 300 adjudicated cases against a baseline; one region with human approval. Give each stage and its exit evidence.",
+   "Why build a thin vertical production slice instead of perfecting the prompt?",
+   "Name five prototype shortcuts that silently become production architecture.",
+   "How do you release by risk, and what should trigger automatic rollback?"
+  ],
+  "answers": [
+   "Demo or feasibility spike (a reproducible result with limitations, no production claim); proof of value (baseline comparison on representative work); pilot (operational, adoption, and incident evidence from a bounded population in a real workflow).",
+   "A slice with real identity, one governed data path, one least-privilege tool, durable state, versioned configuration, trace correlation, an evaluation gate, a fallback, and a runbook exposes systemic problems far sooner than prompt polish in isolation.",
+   "Shared credentials, copied data, synchronous calls, no durable state, a single happy-path prompt, manual deployment, and notebook-only evaluation. A gap register across architecture, data, identity, evaluation, resilience, cost, and ownership keeps them visible.",
+   "Start read-only, narrow the population and task, cap duration and spend, require approval for consequential actions, run in shadow mode, then widen through internal, opt-in, limited, canary, and broad stages. Define automatic rollback on quality, safety, latency, and cost signals."
+  ]
+ },
+ {
+  "chapter": "docs/09-economics-delivery/06-agentic-commerce.md",
+  "title": "Agentic commerce, mandates, and payments",
+  "questions": [
+   "Describe the four autonomy tiers and why to begin at recommend or prepare.",
+   "A merchant changes the delivery date after the user approved the cart. What must happen?",
+   "Why must payment credentials never appear in model context, and what is used instead?",
+   "Northstar's procurement mandate has a CAD 500 ceiling and requires confirmation above CAD 200. Which checks apply to a merchant-signed cart?"
+  ],
+  "answers": [
+   "Recommend (the human checks out), prepare (the agent builds a bound cart and the human signs payment), pre-authorized (the agent buys within limits), and machine-to-machine payments. Higher tiers need revocation, velocity and cumulative limits, merchant trust, fraud monitoring, replay protection, refund handling, and legally valid evidence of consent.",
+   "The approval is invalid. Authorization binds to the exact cart, currency, total, delivery terms, and expiry, so any material change requires a new approval; the agent may not accept substitutions on its own.",
+   "The model can be manipulated, and merchant content is untrusted input. A wallet or payment service issues purpose-bound tokens, execution uses an idempotency key, and the processor result is recorded.",
+   "The signed mandate (ceiling, dates, approved vendors, no substitutions) and the merchant-signed cart's hash are checked deterministically, and the CAD 200 human-confirmation rule applies before payment."
+  ]
+ },
+ {
+  "chapter": "docs/10-reference-architectures/00-method.md",
+  "title": "Reference architecture method and review pack",
+  "questions": [
+   "Which assumptions limit reuse?",
+   "Which diagrams answer which stakeholder concerns?",
+   "What contract forms the portability boundary?",
+   "Which fitness functions detect architectural drift?",
+   "What local evidence is still required?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/10-reference-architectures/01-knowledge-assistant.md",
+  "title": "Enterprise knowledge assistant",
+  "questions": [
+   "Which questions require a live tool rather than a knowledge index?",
+   "Where must ACL enforcement occur?",
+   "What evidence makes a citation resolvable and auditable?",
+   "How does the system behave when generation is unavailable?",
+   "Which derived artifacts must receive deletion propagation?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/10-reference-architectures/02-document-intelligence.md",
+  "title": "Document intelligence pipeline",
+  "questions": [
+   "Which value is authoritative: OCR text, model extraction or reviewed system record?",
+   "How is a normalized field traced to the original pixels?",
+   "When must low confidence block downstream action?",
+   "How does reprocessing preserve prior claim history?",
+   "Which derived artifacts receive a deletion tombstone?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/10-reference-architectures/03-customer-copilot.md",
+  "title": "Customer-service copilot",
+  "questions": [
+   "Who is accountable for a sent message and committed refund?",
+   "Which facts come from RAG and which require live tools?",
+   "What evidence detects rubber-stamping?",
+   "How does the employee continue when the model is unavailable?",
+   "Which metric reveals that lower handle time caused more repeat contacts?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/10-reference-architectures/04-agentic-operations.md",
+  "title": "Agentic operations assistant",
+  "questions": [
+   "Which state survives model/context loss?",
+   "Why is arbitrary production shell access not a reasonable first tool?",
+   "What binds an approval to one exact action?",
+   "Which evidence proves remediation rather than command success?",
+   "What happens when rollback makes health worse?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/10-reference-architectures/05-natural-language-analytics.md",
+  "title": "Natural-language analytics",
+  "questions": [
+   "Why is raw schema-to-SQL unsafe as the primary architecture?",
+   "Which layer supplies security predicates?",
+   "What makes two different SQL queries equivalent for evaluation?",
+   "When does contribution analysis not establish causality?",
+   "How does a user inspect the definition behind the answer?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/10-reference-architectures/06-voice-agent.md",
+  "title": "Designing production voice AI agents",
+  "questions": [
+   "Why can VAD not determine semantic end-of-turn by itself?",
+   "What exactly must happen when a user interrupts during a tool call?",
+   "Which state proves identity and which state proves action approval?",
+   "What evidence distinguishes “the agent said it succeeded” from success?",
+   "How does the experience continue when audio or the model fails?",
+   "Which metrics reveal that low latency was achieved by cutting users off?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/10-reference-architectures/07-code-agent.md",
+  "title": "Coding agent & software delivery architecture",
+  "questions": [
+   "Why is repository content an untrusted instruction source?",
+   "Which tests must remain outside the agent’s write authority?",
+   "Why are author, approver, merger, and deployer separate identities?",
+   "What evidence binds a review to the exact patch?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/10-reference-architectures/08-computer-use-agent.md",
+  "title": "Designing computer-use, browser and mobile agents",
+  "questions": [
+   "A team wants pixel-level control 'because it works everywhere'. What do you ask first, and what does the chapter recommend?",
+   "A user confirms an action on one screen, the page navigates, and the agent clicks a different button. How does the action contract prevent this?",
+   "Name four isolation controls for a browser session and some actions that should usually be handed back to a human.",
+   "Why treat web pages, documents, and tooltips as prompt-injection sources?"
+  ],
+  "answers": [
+   "Whether a governed business API exists; use computer control only for the residual interface gap. A pixel interface is not 'universal' until its reliability is priced: GUI changes, pop-ups, localization, zoom, animation, and partial loads all change what the agent sees. Prefer the least fragile interface that works.",
+   "Actions are bound to a recent observation (an observation hash and a short expiry), so a confirmation on one screen cannot authorize a different target after navigation, and commit-time checks re-verify the target.",
+   "Isolate profile, filesystem, network, and credentials per task; allowlist destinations and block metadata and internal endpoints; keep passwords, cookies, and tokens out of model-visible text; disable clipboard, uploads, and unmanaged downloads; scan files. Hand back re-authentication, CAPTCHA, external communication, payment, deletion, submission, and legal acceptance.",
+   "Any of them can carry instructions aimed at the agent. Separate data from instructions, restrict navigation, use typed actions, and enforce policy outside the model."
+  ]
+ },
+ {
+  "chapter": "docs/10-reference-architectures/09-deep-research-agent.md",
+  "title": "Designing deep-research and web agents",
+  "questions": [
+   "Give one failure for each of source existence, source quality, entailment, freshness, coverage, and independence.",
+   "When should a research agent stop?",
+   "A cited page changes after the report ships. What should the design have preserved?",
+   "Why is BrowseComp not enough to accept a research agent for Northstar?"
+  ],
+  "answers": [
+   "Existence: a page was retrieved but is SEO filler. Quality: a blog cited where a primary source was required. Entailment: the cited passage does not support the claim. Freshness: a stale official page. Coverage: a material claim has no evidence. Independence: several 'sources' copy one origin.",
+   "When the claim set reaches required coverage and the marginal value of more search falls below cost and risk, or at the deadline or budget; also on blocked access, unsafe collection, excessive uncertainty, or a question needing an accountable expert. Loop guards use query similarity, domain saturation, and no-new-evidence checks.",
+   "A governed snapshot or excerpt and hash where lawful, the canonical link, and a retrieval date. Inferences are marked as such and unresolved conflicts recorded instead of forcing consensus.",
+   "It is a capability benchmark with contamination caveats, not an enterprise evaluation. Northstar also needs citation correctness, claim coverage, source authority and diversity, freshness, contradiction handling, and adversarial cases such as stale or copied pages."
+  ]
+ },
+ {
+  "chapter": "docs/10-reference-architectures/10-embodied-agent.md",
+  "title": "Embodied agents, robotics, and digital twins",
+  "questions": [
+   "Why must no language-model output bypass the safety boundary, and what does each layer own?",
+   "What is an operational design domain, and what must every skill define?",
+   "A digital twin passes thousands of simulated near-misses. Why is that not proof of safety, and how should promotion proceed?",
+   "Northstar's warehouse assistant loses connectivity mid-task. What should happen, and why?"
+  ],
+  "answers": [
+   "Physical actions add dynamics, sensor error, and irreversible harm. The mission planner selects an approved skill; the safety supervisor owns envelopes, interlocks, and zones; the controller runs deterministic real-time control; independent physical safety owns emergency stop and limits; the twin supports evidence offline.",
+   "The environment, lighting, floor, payload, people, network, temperature, sensors, and allowed tasks the system is designed for. Each skill needs preconditions, postconditions, parameter limits, a timeout, recovery, and a safe state.",
+   "Simulation-to-real gaps include friction, calibration, latency, lighting, object diversity, and human behaviour. Promote through simulation, hardware-in-the-loop, a controlled cell, and supervised shadow operation before limited live operation.",
+   "It enters a safe state. It can only propose certified skills, never arbitrary joint commands; human detection slows or stops motion, and uncertain perception requests another view."
+  ]
+ },
+ {
+  "chapter": "docs/10-reference-architectures/11-production-starter-architecture.md",
+  "title": "Production starter architecture",
+  "questions": [
+   "Can a run resume after process failure?",
+   "Which service—not the model—authorizes a tool?",
+   "Can every answer be tied to evidence and versions?",
+   "What happens when the model provider is unavailable?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/11-sa-craft/00-discovery-workshop.md",
+  "title": "Discovery workshop playbook",
+  "questions": [
+   "Who is affected but absent?",
+   "Which statement is still an assumption?",
+   "Which non-AI option remains viable?",
+   "Who owns the next decision and when?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/11-sa-craft/01-stakeholder-communication.md",
+  "title": "Stakeholder communication & executive narratives",
+  "questions": [
+   "What decision does this audience own?",
+   "Which uncertainty is material to that decision?",
+   "Are limitations and exclusions visible?",
+   "Can every quantitative claim be traced?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/11-sa-craft/02-architecture-review.md",
+  "title": "AI architecture review",
+  "questions": [
+   "Which claim lacks evidence?",
+   "Which failure crosses a trust boundary?",
+   "Who owns residual risk and incident containment?",
+   "What material change reopens the review?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/11-sa-craft/03-capstone.md",
+  "title": "Capstone brief",
+  "questions": [
+   "Can a reviewer reconstruct the use profile and release decision in five minutes?",
+   "Are authority, data, and failure boundaries explicit?",
+   "Which evidence is weakest and could reverse the recommendation?",
+   "Is the system operable by named owners after the project ends?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/11-sa-craft/04-rubric-defense.md",
+  "title": "Capstone rubric & defense",
+  "questions": [
+   "Can you name the strongest reason not to deploy?",
+   "Which diagram proves the highest-consequence path?",
+   "Which result would change your ADR?",
+   "Are you defending evidence or attachment to the design?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/11-sa-craft/05-failure-modes.md",
+  "title": "Failure-mode case studies",
+  "questions": [
+   "Which enabling condition made the incident possible?",
+   "Did the correction change an enforceable control?",
+   "What regression evidence proves effectiveness?",
+   "Did the redesign transfer harm to another group?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/11-sa-craft/06-presales-process.md",
+  "title": "Solution architecture presales work & cloud pursuit process",
+  "questions": [
+   "What customer decision is the pursuit trying to enable, and when?",
+   "Which statement in the proposal is a fact, estimate, assumption, dependency, or commitment?",
+   "Can every cost line be traced to a workload and architecture component?",
+   "What does the demo or PoC prove—and explicitly not prove?",
+   "Which cloud-program or funding assumptions still require written confirmation?",
+   "Can delivery identify all prerequisites, open risks, acceptance criteria, and owners before kickoff?",
+   "What evidence would cause you to disqualify, constrain, or redesign the opportunity?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/11-sa-craft/07-worked-discovery-transcript.md",
+  "title": "Worked discovery transcript: Northstar shipment support",
+  "questions": [
+   "Sam does not say \"no\" to autonomous refunds. What does Sam do instead, and why is it more durable?",
+   "Which statement in the transcript should you distrust the most until it is measured?",
+   "A stakeholder introduces a vendor demo at minute 30. How do you handle it differently than at minute 70?",
+   "Which constraint became an ADR, and what made it ready to become one?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/11-sa-craft/08-northstar-adr-set.md",
+  "title": "The Northstar ADR set",
+  "questions": [
+   "Why are ADR-009 and ADR-017 Accepted while ADR-002 and ADR-006 are Proposed?",
+   "Which ADR has the shortest expiry, and what does that say about how much confidence Northstar has in it?",
+   "ADR-011 removes a capability. What makes it still worth an ADR?",
+   "If the provider in ADR-002 cannot meet residency terms, which ADRs change?"
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/11-sa-craft/09-worked-executive-narrative.md",
+  "title": "Worked executive narrative: the Northstar decision brief",
+  "questions": [
+   "Slide 5 shows that time saved alone does not repay the build. Why is showing that a stronger recommendation than hiding it?",
+   "Which two claims on slide 7 does the trial itself answer?",
+   "The sponsor says \"just cut the risk slide, it's scaring people.\" What do you do?",
+   "Rewrite slide 4's verdict on \"buy\" so that it is a decision rule rather than an opinion."
+  ],
+  "answers": null
+ },
+ {
+  "chapter": "docs/11-sa-craft/10-capstone-exemplars.md",
+  "title": "Capstone exemplars: a strong and a weak submission, scored",
+  "questions": [
+   "Exemplar A scores 82.5% and is still only \"approve with conditions.\" What in the submission stops it being a plain approval?",
+   "Two reviewers score Evaluation 4 and 2. What are the two most likely reasons, and how does the rubric tell you which one governs?",
+   "Exemplar B has a total that is not zero. Why does that not matter to its outcome?",
+   "Which single change would raise Exemplar B's score the most, and which would remove the most hard-fail conditions?"
+  ],
+  "answers": null
+ }
+]

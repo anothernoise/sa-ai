@@ -102,6 +102,25 @@ Include task/data placement, device matrix, local sandbox/tools, routing, identi
 
 Design three Northstar subtasks for local, cloud and hybrid execution. Simulate offline mode and failed local inference; prove that sensitive audio is not silently uploaded.
 
+## Check yourself
+
+1. Why does 'local' not automatically mean 'private'?
+2. The local model fails on a sensitive audio clip. What must the system not do?
+3. Place these Northstar mobile subtasks: speech endpointing and redaction, shipment lookup, and a refund request while offline.
+4. What must be true of a model update pushed to a device fleet?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Device logs, backups, crash reports, other applications, and synchronization can all expose data that never touched the network inference path.</li>
+<li>Silently fall back to uploading the private input. Explain the capability difference and preserve a local-only or defer option; treat cloud results as untrusted inputs to the local executor.</li>
+<li>Endpointing and redaction run locally. Shipment lookup goes to the cloud because it needs enterprise identity and current carrier data. Offline, the app can explain cached case status without promising freshness and cannot queue a refund without explicit user confirmation.</li>
+<li>Models, prompts, skills, and native libraries are signed and verified before activation; compatibility manifests and staged rollout by device cohort are used; and a known-good version is retained for rollback.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [Android ADK agents](https://developer.android.com/ai/adk)

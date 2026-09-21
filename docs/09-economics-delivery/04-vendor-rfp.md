@@ -70,6 +70,25 @@ Northstar shortlists a suite product and a composable cloud service. Both proces
 
 Give each criterion a weight, hard/soft classification, evidence link, score, confidence, risk owner, remediation, and expiry date. Keep evaluators’ written rationale and conflicts of interest. The scorecard becomes a living supplier assurance record after selection.
 
+## Check yourself
+
+1. Rewrite 'Do you support enterprise security?' as an RFP requirement.
+2. Northstar's suite product wins on time to value but fails two requirements. What should decide the selection, and why?
+3. What must be frozen before any supplier sees results in a proof of value?
+4. What price scenarios and contract terms does an AI service need beyond conventional SaaS?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>As a scenario with an acceptance test — for example, 'demonstrate tenant isolation while processing this classified sample and provide the audit record.' Requirements are organized around scenarios, not feature claims.</li>
+<li>Evidenced lifecycle fit. The suite cannot export decision traces or meet the deletion-evidence requirement; the composable service costs slightly more to set up but passes the citation, identity, audit, and exit tests. Hard constraints are not traded for speed.</li>
+<li>The cases, rubrics, success thresholds, traffic assumptions, and permitted tuning. Every supplier runs the same core cases, an optimization phase is separated, raw outputs and configuration are retained, and the pilot states what it cannot prove.</li>
+<li>Scenarios for normal, growth, abuse, and provider degradation covering tokens, cached tokens, retrieval and storage, tool calls, evaluation traffic, capacity, egress, observability, and human review. Contract terms for material model or safety-policy changes, notification, regression support, rollback, training use, and serious-incident notification.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [NIST Generative AI Profile](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)

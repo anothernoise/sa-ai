@@ -80,6 +80,25 @@ Northstar does not ask the model to determine policy eligibility. It retrieves t
 
 For every important limitation record the triggering condition, affected outcome, detector, preventive control, recovery, owner, and evaluation case. A limitation with no detector or recovery is an accepted risk and must be named as such.
 
+## Check yourself
+
+1. A vendor demo shows a model passing an eligibility test with 95% accuracy. Using the model-versus-system table, which responsibilities does that number say nothing about?
+2. Why is a model's stated confidence a poor basis for routing a case to a human, and what would you derive confidence from instead?
+3. Northstar's model explains a wrong eligibility recommendation very convincingly. Which limitation is this, and which controls catch it?
+4. A provider silently updates the model behind an alias. Which limitations make that dangerous, and what would detect it?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>It measures inference only. It says nothing about entitlement (who may ask), the source of truth (is the policy current), final authority, validation that does not rely on the model attesting to itself, idempotent execution of any irreversible effect, or version change. Each is a system responsibility that must be designed and tested separately.</li>
+<li>Verbal confidence is not natively calibrated and can sit beside a wrong answer. Derive operational confidence from evidence coverage, verifier results, task class, and observed error rates on a representative evaluation set.</li>
+<li>Reasoning traces are not proof. Controls: deterministic recomputation of amounts and mandatory criteria, validation that each cited passage entails the claim, and routing low-coverage or conflicting cases to an adjudicator.</li>
+<li>Nondeterminism and sensitivity to small changes, plus the 'unexplained silent change' risk in the operations layer. Pin and version the full request envelope, run a regression suite on every change, record the evaluation date on the capability card, and keep a compatible fallback route.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [NIST Generative AI Profile](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)

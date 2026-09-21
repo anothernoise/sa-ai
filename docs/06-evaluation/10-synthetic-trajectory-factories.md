@@ -63,6 +63,25 @@ Record purpose, prohibited use, sources, generation graph, distributions, enviro
 
 Connect factory releases to [agent post-training](../02-ai-landscape/07-agent-post-training.md) and [regression gates](05-regression-gates.md).
 
+## Check yourself
+
+1. A synthetic dataset has 100,000 trajectories and every one succeeds. Why is that a warning sign?
+2. Why hold out scenario families rather than random rows?
+3. Synthetic evaluation improves by twelve points but production outcomes do not move. What does the factory design tell you to check?
+4. What must lineage record so a bad generator or a takedown can be traced?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Filtering out every failure teaches neither detection nor recovery. Include failed and repaired trajectories and counterfactuals around decision boundaries, degraded dependencies, injection, multilingual input, and ambiguous goals.</li>
+<li>Templated generation puts near-duplicates on both sides of a random split and inflates results. Hold out families, deduplicate, check benchmark leakage, and estimate real-versus-synthetic distribution distance across task, language, tool, length, risk, and outcome.</li>
+<li>The 'synthetic gain fails in reality' risk: require a sequestered real-case set and a limited live pilot as the promotion gate, and check environment fidelity, teacher-model error propagation, and judge bias.</li>
+<li>Generator, model, prompt, tool and environment versions, seed, source taxonomy, filters, scores, reviewer decisions, license, and dataset hash. Private production data must not enter an external generator without authorization.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [Data Statements for NLP](https://aclanthology.org/Q18-1041/)

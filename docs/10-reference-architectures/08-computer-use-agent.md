@@ -113,6 +113,25 @@ Include interface decision, application inventory, identity/session model, obser
 
 Build a resettable mock carrier site. Compare DOM and pixel control on ten tasks, then inject a pop-up, layout shift and malicious instruction. Demonstrate observation-bound actions, cancellation and quarantined downloads.
 
+## Check yourself
+
+1. A team wants pixel-level control 'because it works everywhere'. What do you ask first, and what does the chapter recommend?
+2. A user confirms an action on one screen, the page navigates, and the agent clicks a different button. How does the action contract prevent this?
+3. Name four isolation controls for a browser session and some actions that should usually be handed back to a human.
+4. Why treat web pages, documents, and tooltips as prompt-injection sources?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Whether a governed business API exists; use computer control only for the residual interface gap. A pixel interface is not 'universal' until its reliability is priced: GUI changes, pop-ups, localization, zoom, animation, and partial loads all change what the agent sees. Prefer the least fragile interface that works.</li>
+<li>Actions are bound to a recent observation (an observation hash and a short expiry), so a confirmation on one screen cannot authorize a different target after navigation, and commit-time checks re-verify the target.</li>
+<li>Isolate profile, filesystem, network, and credentials per task; allowlist destinations and block metadata and internal endpoints; keep passwords, cookies, and tokens out of model-visible text; disable clipboard, uploads, and unmanaged downloads; scan files. Hand back re-authentication, CAPTCHA, external communication, payment, deletion, submission, and legal acceptance.</li>
+<li>Any of them can carry instructions aimed at the agent. Separate data from instructions, restrict navigation, use typed actions, and enforce policy outside the model.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [OpenAI computer-using agent](https://openai.com/index/computer-using-agent/)

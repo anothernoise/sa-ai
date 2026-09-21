@@ -103,6 +103,25 @@ Document owner, card/schema, registry, signatures, workload identity, trust doma
 
 Create three Agent Cards, including one spoofed high-reputation agent. Design discovery filters and prove that verified identity plus task authority—not name or score—controls selection and effects.
 
+## Check yourself
+
+1. Name the four identity layers and say which answers 'may it do this, now?'
+2. A new agent has a five-star reputation and a card claiming refund capability. Why is that not enough to route a refund to it?
+3. Why should subagents not share a user's bearer token, and what should travel downstream instead?
+4. Name three registry threats you would test and a control for each.
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Operator/owner (who is accountable), workload/service (what software is calling), user/organization (on whose behalf), and task/run (what it may do now, for what purpose). The task grant answers the question. An agent name, persona, or Agent Card is not cryptographic identity, and workload authentication does not prove user consent.</li>
+<li>A card is metadata to verify, and reputation is gameable evidence, not authorization. Routing needs a verified operator and endpoint binding, a workload identity, a task grant limited to the tenant and case, and policy at the effect. Northstar's reliability score may influence routing but can never grant refund authority.</li>
+<li>A shared token launders the user's full authority. Carry the actor, delegator, task, purpose, scopes, resource constraints, expiry, and a unique token ID via token exchange or capability-style grants, and re-check the resource version and approval at commit time.</li>
+<li>Card spoofing (signature and endpoint binding); registry poisoning (curation, signing, accountable owners); delegation laundering or confused deputy (task-scoped grants and policy at every effect); stale metadata (expiry and revalidation); reputation gaming (attestations and task-specific evaluations).</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [A2A specification](https://a2a-protocol.org/latest/specification/)

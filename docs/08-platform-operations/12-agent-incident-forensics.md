@@ -60,6 +60,25 @@ Cover evidence schema, clock/correlation, retention, integrity, access, third-pa
 
 Integrate this checklist with the general [incident and degradation runbook](04-incidents-degradation.md) and [policy-as-code decisions](../07-security-governance/08-agent-policy-as-code.md).
 
+## Check yourself
+
+1. Why are ordinary application logs rarely enough for an agent incident, and what does the evidence graph add?
+2. Name three containment controls, and the property containment must not violate.
+3. In the Northstar incident one legacy route succeeded. Which questions does reconstruction answer beyond 'what happened'?
+4. How do you keep forensic evidence useful without storing unnecessary sensitive reasoning?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>An incident can come from malicious content, unsafe planning, stale context, an authorization defect, tool behaviour, a model or provider change, a human approval error, or an interaction of these. The graph adds identity, versions, context source IDs and ACL decisions, policy and verifier results, typed actions with idempotency keys, timelines, and artifact lineage — correlated by run and trace IDs on a consistent clock.</li>
+<li>Revoke agent credentials, disable a tool version, freeze a queue, route to a safer configuration, force approvals, switch to read-only, quarantine artifacts, or stop new runs. Containment must preserve evidence and state, and that should be tested.</li>
+<li>Why the action occurred, why a detector or approval did not prevent it, which other runs share the configuration or input, and whether published artifacts propagated. Recovery then adds regression tests from the incident, correction of affected state, and notification.</li>
+<li>Record necessary inputs, outputs, and action summaries plus hashes and source references rather than copies of everything, use tamper-evident storage with risk-based retention and controlled investigator access, and keep legal holds available.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [OpenTelemetry tracing specification](https://opentelemetry.io/docs/specs/otel/trace/api/)

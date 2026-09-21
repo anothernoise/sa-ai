@@ -76,6 +76,25 @@ Northstar standardizes workload identity, a model gateway, retrieval entitlement
 
 For each capability record current state, target state, consumer teams, criticality, data class, buy/build choice, owner, SLO, portability boundary, maturity score, and next investment. Review quarterly; a map without owners and consumers is only taxonomy.
 
+## Check yourself
+
+1. Apply the two-axis test to identity propagation, a niche domain retriever, and an evaluation runner. Which become paved roads?
+2. Why judge a mandatory platform on unsupported forks and time to first safe deployment, not adoption alone?
+3. What is the difference between the control plane and the data plane here, and why separate them?
+4. Why is 'single cloud versus best of breed' the wrong question?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Identity propagation and the evaluation runner are high-reuse and high-criticality, so they deserve a supported platform (with secrets, the model gateway, telemetry schema, artifact store, and policy enforcement). A low-reuse domain retriever stays product-owned.</li>
+<li>A mandatory platform that cannot meet team needs creates shadow infrastructure. Track adoption together with time to first safe deployment, developer satisfaction, change-failure rate, policy coverage, unit cost, and the number of unsupported forks.</li>
+<li>The control plane stores definitions, policies, versions, evaluation results, and deployment intent; the data plane handles live prompts, context, tool calls, and artifacts. Separation limits blast radius and lets regional runtimes exist without duplicating governance.</li>
+<li>Evaluate each capability on differentiation, control, maturity, portability, operating burden, and ecosystem fit. Managed model access can coexist with an internal gateway, an open evaluation format, and a portable trace schema.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [OpenTelemetry documentation](https://opentelemetry.io/docs/)

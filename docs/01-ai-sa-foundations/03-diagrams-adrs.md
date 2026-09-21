@@ -110,9 +110,11 @@ For a consequential system include context/container views, key sequences and st
 
 Northstar’s core set includes context, container, retrieval sequence, refund action sequence/state, data lineage, and regional deployment. ADRs cover managed hosting, hybrid retrieval, and bounded agent authority. Each names its dominant attribute, evidence, rollback, and review trigger.
 
-## Artifact, lab, and checks
+## Artifact and lab
 
 Produce a **C4 context/container pair, one critical sequence, a data-flow view, and three ADRs**. Run a review in which another team must identify all authorities, stores, and failure modes without verbal explanation.
+
+## Check yourself
 
 1. Which question does each diagram answer?
 2. Where is identity converted into tool authorization?

@@ -61,6 +61,25 @@ Record language/script, market/jurisdiction, users, tasks, source authority, ter
 
 Extend the card for spoken channels with the [voice-agent architecture](../10-reference-architectures/06-voice-agent.md) and use [HILOps](../06-evaluation/08-hitl-hilops.md) for native-speaker review.
 
+## Check yourself
+
+1. Why is language not locale? Give two consequences for a Canadian French launch.
+2. A translated English benchmark shows parity for a new language. Why is that insufficient, and what would you add?
+3. A French-speaking user writes '1 250,00 $' and the agent submits 1.25 to a refund tool. Where is the design failure, and what is the rule?
+4. A large customer asks for a language your team does not speak, next week. What may and may not be launched?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>A locale also governs names, addresses, dates, currency, units, politeness, institutions, and legal terms, and one language spans jurisdictions. Northstar launches Canadian English and French separately, with authoritative sources in each language, and does not infer legal regime or protected attributes from language.</li>
+<li>Translated benchmarks introduce 'translationese' and miss culture-specific tasks. Add native-authored, jurisdiction-aware cases, refusal-parity and safety tests, tool-argument correctness, and locale-segmented outcomes, with human calibration.</li>
+<li>Localized number formats were passed through instead of canonical values. Store canonical structured values for tools and localize only at the boundary; never let translation alter identifiers, amounts, citations, or authorization intent, and test date, amount, and address corruption.</li>
+<li>Treat it as its own variant with an owner, evidence, and a locale readiness card. Disclose the fallback, and avoid consequential action unless equivalent quality is proven; provide native-speaker escalation and a launch tier that reflects the evidence.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [W3C Internationalization](https://www.w3.org/International/)

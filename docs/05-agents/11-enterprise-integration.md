@@ -106,6 +106,25 @@ For every system capture owner, interface, data/effects, identity, authority, sc
 
 Design a CRM–order–carrier flow. Inject “commit succeeded but response was lost” and a duplicate carrier event. Show that the system neither repeats the refund nor loses the status.
 
+## Check yourself
+
+1. Why does the agent not get a generic 'execute CRM request' tool?
+2. A refund commit succeeds but the response is lost. What must the system do, and what must it not do?
+3. A colleague says the transactional outbox gives exactly-once business outcomes. Correct them.
+4. When is browser or RPA automation an acceptable integration, and why is it a last resort?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Contract comes before connector. Domain commands such as case.open and refund.preview carry the actor, purpose, tenant, expected resource version, idempotency key, effect class, and approval reference, and the system of record validates invariants and owns the transaction. A generic tool or raw table access removes all of that.</li>
+<li>It must query and reconcile the unknown outcome before any retry, using the idempotency key. It must not repeat the refund, and it must not lose the status update.</li>
+<li>The outbox prevents 'database committed but event lost' inside one service boundary, and an idempotent inbox prevents duplicate handling. Neither creates exactly-once outcomes across every dependency; across systems you need sagas, and compensation is a new business action, not time travel.</li>
+<li>Only after assessing supported APIs, integration platforms, and workflow products. It is fragile, exposes credentials, and has UI-level effects; a 'universal' browser connector mostly transfers operational risk to the agent team.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [AsyncAPI specification](https://www.asyncapi.com/docs/reference/specification/v3.0.0)

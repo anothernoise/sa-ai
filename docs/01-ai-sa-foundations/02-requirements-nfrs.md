@@ -104,9 +104,11 @@ Version requirements with the use profile. A changed threshold or population is 
 
 Northstar uses grounded task success ≥90% lower confidence bound for core shipment cases, zero known cross-tenant retrieval in adversarial tests, p95 TTFT ≤3 seconds, p95 total ≤12 seconds, and cost per qualified resolution below the baseline. Refund actions require valid delegated identity and matching approval; latency does not override those invariants.
 
-## Artifact, lab, and checks
+## Artifact and lab
 
 Produce a **prioritized NFR scorecard** with scenarios, slices, thresholds, uncertainty, tactics, tests, runtime signals, owners, degraded behavior, and conflict decisions. Test it against one provider failure and one quality regression.
+
+## Check yourself
 
 1. What population does each quality threshold cover?
 2. Which attributes are non-compensatory?

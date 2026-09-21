@@ -70,6 +70,25 @@ Northstar’s notebook showed credible recommendations on 20 clean cases. The pr
 
 Maintain one dossier containing the outcome contract, stage, architecture, risk tier, gap register, datasets and evaluation, operational readiness, pilot evidence, unresolved risks, approval record, rollback, and the date/criteria for the next gate.
 
+## Check yourself
+
+1. Classify: a notebook showing 20 clean cases; 300 adjudicated cases against a baseline; one region with human approval. Give each stage and its exit evidence.
+2. Why build a thin vertical production slice instead of perfecting the prompt?
+3. Name five prototype shortcuts that silently become production architecture.
+4. How do you release by risk, and what should trigger automatic rollback?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Demo or feasibility spike (a reproducible result with limitations, no production claim); proof of value (baseline comparison on representative work); pilot (operational, adoption, and incident evidence from a bounded population in a real workflow).</li>
+<li>A slice with real identity, one governed data path, one least-privilege tool, durable state, versioned configuration, trace correlation, an evaluation gate, a fallback, and a runbook exposes systemic problems far sooner than prompt polish in isolation.</li>
+<li>Shared credentials, copied data, synchronous calls, no durable state, a single happy-path prompt, manual deployment, and notebook-only evaluation. A gap register across architecture, data, identity, evaluation, resilience, cost, and ownership keeps them visible.</li>
+<li>Start read-only, narrow the population and task, cap duration and spend, require approval for consequential actions, run in shadow mode, then widen through internal, opt-in, limited, canary, and broad stages. Define automatic rollback on quality, safety, latency, and cost signals.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [NIST AI RMF Core](https://airc.nist.gov/airmf-resources/airmf/5-sec-core/)

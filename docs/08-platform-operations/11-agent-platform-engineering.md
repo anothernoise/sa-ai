@@ -62,6 +62,25 @@ For each road capture target users, jobs to be done, supported architecture, man
 
 Use the [platform capability map](00-capability-map.md) to set scope and the [production starter architecture](../10-reference-architectures/11-production-starter-architecture.md) as the first golden path.
 
+## Check yourself
+
+1. Give two rows of what the platform owns versus what the domain team owns.
+2. Adoption of the golden path is 90%, yet incidents are rising. How should you read that?
+3. A robotics team has real-time constraints the golden path cannot meet. What is the right route?
+4. Why give developers ephemeral environments with synthetic data and the same contracts?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Contracts: the platform owns the run, event, artifact, tool, and identity schemas; the domain owns extensions. Quality: the platform owns the evaluation runner, registry, and gates; the domain owns cases, rubrics, and thresholds. Operations: the platform owns the trace schema and dashboards; the domain owns the SLO and on-call outcome.</li>
+<li>Adoption alone is not success. Look at change-failure rate, evaluation-gate coverage, incident detection time, unit cost, exception age, unsupported forks, and developer satisfaction.</li>
+<li>The exception path: record the unmet requirement, compensating controls, an owner, an expiry, and a plan to converge. Northstar's robotics team uses different runtime components this way.</li>
+<li>So teams can build and test against the real contracts and policy checks without production data, which shortens time from repository creation to a safe pilot and keeps the golden path the easiest path.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [Team Topologies](https://teamtopologies.com/key-concepts)

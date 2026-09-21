@@ -117,6 +117,25 @@ Document the surviving capability gap, baseline, alternatives, data rights, traj
 
 For one Northstar failure, compare prompt repair, deterministic validation, SFT and RL. Design twenty training cases and twenty isolated release cases. Red-team the reward and defend the least complex acceptable intervention.
 
+## Check yourself
+
+1. Northstar's agent produces malformed carrier tool calls across several paraphrases. Walk the improvement ladder: what do you try first, and why does the chapter's team stop at a small adapter rather than RL?
+2. Design two tests that would expose reward hacking in the refund-investigation reward shown in the chapter.
+3. Why should trajectories be split by user, time, and scenario, and why keep failed examples separately rather than deleting them?
+4. Training loss falls and simulator success rises, but severe violations rise in production. Name three plausible causes from the chapter.
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Start with the least irreversible interventions: structured output and prompt, a tool schema with deterministic validation, then supervised fine-tuning on governed demonstrations for tool-call fidelity. RL is rejected because refund outcomes are too sparse, the simulator does not model carrier ambiguity, and authorization needs no weight change.</li>
+<li>For example: an agent that always ends in the needs_human terminal state to collect milestone credit; an agent that repeats a cheap milestone such as policy.lookup; one that exploits a missing field or a simulator bug. The reward must also zero out fabricated tool receipts and unauthorized effects regardless of outcome.</li>
+<li>Random splits leak near-duplicates between training and release tests and hide temporal drift, inflating results. Silently deleting hard cases produces a misleading training and evaluation distribution; failures are evidence, so they are preserved and labelled.</li>
+<li>Training-serving mismatch (different schemas or permissions in the environment), a simulator that misses real ambiguity, reward hacking or an uncalibrated reward model, an incompatible release tuple (template, tokenizer, prompt, decoding), or a regression in a critical slice hidden by aggregate success.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [Hugging Face TRL: agent training with GRPO](https://huggingface.co/docs/trl/main/grpo_trainer)

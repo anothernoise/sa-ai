@@ -93,6 +93,25 @@ Include research contract, plan, source policy, browser controls, snapshot/evide
 
 Research one changing cloud-agent capability across AWS, Azure and Google Cloud. Require primary sources, retrieval dates and a contradiction section. Seed one stale page and one copied secondary claim.
 
+## Check yourself
+
+1. Give one failure for each of source existence, source quality, entailment, freshness, coverage, and independence.
+2. When should a research agent stop?
+3. A cited page changes after the report ships. What should the design have preserved?
+4. Why is BrowseComp not enough to accept a research agent for Northstar?
+
+<details>
+<summary>What a strong answer covers</summary>
+
+<ol>
+<li>Existence: a page was retrieved but is SEO filler. Quality: a blog cited where a primary source was required. Entailment: the cited passage does not support the claim. Freshness: a stale official page. Coverage: a material claim has no evidence. Independence: several 'sources' copy one origin.</li>
+<li>When the claim set reaches required coverage and the marginal value of more search falls below cost and risk, or at the deadline or budget; also on blocked access, unsafe collection, excessive uncertainty, or a question needing an accountable expert. Loop guards use query similarity, domain saturation, and no-new-evidence checks.</li>
+<li>A governed snapshot or excerpt and hash where lawful, the canonical link, and a retrieval date. Inferences are marked as such and unresolved conflicts recorded instead of forcing consensus.</li>
+<li>It is a capability benchmark with contamination caveats, not an enterprise evaluation. Northstar also needs citation correctness, claim coverage, source authority and diversity, freshness, contradiction handling, and adversarial cases such as stale or copied pages.</li>
+</ol>
+
+</details>
+
 ## Further reading
 
 - [BrowseComp](https://openai.com/index/browsecomp/)
