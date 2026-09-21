@@ -1,0 +1,45 @@
+# AI opportunity canvas — one use profile per file.
+# A "use profile" is the smallest deployable purpose with consistent users,
+# affected people, authority, controls, and evidence. If two purposes need
+# different authority or different release gates, they are two profiles.
+
+use_profile: <snake_case_name>
+decision_owner: <named role that owns the business outcome>
+population: <who uses it>
+affected_people: <who is affected but never touches it>
+
+current_workflow:
+  trigger: <what starts the work>
+  steps: <the real steps, from a case you watched, not the process document>
+  outcome: <what "done correctly" looks like>
+
+baseline:                      # measured, with a date and a source
+  monthly_cases: <number>
+  median_touch_minutes: <number>
+  error_or_repeat_rate: <number>
+  measured_on: <YYYY-MM-DD>
+  source: <system or study>
+
+problem_causes: []            # observed root causes, not solutions
+value_hypothesis: "<change in a business measure, with a threshold>"
+
+authority: draft_only         # draft_only | read_only | approved_action | autonomous
+prohibited: []                # uses this profile must never be put to
+
+alternatives:                 # the counterfactual the AI option must beat
+  - <process repair>
+  - <better search or rules>
+  - <classical ML>
+  - <abstain>
+
+constraints: []               # residency, latency, language, accessibility, contractual
+evidence_gate: "<the measurable result that permits release>"
+stop_condition: "<the result, and the date, at which you stop>"
+
+assumptions:                  # cheapest-to-test and most architecture-changing first
+  - claim: <...>
+    confidence: low | medium | high
+    test: <how you will find out>
+    if_false: <what changes>
+
+open_questions: []
