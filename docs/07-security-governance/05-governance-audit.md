@@ -24,7 +24,7 @@ The [NIST AI RMF 1.0](https://airc.nist.gov/airmf-resources/airmf/0-ai-rmf-1-0/)
 
 [ISO/IEC 42001:2023](https://www.iso.org/standard/81230.html) specifies requirements for an AI management system and continual improvement. A management standard can structure organizational controls; it does not automatically satisfy a law or prove that one system is safe.
 
-The [EU AI Act, Regulation (EU) 2024/1689](https://eur-lex.europa.eu/eli/reg/2024/1689/oj), establishes obligations based on role and risk, including prohibited practices, high-risk systems, certain transparency duties, and general-purpose AI model rules. Determine applicability, dates, role, and sectoral obligations with qualified legal counsel. Maintain a dated obligations register because laws, guidance, standards, and product features change.
+The [EU AI Act, Regulation (EU) 2024/1689](https://eur-lex.europa.eu/eli/reg/2024/1689/oj), establishes obligations based on role and risk, including prohibited practices, high-risk systems, certain transparency duties, and general-purpose AI model rules. Determine applicability, dates, role, and sectoral obligations with qualified legal counsel. Maintain a dated obligations register because laws, guidance, standards, and product features change. The book keeps its dated regulatory facts on one page — the [EU AI Act tracker](10-eu-ai-act-tracker.md) — so they can be reviewed on the cadence the [freshness policy](../appendix/maintenance.md) sets for regulation rather than going stale across chapters.
 
 ## Governance architecture
 

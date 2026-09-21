@@ -13,3 +13,5 @@ AI architecture content decays quickly. Each chapter carries a `Last reviewed` d
 | External links and lab dependencies | Monthly automated check |
 
 Material claims about vendor capabilities, prices, model context limits, benchmark results, or regulation must include an as-of date and a primary source. When facts change, preserve the architecture lesson and update the mapping.
+
+Dated regulatory facts are kept on one page, the [EU AI Act tracker](../07-security-governance/10-eu-ai-act-tracker.md), rather than repeated in chapters — so a review has one place to re-verify, and a chapter never states a date that has quietly gone stale.
