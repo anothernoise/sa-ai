@@ -50,10 +50,16 @@ Planned public starters:
 | `sa-ai-discovery` | AI opportunity canvas, requirements, NFRs, and ADRs | Parts 1–2 |
 | `sa-ai-rag` | Evidence-grounded RAG with citations and evals | Parts 3–4, 6 |
 | `sa-ai-agents` | Tool contracts, approvals, state, and failure recovery | Part 5 |
-| `sa-ai-evals` | Offline, online, adversarial, and regression evaluation | Part 6 |
+| [`sa-ai-evals`](https://github.com/anothernoise/sa-ai-evals) — **available** | Offline evaluation with slice reports and a release gate that blocks a plausible-looking candidate | Part 6 |
 | `sa-ai-guardrails` | Prompt-injection and data-loss defenses | Part 7 |
 | `sa-ai-platform` | Gateway, routing, observability, quotas, and cost controls | Parts 8–9 |
 | `sa-ai-capstone` | Final brief and submission templates | Part 11 |
+
+Only `sa-ai-evals` exists so far; the rest remain planned. It is a complete, runnable lab: stdlib-only, deterministic, and it ends with a decision you have to defend.
+
+## Templates
+
+The artifacts each part asks you to produce are available as copy-and-fill files in [`templates/`](templates/README.md): an ADR, an AI opportunity canvas, an NFR scorecard, a threat model, an architecture review checklist, and the capstone dossier. Every chapter's *Check yourself* questions are also available as data in [`data/check-yourself.json`](data/check-yourself.json).
 
 ## Book design principles
 

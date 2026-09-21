@@ -98,6 +98,7 @@
 - [AI supply chain & content provenance](docs/07-security-governance/07-ai-supply-chain.md)
 - [Policy-as-code for agent actions](docs/07-security-governance/08-agent-policy-as-code.md)
 - [Legal, licensing & IP architecture](docs/07-security-governance/09-legal-licensing-ip.md)
+- [EU AI Act tracker: dates, changes & architectural controls](docs/07-security-governance/10-eu-ai-act-tracker.md)
 
 ## Part 8 — Platforms, deployment & operations
 
@@ -150,10 +151,20 @@
 - [Capstone brief](docs/11-sa-craft/03-capstone.md)
 - [Capstone rubric & defense](docs/11-sa-craft/04-rubric-defense.md)
 - [Failure-mode case studies](docs/11-sa-craft/05-failure-modes.md)
+- [Worked discovery transcript: Northstar shipment support](docs/11-sa-craft/07-worked-discovery-transcript.md)
+- [The Northstar ADR set](docs/11-sa-craft/08-northstar-adr-set.md)
+- [Worked executive narrative: the Northstar decision brief](docs/11-sa-craft/09-worked-executive-narrative.md)
+- [Capstone exemplars: a strong and a weak submission, scored](docs/11-sa-craft/10-capstone-exemplars.md)
 
 ## Appendix
 
 - [Glossary](GLOSSARY.md)
+- [Artifact templates](templates/README.md)
+  - [ADR](templates/adr.md)
+  - [NFR scorecard](templates/nfr-scorecard.md)
+  - [Threat model](templates/threat-model.md)
+  - [Architecture review checklist](templates/architecture-review-checklist.md)
+  - [Capstone submission](templates/capstone-submission.md)
 - [Chapter template](docs/appendix/chapter-template.md)
 - [Maintenance & freshness](docs/appendix/maintenance.md)
 - [Contributing](CONTRIBUTING.md)

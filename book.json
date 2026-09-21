@@ -25,6 +25,9 @@
     },
     "fontsettings": {
       "theme": "night"
+    },
+    "lunr": {
+      "maxIndexSize": 2000000
     }
   }
 }
